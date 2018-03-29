@@ -1,41 +1,32 @@
 
 <!DOCTYPE html>
+
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VR Students</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="VR Students website for learning in VR enviroment" />
-	<meta name="keywords" content="vr, virtual reality, learning, e-learning, study, school" />
-	<meta name="author" content="VRStudents" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>VR Students</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="VR Students website for learning in VR enviroment" />
+		<meta name="keywords" content="vr, virtual reality, learning, e-learning, study, school" />
+		<meta name="author" content="VRStudents" />
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="shortcut icon" href="images\logo.png">
+		
+		<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/icomoon.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="images\logo.png">
-	
-	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	
-	<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
+		<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
 	</head>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
-<!--------------------------------------------------------------------------------------------------------------------------------------------------->
-	<body>	
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->	
+	<body>
 	<div id="fh5co-wrap">
 		<header id="fh5co-header">
 			<div class="container">
@@ -58,8 +49,8 @@
 						</li>
 						<li>
 							<ul id="loginAndSignup">
-								<li><a href="#"><span>UserName</span></a></li>
-								<li><a href="index.html"><span>Logout</span></a></li>
+								<li><a href="signup.html"><span>Sign Up</span></a></li>
+								<li><a href="login.html"><span>Login</span></a></li>
 							</ul>
 						</li>
 						<li><a href="index.html"><img border="0" alt="Home" src="images\logo.png" width="100" height="100"></a></li>
@@ -68,39 +59,38 @@
 			</div>
 		</header>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
-		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
+		<div class="fh5co-hero" style="background-image: url(images/hero_1.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
-							<h1 class="text-center">Student registration form</h1>
+							<h1 class="text-center">Class creation form</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="fh5co-section">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-md-push-1">
-						<form>							
-							<div class="form-group">
-								<label><b>School</b></label>
-								<select id="school">
-									<option value="144">Alliance</option>
-									<option value="124">Amal</option>
-									<option value="152">Ort</option>
-								</select>
-							</div>
-
-							<input id="checkBox" type="checkbox" required>By creating an account you agree to our<br><a href="#">Terms & Privacy</a>
-							
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-md">Sign up</button>
-								<button type="reset" class="btn btn-primary btn-md">Cancel</button>
-							</div>
-						</form>
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><b>Category</b></label>
+							<select id="school">
+								<option value="math">Math</option>
+								<option value="science">Science</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label><b>Grade</b></label>
+							<input type="number" id="gradeSelector" min="1" max="6" required>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-md">Create</button>
+							<button type="reset" class="btn btn-primary btn-md">Cancel</button>
+						</div>						
 					</div>
 				</div>
 			</div>
@@ -141,7 +131,7 @@
 				</div>
 			</div>
 		</footer>
-	</div> <!-- END fh5co-wrap -->
+	</div>	
 	
 	<!-- jQuery -->
 	<script src="js/3rdParty/jquery.min.js"></script>
@@ -153,7 +143,6 @@
 	<script src="js/3rdParty/jquery.waypoints.min.js"></script>
 	<!-- Stellar -->
 	<script src="js/3rdParty/jquery.stellar.min.js"></script>
-
 	<!-- MAIN JS -->
 	<script src="js/3rdParty/main.js"></script>
 
