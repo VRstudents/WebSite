@@ -22,7 +22,15 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 
+		<script src="js/client.js"></script>
+		<script type="text/javascript" src="js/settings.js"></script>
+		<script src="js/authMgr.js"></script>
+		<script src="js/3rdParty/firebase.js"></script>
+		<script src="js/3rdParty/firebase-auth.js"></script>
 		<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
+		<script src="js/dom-elements.js"></script>
+		<script type="text/javascript" src="js/3rdParty/loader.js"></script>
+		<script type="text/javascript" src="js/chartDraw.js"></script>
 	</head>
 	<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 	<!--------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -49,8 +57,8 @@
 						</li>
 						<li>
 							<ul id="loginAndSignup">
-								<li><a href="signup.html"><span>Sign Up</span></a></li>
-								<li><a href="login.html"><span>Login</span></a></li>
+								<li><button type="signup" class="header-button" onclick="auth()"><span id="header1">Sign Up</span></button></li>
+								<li><button type="login" class="header-button" onclick="auth()"><span id="header2">Login</span></button></li>
 							</ul>
 						</li>
 						<li><a href="index.html"><img border="0" alt="Home" src="images\logo.png" width="100" height="100"></a></li>
@@ -58,6 +66,7 @@
 				</nav>
 			</div>
 		</header>
+		<script>onload=toggleLoginMenu();</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_4.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>

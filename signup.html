@@ -31,11 +31,20 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	
+	<script src="js/client.js"></script>
+	<script type="text/javascript" src="js/settings.js"></script>
+	<script src="js/authMgr.js"></script>
+	<script src="js/3rdParty/firebase.js"></script>
+	<script src="js/3rdParty/firebase-auth.js"></script>
 	<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
 	</head>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 	<body>
+	<script>
+		onload=checkAuth();
+		onload=checkIfAlreadyRegistered(1);
+	</script>
 	<div id="fh5co-wrap">
 		<header id="fh5co-header">
 			<div class="container">
@@ -58,8 +67,8 @@
 						</li>
 						<li>
 							<ul id="loginAndSignup">
-								<li><a href="#"><span>UserName</span></a></li>
-								<li><a href="index.html"><span>Logout</span></a></li>
+								<li><button type="signup" class="header-button" onclick="goToProfile()"><span id="header1">UserName</span></button></li>
+								<li><button type="logout" class="header-button" onclick="logOut()"><span id="header2">Logout</span></button></li>
 							</ul>
 						</li>
 						<li><a href="index.html"><img border="0" alt="Home" src="images\logo.png" width="100" height="100"></a></li>
@@ -67,6 +76,7 @@
 				</nav>
 			</div>
 		</header>
+		<script>onload=toggleLoginMenu();</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -84,7 +94,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-md-push-1">
-						<form>
+						<form onsubmit="selectRole(); return false">
 							<input type="radio" name="role" id="role_student" value="student" required>I'm a student<br>
 							<input type="radio" name="role" id="role_teacher" value="teacher">I'm a teacher<br>
 							

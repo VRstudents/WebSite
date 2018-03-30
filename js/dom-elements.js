@@ -27,6 +27,19 @@ function openFirstTab() {
 	tablinks[1].className += " active";
 }
 
+// function manageGradeField(){
+	// var radios = document.forms["signUpForm"].elements["role"];
+	// for (i = 0; i < radios.length; i++) {
+		// radios[i].onclick = function() {
+			// if(document.getElementById("role_student").checked) {
+				// document.getElementById("grade-selector").style.display = "block";
+			// } else if (document.getElementById("role_teacher").checked) {
+				// document.getElementById("grade-selector").style.display = "none";
+			// }
+		// }
+	// }
+// }
+
 function popup() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");

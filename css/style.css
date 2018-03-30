@@ -24,6 +24,20 @@ body {
   }
 }
 
+.header-button {
+	background-color:rgba(0,0,0,0);
+	border:none;
+	font-size:20px;
+	color:rgba(255, 255, 255, 0.7);
+	margin-top:20px;
+	margin-right:10px;
+}
+
+.header-button a:hover, .header-button:hover span {
+	border-bottom: 2px solid #fff;
+	color: white;
+}
+
 a {
   color: #52d3aa;
   -webkit-transition: 0.5s;
@@ -760,12 +774,12 @@ h1, h2, h3, h4, h5, h6 {
     zoom: 1;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-      color: white;
-}
-
 .navbar a:hover, .dropdown:hover .dropbtn span {
 	border-bottom: 2px solid #fff;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+      color: white;
 }
 
 .dropdown-content {
