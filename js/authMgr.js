@@ -25,7 +25,7 @@ function auth() {
 			if (this.readyState == 4 && this.status == 200) {
 				var response = JSON.parse(this.responseText);
 				if(response) {
-					getRole();
+					GetProfileDetails();
 					if(sessionStorage.getItem('role') == "student") {
 						window.open('profileStudent.html', '_self');
 					} else {
@@ -116,16 +116,26 @@ function goToProfile(){
 	}	
 }
 	
-function getRole(){
+function GetProfileDetails(){
 	var xhttp = new XMLHttpRequest();
-
 	xhttp.onreadystatechange = function() {
+		console.log(this.readyState);
+		console.log(this.status);
 		if (this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
-			sessionStorage.setItem('role', response);
-		}					
+			
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			sessionStorage.setItem('role', arr2[1]);
+			sessionStorage.setItem('school', arr2[2]);
+			if (sessionStorage.getItem('role') == 'student'){
+				sessionStorage.setItem('grade', arr2[3]);
+			}		
+	}					
 	}; 
-	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/getRole/" + sessionStorage.getItem('userName') + "/", true);
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/GetProfileDetails/" + sessionStorage.getItem('userName') + "/", false);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 }
@@ -137,10 +147,13 @@ function signUp(){
 		grade = document.getElementById("gradeSelector").value;
 	};
 
+	sessionStorage.setItem('grade', grade);
+	sessionStorage.setItem('school', $("#schools-list").children("option").filter(":selected").text());
+	
 	var data = {
 		"userName":sessionStorage.getItem('userName'),
 		"role":role,
-		"schoolId":document.getElementById("school").value,
+		"schoolId":document.getElementById("schools-list").value,
 		"grade":grade
 	};
 	var dataJ = JSON.stringify(data);
@@ -168,6 +181,29 @@ function signUp(){
 	xhttp.send(dataJ);
 }
 
+function toggleLoginMenu(){
+		if(sessionStorage.getItem('tokenK')) {
+				document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
+				document.getElementById('header1').setAttribute('onclick','goToProfile()')
+				document.getElementById('header2').innerHTML = 'Logout';
+				document.getElementById('header2').setAttribute('onclick','logOut()')
+		} else {
+			document.getElementById('header1').innerHTML = 'Sign Up';
+			document.getElementById('header1').setAttribute('onclick','auth()')
+			document.getElementById('header2').innerHTML = 'Login';
+			document.getElementById('header2').setAttribute('onclick','auth()')
+		}
+}
+
+function loadPersonalDetails(){
+	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
+	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
+	if(sessionStorage.getItem('role') == 'student'){
+		document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
+	}
+	
+}
+
 function logOut(){	
 	firebase.initializeApp(settings);
 	var dataJ = JSON.stringify(sessionStorage.getItem('userName'));
@@ -190,20 +226,6 @@ function logOut(){
 	}).catch(function(error) {
 		console.log(error);
 	});	
-}
-
-function toggleLoginMenu(){
-		if(sessionStorage.getItem('tokenK')) {
-				document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
-				document.getElementById('header1').setAttribute('onclick','goToProfile()')
-				document.getElementById('header2').innerHTML = 'Logout';
-				document.getElementById('header2').setAttribute('onclick','logOut()')
-		} else {
-			document.getElementById('header1').innerHTML = 'Sign Up';
-			document.getElementById('header1').setAttribute('onclick','auth()')
-			document.getElementById('header2').innerHTML = 'Login';
-			document.getElementById('header2').setAttribute('onclick','auth()')
-		}
 }
 
 // function getUserID(){

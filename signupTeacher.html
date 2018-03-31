@@ -98,11 +98,7 @@
 						<form onsubmit="signUp(); return false">							
 							<div class="form-group">
 								<label><b>School</b></label>
-								<select id="school">
-									<option value="144">Alliance</option>
-									<option value="124">Amal</option>
-									<option value="152">Ort</option>
-								</select>
+								<select id="schools-list"></select>
 							</div>
 
 							<input id="checkBox" type="checkbox" required>By creating an account you agree to our<br><a href="#">Terms & Privacy</a>
@@ -115,6 +111,7 @@
 					</div>
 				</div>
 			</div>
+			<script>onload=getSchools();</script>
 		</div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->

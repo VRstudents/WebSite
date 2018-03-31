@@ -24,15 +24,14 @@ function getSchools(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
-
+			
 			var arr1 = Object.keys(response);
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
-			
 			for (i = 0; i < arr1.length; i++) {
 				
-				mySelect = document.getElementById('schoolOpt');
+				mySelect = document.getElementById('schools-list');
 				var option = document.createElement('option');
 				option.text = arr2[i].Name;
 				option.value = arr2[i].Id;
