@@ -212,12 +212,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .start-signup{
+	display:block;
 	border: 2px solid white;
 	border-radius: 5px;
 	background: linear-gradient(#52d3aa, #337ab7);
 	color: #52d3aa;
 	padding:10px;
 	margin: 0 auto;
+	width:100%;
+	color:white;
 }
 
 .fh5co-table,
