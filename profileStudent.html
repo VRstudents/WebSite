@@ -64,11 +64,11 @@
 									<button class="dropbtn"><span>Subjects</span>
 									</button>
 									<div class="dropdown-content" style="background-image: url(images/hero_2.jpg);">
-										<a href="#">Math</a>
-										<a href="#">English</a>
-										<a href="#">Science</a>
-										<a href="#">History</a>
-										<a href="#">Geography</a>
+										<a href="courses/viewMath.html">Math</a>
+										<a href="courses/viewEnglish.html">English</a>
+										<a href="courses/viewScience.html">Science</a>
+										<a href="courses/viewHistory.html">History</a>
+										<a href="courses/viewGeography.html">Geography</a>
 									</div>
 								</div> 
 							</div>	
@@ -171,27 +171,35 @@
 									<th>Best result</th>
 								</tr>
 								<tr>
-									<td><a href="viewClass.html">Science</a></td>
-									<td><a href="#">9</a></td> 
+									<td><a href="viewClassStudent.html">Science</a></td>
+									<td><div class="tooltip1">9<br>
+										<span class="tooltiptext1" style="top:-45px; left:-20px;">More precedence practice, cause it is very important</span>
+									</div></td> 
 									<td>1</td> 
 									<td>80</td>
 								</tr>
 								<tr>
-									<td><a href="viewClass.html">Science</a></td>
-									<td><a href="#">10</a></td> 
+									<td><a href="viewClassStudent.html">Science</a></td>
+									<td><div class="tooltip1">10<br>
+										<span class="tooltiptext1" style="top:-45px; left:-20px;">The big challenge of the course. Show what you've learned and test your own knowledge.</span>
+									</div></td> 
 									<td>0</td> 
 									<td>-</td>
 								</tr>
 							</table> 
 					
-							<div id="join-class">
+							<div id="join-class" style="margin-top:10px;">
 								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Join class</button>
 								<div id="myModal" class="modal">
-									<select class="modal-content" id="join-class-select">
-										<option value="1">History</option>
-										<option value="2">Science</option>
-										<option value="3">English</option>
-									</select>
+									<div class="modal-content" id="join-class-select">
+										<input type="radio" name="class-opt" id="1" value="1" required>History - Ester Cohen<br>
+										<input type="radio" name="class-opt" id="2" value="2" required>Science - Albert Einstein<br>
+										<input type="radio" name="class-opt" id="3" value="3" required>English - William Shakespeare<br>
+										<input type="radio" name="class-opt" id="4" value="4" required>English - Robert Robertson<br>
+										<button class="btn btn-primary btn-md" id="joinButton" onclick="modal()">Join class</button>
+										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
+									</div>
+									<span class="close">&times;</span>
 								</div>
 							</div>
 						</div>

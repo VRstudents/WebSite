@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VR Students</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="VR Students website for learning in VR enviroment" />
+	<meta name="keywords" content="vr, virtual reality, learning, e-learning, study, school" />
+	<meta name="author" content="VRStudents" />
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="..\images\logo.png">
+	
+	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="../css/magnific-popup.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	
+	<script src="../js/client.js"></script>
+	<script type="text/javascript" src="../js/settings.js"></script>
+	<script src="../js/authMgr.js"></script>
+	<script src="../js/dom-elements.js"></script>
+	<script src="../js/3rdParty/firebase.js"></script>
+	<script src="../js/3rdParty/firebase-auth.js"></script>
+	<script src="../js/3rdParty/modernizr-2.6.2.min.js"></script>
+	</head>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+	<body>
+	<div id="fh5co-wrap">
+		<header id="fh5co-header">
+			<div class="container">
+				<nav class="fh5co-main-nav">
+					<ul>
+						<li id="subjects">
+							<div class="navbar">
+								<div class="dropdown">
+									<button class="dropbtn"><span>Subjects</span>
+									</button>
+									<div class="dropdown-content">
+										<a href="viewMath.html">Math</a>
+										<a href="viewEnglish.html">English</a>
+										<a href="viewScience.html">Science</a>
+										<a href="viewHistory.html">History</a>
+										<a href="viewGeography.html">Geography</a>
+									</div>
+								</div> 
+							</div>	
+						</li>
+						<li>
+							<ul id="loginAndSignup">
+								<li><button type="signup" class="header-button" onclick="goToProfile()"><span id="header1">UserName</span></button></li>
+								<li><button type="logout" class="header-button" onclick="logOut()"><span id="header2">Logout</span></button></li>
+							</ul>
+						</li>
+						<li><a href="..\index.html"><img border="0" alt="Home" src="..\images\logo.png" width="100" height="100"></a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<script>onload=toggleLoginMenu();</script>
+		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+		<div class="fh5co-hero" style="background-image: url(../images/classes/science/science.jpg);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+						<div class="fh5co-intro fh5co-table-cell">
+							<div class="class-main courses-page">VR Stduents Science Course</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fh5co-section">
+			<div class="container lessons-list">
+				<div class="row">
+					<div id="lessons" style="text-align:center">
+						<h3 style="font-size:24px;">Math is the foundation of all science. It is also a very practical in a daily life and in most jobs. In out math course we will take our students from the basic foundations of arithmetic to more advanced techniques and rules. And of course, it will happen through a wonderful journey in our VR world.<br>
+						<h2>Our Math courses:</h2></h3>
+						<ul>
+							<li><h3 style="margin-bottom:0px;">Grade 1</h3>
+								<p>To begin, the little student will learn the very basics of arithmetic - addition, subtraction, multiplication and division.<br>
+								That will be done with small positive numbers, to ease the process of learning.<br>
+								We will also learn the precedence rules, and will go through complex exercises, which combine all the techniques.</p>
+							<li><h3 style="margin-bottom:0px;">Grade 2</h3>
+								<p>In the second course, we will expand students' skills with numbers, practicing learned techniques with bigger numbers.<br>
+								After that, our students will learn and practice the techniques of long addition, subtraction, multiplication and division.<br>
+								Also, they will learn the basics of simple fractions.</p>
+							</li>
+							<li><h3 style="margin-bottom:0px;">Grade 3</h3>
+								<p>We will proceed to exercise with more complex numbers. Later, students will learn to solve basic word problems.<br>
+								In the second half of the course, students will understand simple decimals, and negative numbers.</p>
+							</li>
+							<li><h3 style="margin-bottom:0px;">Grade 4</h3>
+								<p>The whole course will be focused on equations.<br>
+								To maintain student's skills from previous grades, all the knowledge acquired earlier will be applied at this course.</p>
+							</li>
+							<li><h3 style="margin-bottom:0px;">Grade 5</h3>
+								<p>At 5th grade, students will learn and practice complex fractions, and relation between fractions and decimal numbers.<br>
+								Later, students will learn more advanced fractions techniques, such as common denominator, reducing fractures.<br>
+								Exercises will include all previously learned techniques and knowledge and will be complex.</p>
+							</li>
+							<li><h3 style="margin-bottom:0px;">Grade 6</h3>
+								<p>At our final math course, students will learn the basics of percantes. After that, they will<br>
+								learn the foundations of geometry - measurment units, shapes types, basic geometry calculations.</p>
+							</li>							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->		
+		<footer id="fh5co-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<h3>About Us</h3>
+						<p>We are a group of students who want to finish the degree and get back to reality, not a virtual one =)</p>
+					</div>
+					<div class="col-md-3 col-md-push-1">
+						<h3>Quick Links</h3>
+						<ul>
+							<li><a href="about.html">About Us</a></li>
+							<li><a href="#">Products</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-md-push-1">
+						<h3>Follow Us</h3>
+						<ul style="list-style-type:none; padding-left:0;">
+							<li><a href="#"><i class="icon-twitter"></i> <span>Twitter</span></a></li>
+							<li><a href="#"><i class="icon-facebook"></i> <span>Facebook</span></a></li>
+							<li><a href="#"><i class="icon-instagram"></i> <span>Instagram</span></a></li>
+							<li><a href="#"><i class="icon-google"></i> <span>Google Plus</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 fh5co-copyright text-center">
+						<p><small>&copy; 2018 VR Students. All Rights Reserved. </small></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div> <!-- END fh5co-wrap -->
+	
+	<!-- jQuery -->
+	<script src="../js/3rdParty/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="../js/3rdParty/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/3rdParty/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/3rdParty/jquery.waypoints.min.js"></script>
+	<!-- Stellar -->
+	<script src="../js/3rdParty/jquery.stellar.min.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="../js/3rdParty/main.js"></script>
+
+	</body>
+</html>
+

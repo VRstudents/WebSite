@@ -45,6 +45,7 @@
 	<script>
 		onload=checkAuth();
 		onload=checkIfAlreadyRegistered(2);
+		onload=checkRole(1);
 	</script>	
 	<div id="fh5co-wrap">
 		<header id="fh5co-header">
@@ -57,11 +58,11 @@
 									<button class="dropbtn"><span>Subjects</span>
 									</button>
 									<div class="dropdown-content">
-										<a href="#">Math</a>
-										<a href="#">English</a>
-										<a href="#">Science</a>
-										<a href="#">History</a>
-										<a href="#">Geography</a>
+										<a href="courses/viewMath.html">Math</a>
+										<a href="courses/viewEnglish.html">English</a>
+										<a href="courses/viewScience.html">Science</a>
+										<a href="courses/viewHistory.html">History</a>
+										<a href="courses/viewGeography.html">Geography</a>
 									</div>
 								</div> 
 							</div>	
@@ -96,7 +97,7 @@
 		</div>
 		<div class="fh5co-section">
 			<div class="container lessons-list">
-				<div class="row">
+				<div class="row" style="margin: auto 0;">
 					<div id="lessons">
 						<ul style="list-style-type:none; padding-left:0;">
 							<li><div class="tooltip1">Addition 1<br>
@@ -160,6 +161,11 @@
 								<span class="tooltiptext1">The big challenge of the course. Show what you've learned and test your own knowledge.</span>
 							</div></li>
 						</ul>
+						
+						<div id="edit-class">
+							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="">Save</button>
+							<button class="btn btn-primary btn-md edit-class-btn" id="cancelButton" onclick="window.open('profileTeacher.html', '_self')">Cancel</button>
+						</div>
 					</div>
 				</div>
 			</div>

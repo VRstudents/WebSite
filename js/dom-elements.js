@@ -19,9 +19,9 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+//Used to open default tab (Classes) on student profile page
 function openFirstTab() {
 	var tablinks;
-	
     document.getElementById('Classes').style.display = "block";
 	tablinks = document.getElementsByClassName("tablinks");
 	tablinks[1].className += " active";
@@ -47,6 +47,8 @@ function popup() {
 
 function modal(){
 	var modal = document.getElementById('myModal');
+	var joinButton = document.getElementById('joinButton');
+	var cancelButton = document.getElementById('cancelButton');
 
 	// Get the button that opens the modal
 	var btn = document.getElementById("openModal");
@@ -66,8 +68,12 @@ function modal(){
 
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-		if (event.target == modal) {
+		if (event.target == modal || event.target == cancelButton) {
 			modal.style.display = "none";
+		} else if (event.target == joinButton) {
+			modal.style.display = "none";
+			//here will come the registration call
+			console.log(document.querySelector('input[name="class-opt"]:checked').value);
 		}
 	}
 }

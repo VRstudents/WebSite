@@ -10,13 +10,16 @@ function auth() {
 		sessionStorage.setItem('tokenK', token);
 		// The signed-in user info.
 		var user = result.user;
-		sessionStorage.setItem('displayName', user.displayName);
+		var tempName = user.displayName.split(" ");
+		var fullName = tempName[0].charAt(0).toUpperCase() + tempName[0].toLowerCase().substring(1, tempName[0].length) + 
+		" " + tempName[1].charAt(0).toUpperCase() +tempName[1].toLowerCase().substring(1, tempName[1].length);
+		sessionStorage.setItem('displayName', fullName);
 		sessionStorage.setItem('userName', user.email);
 
 		var data = {
 			"token":token,
 			"userName":user.email,
-			"name":user.displayName
+			"name":fullName
 		};
 		var dataJ = JSON.stringify(data);
 		

@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
- #loginAndSignup {
+#loginAndSignup {
 	text-align:center;
 	float: right;
 }
@@ -370,6 +370,12 @@ h1, h2, h3, h4, h5, h6 {
 	position:relative;
 	top:150px;
 	left:20%;
+}
+
+#edit-class {
+	clear: both;
+	position:relative;
+	left:-6%;
 }
 
 .fh5co-feature {
@@ -760,10 +766,6 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-.dropdown {
-	
-}
-
 .dropdown .dropbtn {
     font-size: 22px;    
     border: none;
@@ -783,13 +785,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-      color: white;
+     color: white;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-	color:red;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -803,6 +804,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 	font-size:20px;
 	border-radius:20px;
+	font-weight:bold;
 }
 
 .dropdown-content a:hover {
@@ -882,6 +884,10 @@ td a {
 	font-size:25px;
 }
 
+.courses-page {
+	font-size:50px;
+}
+
 .lessons-list{
 	margin: 0 auto;
 	text-align:center;
@@ -896,10 +902,10 @@ td a {
 #lessons li{
 	display:inline;
 	float:left;
+	width:200px;
 }
 
 #lessons li img{
-	margin:10px;
 	margin-bottom:40px;
 }	
 
@@ -959,20 +965,24 @@ td a {
 }
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-	height:200px;
+	max-height:500px;
 	top:0px;
+	color:white;
+	background-image: url(../images/hero_2.jpg);
 }
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    position:absolute;
+	color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
+	left:89%;
+	top:100px;
 }
 .close:hover,
 .close:focus {
@@ -987,4 +997,15 @@ td a {
 
 #join-class-option{
 	background-color:white;
+}
+
+.lesson-status {
+	color:green;
+	font-weight:bold;
+}
+
+.edit-class-btn {
+	width:13%;
+	text-align:center !important;
+	padding-left:0 !important;
 }
