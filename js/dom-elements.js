@@ -48,6 +48,7 @@ function popup() {
 function modal(){
 	var modal = document.getElementById('myModal');
 	var joinButton = document.getElementById('joinButton');
+	var postBtn = document.getElementById('postBtn');
 	var cancelButton = document.getElementById('cancelButton');
 
 	// Get the button that opens the modal
@@ -74,6 +75,11 @@ function modal(){
 			modal.style.display = "none";
 			//here will come the registration call
 			console.log(document.querySelector('input[name="class-opt"]:checked').value);
+		} else if (event.target == postBtn) {
+			modal.style.display = "none";
+			//here will come the posting to server call
+			document.getElementById('curMessage').innerHTML = document.querySelector('textarea[id="message"]').value;
+			document.querySelector('textarea[id="message"]').value = '';
 		}
 	}
 }

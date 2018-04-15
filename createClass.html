@@ -69,7 +69,7 @@
 				</nav>
 			</div>
 		</header>
-		<script>onload=toggleLoginMenu();</script>
+		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_1.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -88,21 +88,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-5">
-						<div class="form-group">
-							<label><b>Category</b></label>
-							<select id="school">
-								<option value="math">Math</option>
-								<option value="science">Science</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label><b>Grade</b></label>
-							<input type="number" id="gradeSelector" min="1" max="6" required>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-md" onclick="window.open('addLessons.html', '_self')">Next</button>
-							<button type="reset" class="btn btn-primary btn-md" onclick="window.open('profileTeacher.html', '_self')">Cancel</button>
-						</div>						
+						<form onsubmit="window.open('addLessons.html', '_self')">
+							<div class="form-group">
+								<label><b>Category</b></label>
+								<select id="school">
+									<option value="math">Math</option>
+									<option value="science">Science</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label><b>Grade</b></label>
+								<input type="number" id="gradeSelector" min="1" max="6" required>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-md">Next</button>
+								<button type="reset" class="btn btn-primary btn-md" onclick="window.open('profileTeacher.html', '_self')">Cancel</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -78,7 +78,7 @@
 				</nav>
 			</div>
 		</header>
-		<script>onload=toggleLoginMenu();</script>
+		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -90,6 +90,19 @@
 							<div class="class-main">2nd grade</div>
 							<div class="class-main">Alliance School</div>
 							<div class="class-main">14 students</div>
+							<div>
+								<p id="curMessage"><u>Teacher message</u><br>
+								asddsfkjsdklfsdlfhfhsdhsdfh. dhfkjsdhdfhsdhfdksdk.sadhasjklhdjk lasdhjkl ashdjkash jkl ash las hdklash djkl ash djkl asdj klasdjkasbd kla sbkd baskldba bdjkasdkla shdklak ajksdjkakj a ajdka</p>
+								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Post message</button>
+								<div id="myModal" class="modal">
+									<div class="modal-content" id="message-text">
+										<textarea "rows="4" cols="50" id="message"></textarea>
+										<button class="btn btn-primary btn-md" id="postBtn" onclick="modal()">Post</button>
+										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
+									</div>
+									<span class="close">&times;</span>
+							</div>
+							</div> 
 						</div>
 					</div>
 				</div>

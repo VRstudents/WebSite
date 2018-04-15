@@ -215,10 +215,12 @@ function logOut(){
 	firebase.auth().signOut().then(function() {
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 204) {
-				sessionStorage.setItem('tokenK', '');
-				sessionStorage.setItem('displayName', '');
-				sessionStorage.setItem('userName', '');
-				sessionStorage.setItem('role', '');
+				sessionStorage.removeItem('tokenK');
+				sessionStorage.removeItem('displayName');
+				sessionStorage.removeItem('userName');
+				sessionStorage.removeItem('role');
+				sessionStorage.removeItem('school');
+				sessionStorage.removeItem('grade');
 				window.open('index.html', '_self');					
 			}					
 		};
