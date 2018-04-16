@@ -72,9 +72,14 @@ function modal(){
 		if (event.target == modal || event.target == cancelButton) {
 			modal.style.display = "none";
 		} else if (event.target == joinButton) {
-			modal.style.display = "none";
+			if (document.querySelector('input[name="class-opt"]:checked') == null) {
+				alert("Please select a class to join.");
+				return;
+			}; 
 			//here will come the registration call
+			modal.style.display = "none";
 			console.log(document.querySelector('input[name="class-opt"]:checked').value);
+			$('input[name=class-opt]').attr('checked',false);
 		} else if (event.target == postBtn) {
 			modal.style.display = "none";
 			//here will come the posting to server call

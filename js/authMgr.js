@@ -148,7 +148,18 @@ function signUp(){
 	var role = sessionStorage.getItem('role');
 	if(!role.localeCompare("student")){
 		grade = document.getElementById("gradeSelector").value;
-	};
+	} else {
+		var checkBoxes = document.getElementsByClassName('lesson-select');
+		var isChecked = false;
+		for (var i = 0; i < checkBoxes.length; i++) {
+			if ( checkBoxes[i].checked ) {
+				isChecked = true;
+			};
+		};
+		if (!isChecked) {
+			alert("Please, check at least one subject.");
+		}; 
+	}
 
 	sessionStorage.setItem('grade', grade);
 	sessionStorage.setItem('school', $("#schools-list").children("option").filter(":selected").text());
@@ -172,10 +183,10 @@ function signUp(){
 					window.open('profileTeacher.html', '_self');
 				}				
 			} else {
-				document.getElementById('regError').innerHTML = "Failed to sign up";
+				alert("Failed to sign up");
 			}					
 		} else if(this.readyState == 4 && this.status == 500) {
-			document.getElementById('regError').innerHTML = "Failed to sign up. Server error.";
+			alert("Failed to sign up. Server error.");
 		}		
 	};
 	xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/AddNewStudentTeacher", true);
