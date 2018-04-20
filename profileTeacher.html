@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	
 	<script src="js/client.js"></script>
+	<script src="js/loadProfile.js"></script>
 	<script type="text/javascript" src="js/settings.js"></script>
 	<script src="js/authMgr.js"></script>
 	<script src="js/3rdParty/firebase.js"></script>
@@ -81,7 +82,6 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -131,7 +131,7 @@
 			</div>
 		</div>
 	</div> <!-- END fh5co-wrap -->
-	<script>onload=loadPersonalDetails();</script>
+	<script>onload=loadProfileTeacher();</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 	<footer id="fh5co-footer">

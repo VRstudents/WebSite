@@ -972,7 +972,7 @@ td a {
     border: 1px solid #888;
     width: 80%;
 	max-height:500px;
-	top:100px;
+	top:500px;
 	color:white;
 	background-image: url(../images/hero_2.jpg);
 }
@@ -983,8 +983,8 @@ td a {
     float: right;
     font-size: 28px;
     font-weight: bold;
-	left:89%;
-	top:200px;
+	left:98%;
+	top:5px;
 }
 .close:hover,
 .close:focus {
@@ -1019,4 +1019,7 @@ td a {
 	margin: 0;
     padding: 0;
 }
+
+#Achievements section {
+	display: inline;
 }

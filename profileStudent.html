@@ -36,6 +36,7 @@
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		
 		<script src="js/client.js"></script>
+		<script src="js/loadProfile.js"></script>
 		<script type="text/javascript" src="js/settings.js"></script>
 		<script src="js/authMgr.js"></script>
 		<script src="js/3rdParty/firebase.js"></script>
@@ -84,7 +85,6 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -132,86 +132,48 @@
 
 						<div id="Courses" class="tabcontent">
 							<h3>Your courses</h3>
-							<table style="width:100%">
+							<table id="Courses-table" style="width:100%">
 								<tr>
 									<th>Course</th>
 									<th>Grade</th> 
 									<th>Result</th>
 								</tr>
-								<tr>
-									<td>Math</td>
-									<td>A</td> 
-									<td>100</td>
-								</tr>
-								<tr>
-									<td>Math</td>
-									<td>B</td> 
-									<td>94</td>
-								</tr>
-								<tr>
-									<td>English</td>
-									<td>B</td> 
-									<td>98</td>
-								</tr>
-								<tr>
-									<td>Science</td>
-									<td>B</td> 
-									<td>Ongoing</td>
-								</tr>
 							</table>
+							
+							<div id="join-class" style="margin-top:10px;">
+								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Join class</button>
+								<div id="myModal" class="modal">
+									<div class="modal-content" id="join-class-select">
+										<div id="classes-to-join"></div>
+										<button class="btn btn-primary btn-md" id="joinButton" onclick="joinClass()">Join class</button>
+										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
+										<span class="close">&times;</span>
+									</div>
+								</div>
+							</div>
 						</div>
 
 						<div id="Classes" class="tabcontent ' active'">
 							<h3>Your classes and assignments</h3>
-							<table style="width:100%">
+							<table id="Classes-table" style="width:100%">
 								<tr>
 									<th>Class</th>
 									<th>Lesson</th> 
 									<th>Attempts</th>
 									<th>Best result</th>
 								</tr>
-								<tr>
-									<td><a href="viewClassStudent.html">Science</a></td>
-									<td><div class="tooltip1">9<br>
-										<span class="tooltiptext1" style="top:-45px; left:-20px;">More precedence practice, cause it is very important</span>
-									</div></td> 
-									<td>1</td> 
-									<td>80</td>
-								</tr>
-								<tr>
-									<td><a href="viewClassStudent.html">Science</a></td>
-									<td><div class="tooltip1">10<br>
-										<span class="tooltiptext1" style="top:-45px; left:-20px;">The big challenge of the course. Show what you've learned and test your own knowledge.</span>
-									</div></td> 
-									<td>0</td> 
-									<td>-</td>
-								</tr>
 							</table> 
-					
-							<div id="join-class" style="margin-top:10px;">
-								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Join class</button>
-								<div id="myModal" class="modal">
-									<div class="modal-content" id="join-class-select">
-										<input type="radio" name="class-opt" id="1" value="1" required>History - Ester Cohen<br>
-										<input type="radio" name="class-opt" id="2" value="2">Science - Albert Einstein<br>
-										<input type="radio" name="class-opt" id="3" value="3">English - William Shakespeare<br>
-										<input type="radio" name="class-opt" id="4" value="4">English - Robert Robertson<br>
-										<button class="btn btn-primary btn-md" id="joinButton" onclick="modal()">Join class</button>
-										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
-									</div>
-									<span class="close">&times;</span>
-								</div>
-							</div>
 						</div>
 
 						<div id="Achievements" class="tabcontent">
 							<div id="stats">
 								<h3>Your achievements</h3>
-								<p>Courses completed: 3<br>
-								Lessons completed: 39<br>
-								Questions correctly answered: 351<br>
-								Average course result: 97.3<br>
-								Best course result: 100</p>
+								<p>
+									<section id="stud-stats-lc">Lessons completed: </section><br>
+									<section id="stud-stats-qca">Questions correctly answered: </section><br>
+									<section id="stud-stats-acr">Average course result: </section><br>
+									<section id="stud-stats-bcr">Best course result: </section>
+								</p>
 							</div>
 							
 							<div id="curve_chart"></div>
@@ -222,7 +184,10 @@
 			</div>
 		</div>
 	</div> <!-- END fh5co-wrap -->
-	<script>onload=loadPersonalDetails();</script>
+	<script>
+		onload=loadProfileStudent();
+		onload=modal();
+	</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 	<footer id="fh5co-footer">

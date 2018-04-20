@@ -1,3 +1,22 @@
+function toggleLoginMenu(){
+		if(sessionStorage.getItem('tokenK')) {
+				document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
+				document.getElementById('header1').setAttribute('onclick','goToProfile()')
+				document.getElementById('header2').innerHTML = 'Logout';
+				document.getElementById('header2').setAttribute('onclick','logOut()')
+				
+				var pathArray = window.location.pathname.split('/');
+				if(pathArray[1] == "index.html"){
+					document.getElementById('startTop').innerHTML = "";
+				}
+		} else {
+			document.getElementById('header1').innerHTML = 'Sign Up';
+			document.getElementById('header1').setAttribute('onclick','auth()')
+			document.getElementById('header2').innerHTML = 'Login';
+			document.getElementById('header2').setAttribute('onclick','auth()')
+		}
+}
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -65,21 +84,19 @@ function modal(){
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 		modal.style.display = "none";
+		$('input[name=class-opt]').attr('checked',false); //deselect the radio button so tje alert will work right on the next join button click
 	}
 
-	// When the user clicks anywhere outside of the modal, close it
+	// When the user clicks somewhere in the modal, close it
 	window.onclick = function(event) {
-		if (event.target == modal || event.target == cancelButton) {
+		if (event.target == cancelButton) {
 			modal.style.display = "none";
+			$('input[name=class-opt]').attr('checked',false); //deselect the radio button so tje alert will work right on the next join button click
 		} else if (event.target == joinButton) {
 			if (document.querySelector('input[name="class-opt"]:checked') == null) {
 				alert("Please select a class to join.");
 				return;
 			}; 
-			//here will come the registration call
-			modal.style.display = "none";
-			console.log(document.querySelector('input[name="class-opt"]:checked').value);
-			$('input[name=class-opt]').attr('checked',false);
 		} else if (event.target == postBtn) {
 			modal.style.display = "none";
 			//here will come the posting to server call

@@ -195,27 +195,12 @@ function signUp(){
 	xhttp.send(dataJ);
 }
 
-function toggleLoginMenu(){
-		if(sessionStorage.getItem('tokenK')) {
-				document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
-				document.getElementById('header1').setAttribute('onclick','goToProfile()')
-				document.getElementById('header2').innerHTML = 'Logout';
-				document.getElementById('header2').setAttribute('onclick','logOut()')
-		} else {
-			document.getElementById('header1').innerHTML = 'Sign Up';
-			document.getElementById('header1').setAttribute('onclick','auth()')
-			document.getElementById('header2').innerHTML = 'Login';
-			document.getElementById('header2').setAttribute('onclick','auth()')
-		}
-}
-
 function loadPersonalDetails(){
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	if(sessionStorage.getItem('role') == 'student'){
 		document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
 	}
-	
 }
 
 function logOut(){	
@@ -226,12 +211,8 @@ function logOut(){
 	firebase.auth().signOut().then(function() {
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 204) {
-				sessionStorage.removeItem('tokenK');
-				sessionStorage.removeItem('displayName');
-				sessionStorage.removeItem('userName');
-				sessionStorage.removeItem('role');
-				sessionStorage.removeItem('school');
-				sessionStorage.removeItem('grade');
+				sessionStorage.clear();
+				window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
 				window.open('index.html', '_self');					
 			}					
 		};
