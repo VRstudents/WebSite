@@ -86,13 +86,12 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
-							<div class="class-main">Math</div>
-							<div class="class-main">2nd grade</div>
-							<div class="class-main">Alliance School</div>
-							<div class="class-main">14 students</div>
+							<div class="class-main" id="class-cat-grade"></div>
+							<div class="class-main" id="class-teacher"></div>
+							<div class="class-main" id="class-students"></div>
+							
 							<div>
-								<p id="curMessage"><u>Teacher message</u><br>
-								asddsfkjsdklfsdlfhfhsdhsdfh. dhfkjsdhdfhsdhfdksdk.sadhasjklhdjk lasdhjkl ashdjkash jkl ash las hdklash djkl ash djkl asdj klasdjkasbd kla sbkd baskldba bdjkasdkla shdklak ajksdjkakj a ajdka</p>
+								<p id="curMessage"><u>Teacher message</u><br></p>
 								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Post message</button>
 								<div id="myModal" class="modal">
 									<div class="modal-content" id="message-text">
@@ -101,7 +100,7 @@
 										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
 									</div>
 									<span class="close">&times;</span>
-							</div>
+								</div>
 							</div> 
 						</div>
 					</div>
@@ -176,13 +175,21 @@
 						</ul>
 						
 						<div id="edit-class">
-							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="window.open('viewClassTeacher.html', '_self')">Save</button>
-							<button class="btn btn-primary btn-md edit-class-btn" id="cancelButton" onclick="window.open('viewClassTeacher.html', '_self')">Cancel</button>
+							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="">Save</button>
+							<button class="btn btn-primary btn-md edit-class-btn" id="cancelButton" onclick="">Cancel</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script>
+			onload=loadClassPage();
+			param = document.URL.substring(document.URL.indexOf("?") + 10);
+			list = document.getElementsByClassName('edit-class-btn');
+			for (i = 0; i < list.length; i++) {
+				list[i].setAttribute('onclick','window.open(\'viewClassTeacher.html?courseId=\'+param, \'_self\')');
+			};
+		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->		
 		<footer id="fh5co-footer">

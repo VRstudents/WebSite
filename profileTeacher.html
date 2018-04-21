@@ -39,6 +39,7 @@
 	<script src="js/loadProfile.js"></script>
 	<script type="text/javascript" src="js/settings.js"></script>
 	<script src="js/authMgr.js"></script>
+	<script src="js/dom-elements.js"></script>
 	<script src="js/3rdParty/firebase.js"></script>
 	<script src="js/3rdParty/firebase-auth.js"></script>
 	<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
@@ -91,16 +92,17 @@
 						<div class="fh5co-intro fh5co-table-cell">
 							<div class="profile-main">
 								<img src="images/teacher.png" alt="profile" id="profile-pic">
+								
 								<div id="personal-details-teacher">
 									<span id="user-name"></span><br>
-									<span id="school-name"></span>
+									<span id="school-name"></span><br>
+									<span id="code" style="display:none;"></span><br>
+									<button id="toggleCode" onclick="toggleCode()">Show Code</button>
 								</div>
+								
 								<div id="subject-list">
 									<u>Your subjects</u><br>
-									<ul style="list-style-type:none; padding-left:0;">
-										<li>Math</li>
-										<li>Science</li>
-									</ul>
+									<ul id="subjects-list" style="list-style-type:none; padding-left:0;"></ul>
 								</div>
 							</div>
 						</div>
@@ -114,13 +116,7 @@
 					<div class="col-md-8" style="text-align:center">
 						<div id="classes-list">
 							<u>Your classes</u><br>
-							<ul style="list-style-type:none; padding-left:0;">
-								<li><a href="viewClassTeacher.html">Math A</a></li>
-								<li><a href="viewClassTeacher.html">Math B</a></li>
-								<li><a href="viewClassTeacher.html">Math C</a></li>
-								<li><a href="viewClassTeacher.html">Science C</a></li>
-								<li><a href="viewClassTeacher.html">Science D</a></li>
-							</ul>
+							<ul id="classList" style="list-style-type:none; padding-left:0;"></ul>
 						</div>
 						
 						<div id="create-class">

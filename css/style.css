@@ -331,6 +331,11 @@ h1, h2, h3, h4, h5, h6 {
 	right:20px;
 }
 
+#toggleCode {
+	width:150px;
+	background-image: url(../images/hero_4.jpg);
+}
+
 #badges {
 	float:right;
 	display:inline;
@@ -365,10 +370,14 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right:300px;
 }
 
+#classes-list li {
+	list-style: none;
+}
+
 #create-class {
 	float:left;
 	position:relative;
-	top:150px;
+	top:50px;
 	left:20%;
 }
 

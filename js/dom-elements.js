@@ -105,3 +105,13 @@ function modal(){
 		}
 	}
 }
+
+function toggleCode(){
+	if(document.getElementById('code').style.display == "inline"){
+		document.getElementById('code').style.display = "none";
+		document.getElementById('toggleCode').innerHTML = "Show code";
+	} else {
+		document.getElementById('code').style.display = "inline";
+		document.getElementById('toggleCode').innerHTML = "Hide code";
+	}
+}

@@ -33,11 +33,11 @@ function auth() {
 						window.open('profileStudent.html', '_self');
 					} else {
 						window.open('profileTeacher.html', '_self');
-					}
+					};
 				} else {
 					window.open('signup.html', '_self');	
-				}					
-			}
+				};					
+			};
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/login/AddUser", true);
 		xhttp.setRequestHeader("Content-Type", "application/json");	
@@ -61,8 +61,8 @@ function checkAuth(){
 			var response = JSON.parse(this.responseText);
 			if(!response) {
 				window.open('index.html', '_self');
-			}
-		}					
+			};
+		};				
 	}; 
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/CheckAuth/" + sessionStorage.getItem('userName') + "/", true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
@@ -80,11 +80,11 @@ function checkIfAlreadyRegistered(src){
 					window.open('profileStudent.html', '_self');
 				} else if (!role.localeCompare("teacher")) {
 					window.open('profileTeacher.html', '_self');
-				}
+				};
 			} else if (!response && src != 1) {
 				window.open('signup.html', '_self');
-			}
-		}					
+			};
+		};					
 	}; 
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/CheckIfAlreadyRegistered/" + sessionStorage.getItem('userName') + "/", true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
@@ -98,7 +98,7 @@ function selectRole(){
 		window.open('signupStudent.html', '_self');
 	} else {
 		window.open('signupTeacher.html', '_self');
-	}
+	};
 }
 
 function checkRole(src){
@@ -107,7 +107,7 @@ function checkRole(src){
 		window.open('profileStudent.html', '_self');
 	} else if (role == 'teacher' && src == 2) { //teacher trying to access student only page
 		window.open('profileTeacher.html', '_self');
-	}	
+	};	
 }
 
 function goToProfile(){
@@ -116,27 +116,25 @@ function goToProfile(){
 		window.open('profileStudent.html', '_self');
 	} else if (role == 'teacher') {
 		window.open('profileTeacher.html', '_self');
-	}	
+	};	
 }
 	
 function GetProfileDetails(){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
-		console.log(this.readyState);
-		console.log(this.status);
 		if (this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
-			
 			var arr1 = Object.keys(response);
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
-			sessionStorage.setItem('role', arr2[1]);
-			sessionStorage.setItem('school', arr2[2]);
+			sessionStorage.setItem('role', arr2[2]);
+			sessionStorage.setItem('school', arr2[3]);
+			sessionStorage.setItem('code', arr2[5]);
 			if (sessionStorage.getItem('role') == 'student'){
-				sessionStorage.setItem('grade', arr2[3]);
-			}		
-	}					
+				sessionStorage.setItem('grade', arr2[4]);
+			};
+		};				
 	}; 
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/GetProfileDetails/" + sessionStorage.getItem('userName') + "/", false);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
@@ -151,15 +149,18 @@ function signUp(){
 	} else {
 		var checkBoxes = document.getElementsByClassName('lesson-select');
 		var isChecked = false;
+		var categories = [];
 		for (var i = 0; i < checkBoxes.length; i++) {
 			if ( checkBoxes[i].checked ) {
 				isChecked = true;
+				categories.push(checkBoxes[i].value);
 			};
 		};
 		if (!isChecked) {
 			alert("Please, check at least one subject.");
+			return;
 		}; 
-	}
+	};
 
 	sessionStorage.setItem('grade', grade);
 	sessionStorage.setItem('school', $("#schools-list").children("option").filter(":selected").text());
@@ -168,7 +169,8 @@ function signUp(){
 		"userName":sessionStorage.getItem('userName'),
 		"role":role,
 		"schoolId":document.getElementById("schools-list").value,
-		"grade":grade
+		"grade":grade,
+		"categories":categories
 	};
 	var dataJ = JSON.stringify(data);
 	
@@ -177,17 +179,19 @@ function signUp(){
 		if (this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
 			if(response) {
+				GetProfileDetails();
+				
 				if(sessionStorage.getItem('role') == "student") {
 					window.open('profileStudent.html', '_self');
 				} else {
 					window.open('profileTeacher.html', '_self');
-				}				
+				};				
 			} else {
 				alert("Failed to sign up");
-			}					
+			};					
 		} else if(this.readyState == 4 && this.status == 500) {
 			alert("Failed to sign up. Server error.");
-		}		
+		};		
 	};
 	xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/AddNewStudentTeacher", true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
@@ -214,7 +218,7 @@ function logOut(){
 				sessionStorage.clear();
 				window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
 				window.open('index.html', '_self');					
-			}					
+			};					
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SignOut", true);
 		xhttp.setRequestHeader("Content-Type", "application/json");
@@ -231,7 +235,7 @@ function logOut(){
 		// if (this.readyState == 4 && this.status == 200) {
 			// var response = JSON.parse(this.responseText);		
 			// return response;					
-		// }
+		// };
 	// };
 	// xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/GetUserID/", true);
 	// xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));	

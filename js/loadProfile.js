@@ -3,6 +3,7 @@ function loadProfileStudent() {
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
+	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -65,5 +66,30 @@ function loadProfileTeacher() {
 	document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
-}
+	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
 
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			//Subjects list
+			for (i = 0; i < arr2[0].length; i++) {
+				document.getElementById("subjects-list").innerHTML += "<li>" + arr2[0][i] + "</li>";
+			};
+
+			//Classes tab
+			for (i = 0; i < arr2[1].length; i++) {
+				document.getElementById("classList").innerHTML += "<li><a href=\"viewClassTeacher.html?courseId=" + arr2[1][i].CourseId + "\">" + arr2[1][i].Category + " " + arr2[1][i].Grade + "</a></li>";
+			};			
+		};
+	};
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/profile/TeacherProfilePage/" + sessionStorage.getItem('userName') + "/", true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));	
+	xhttp.send();
+}

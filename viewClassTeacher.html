@@ -86,13 +86,12 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell class-info">
-							<div class="class-main">Math</div>
-							<div class="class-main">2nd grade</div>
-							<div class="class-main">Alliance School</div>
-							<div class="class-main">14 students</div>
+							<div class="class-main" id="class-cat-grade"></div>
+							<div class="class-main" id="class-teacher"></div>
+							<div class="class-main" id="class-students"></div>
+							
 							<div>
-								<p id="curMessage"><u>Teacher message</u><br>
-								asddsfkjsdklfsdlfhfhsdhsdfh. dhfkjsdhdfhsdhfdksdk.sadhasjklhdjk lasdhjkl ashdjkash jkl ash las hdklash djkl ash djkl asdj klasdjkasbd kla sbkd baskldba bdjkasdkla shdklak ajksdjkakj a ajdka</p>
+								<p id="curMessage"><u>Teacher message</u><br></p>
 								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Post message</button>
 								<div id="myModal" class="modal">
 									<div class="modal-content" id="message-text">
@@ -176,12 +175,17 @@
 						</ul>
 						
 						<div id="edit-class">
-							<input class="btn btn-primary btn-md" type="button" value="Edit class" onclick="window.open('manageClass.html', '_self')">
+							<input class="btn btn-primary btn-md" type="button" id="edit-class-btn" value="Edit class" onclick="">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script>
+			onload=loadClassPage();
+			param = document.URL.substring(document.URL.indexOf("?") + 10);
+			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
+		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->		
 		<footer id="fh5co-footer">

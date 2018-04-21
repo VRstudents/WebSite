@@ -49,7 +49,6 @@ function getCourses() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
-			
 			var arr1 = Object.keys(response);
 			var arr2 = arr1.map(function (k) {
 				return response[k];
@@ -72,7 +71,6 @@ function getStudentsNamesByClassGroup(id) {
 		if (this.readyState == 4 && this.status == 200) {
 			document.forms[0].reset();
 			var response = JSON.parse(this.responseText);
-			
 			var arr1 = Object.keys(response);
 			var arr2 = arr1.map(function (k) {
 				return response[k];
@@ -116,4 +114,29 @@ function joinClass() {
 		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 		xhttp.send(dataJ);
 	};
+}
+
+function loadClassPage() {
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			document.getElementById('class-cat-grade').innerHTML = arr2[1] + " - Grade " + arr2[2];
+			document.getElementById('class-teacher').innerHTML = arr2[3];
+			document.getElementById('class-students').innerHTML = arr2[4] + " students";
+			document.getElementById('curMessage').innerHTML += arr2[5];
+			
+
+		};
+	};
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadClassPage/" + classId, true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
 }
