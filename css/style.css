@@ -1015,6 +1015,11 @@ td a {
 	font-weight:bold;
 }
 
+.lesson-result {
+	color:green;
+	font-weight:bold;
+}
+
 .edit-class-btn {
 	width:13%;
 	text-align:center !important;

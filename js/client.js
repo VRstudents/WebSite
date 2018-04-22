@@ -116,7 +116,7 @@ function joinClass() {
 	};
 }
 
-function loadClassPage() {
+function loadClassPage(src) {
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
 
 	var xhttp = new XMLHttpRequest();
@@ -133,10 +133,74 @@ function loadClassPage() {
 			document.getElementById('class-students').innerHTML = arr2[4] + " students";
 			document.getElementById('curMessage').innerHTML += arr2[5];
 			
-
+			console.log(arr2);
+			
+			//Lesson list builder---------------------------------------------------
+			var status = "&#10004;";//--X
+			var is = true;//--X
+			var opacity;			
+			
+			for(i = 0; i < arr2[6].length; i++){
+				if(arr2[6][i].IsActive){
+					opacity = 1
+				} else {opacity = 0.2};
+				
+				//---X----Student view class
+				if(src == 2) {
+					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + name + " " + i + "<br><span class=\"lesson-status\">" 
+																	   + "<span class=\"lesson-status\">" + status + "</span>"
+																	   + "<img  src=\"images\\classes\\" + category + "\\lesson" + 10 + ".png\""
+																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
+																	   + "<span class=\"tooltiptext1\">" + "bla blalalalalal" + "</span>"
+																	   + "<span class=\"lesson-result\">" + result + "</span>";
+				//Teacher view class													   
+				} else if (src == 1) {
+					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + " " + "<br><span class=\"lesson-status\">" 
+																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + 10 + ".png\""
+																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>";
+				//---X----Teacher manage class														
+				} else {
+					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + name + " " + i
+																	   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + i + "\"" + check + "><br>"
+																	   + "<img  src=\"images\\classes\\" + category + "\\lesson" + 10 + ".png\""
+																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
+																	   + "<span class=\"tooltiptext1\">" + "bla blalalalalal" + "</span>";
+				}; 
+				
+				if(is){ 					
+					var check = "";
+					var status = "&nbsp;&nbsp;&nbsp;";
+					opacity = 0.2;
+					result = "&nbsp;&nbsp;";
+					is = false;
+				} else {					
+					var check = "disabled=\"disabled\" checked";
+					var status = "&#10004;";
+					opacity = 1;
+					result = 9;
+					is = true;
+				};
+			};
 		};
 	};
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadClassPage/" + classId, true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
+}
+
+function addLessons(){		
+		var checkBoxes = document.getElementsByClassName('lesson-select');	
+		var isChecked = false;
+		var lessonsToAdd = [];
+		for (var i = 0; i < checkBoxes.length; i++) {
+			if (checkBoxes[i].checked && !checkBoxes[i].disabled) {
+				isChecked = true;
+				lessonsToAdd.push(checkBoxes[i].id);
+			};
+		};
+		//Only if new lessons were selected call to server will be initiated here
+		if(isChecked){console.log(lessonsToAdd);};
+		
+		window.open('viewClassTeacher.html?courseId='+param, '_self')
 }

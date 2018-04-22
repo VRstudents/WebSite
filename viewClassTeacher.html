@@ -111,68 +111,7 @@
 			<div class="container lessons-list">
 				<div class="row" style="margin: auto 0;">
 					<div id="lessons">
-						<ul style="list-style-type:none; padding-left:0;">
-							<li><div class="tooltip1">Addition 1<br>
-								<img  src="images\classes\math\lesson10.png" title="Addition 1" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">In the first lesson we will learn the basics of addition</span>
-							</div></li>
-							<li><div class="tooltip1">Addition 2<br>
-								<img src="images\classes\math\lesson10.png" title="Addition 2" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">We will learn and practice more complex addition</span>
-							</div></li>
-							<li><div class="tooltip1">Subtraction 1<br>
-								<img src="images\classes\math\lesson10.png" title="Subtraction 1" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">The opposite of addition is subtraction - lets take a look!</span>
-							</div></li>
-							<li><div class="tooltip1">Subtraction 2<br>
-								<img src="images\classes\math\lesson10.png" title="Subtraction 2" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">More complex subtraction examples</span>
-							</div></li>
-							<li><div class="tooltip1">Add and subtract<br>
-								<img src="images\classes\math\lesson10.png" title="Add and subtract" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">Let's try add and subtract in one exercise</span>
-							</div></li>
-							<li><div class="tooltip1">Challenge 1<br>
-								<img src="images\classes\math\lesson10.png" title="Challenge 1" style="opacity:1;" width="50" height="50">
-								<span class="tooltiptext1">Now that you've learned how to add and subtract, are you ready to take a challenge?</span>
-							</div></li>
-							<li><div class="tooltip1">Multiplication 1<br>
-								<img src="images\classes\math\lesson10.png" title="Multiplication 1" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Multiplication introduction - explanation and examples</span>
-							</div></li>
-							<li><div class="tooltip1">Multiplication 2<br>
-								<img src="images\classes\math\lesson10.png" title="Multiplication 2" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Multiple numbers multiplication</span>
-							</div></li>
-							<li><div class="tooltip1">Division 1<br>
-								<img src="images\classes\math\lesson10.png" title="Division 1" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Basics of division</span>
-							</div></li>
-							<li><div class="tooltip1">Division 2<br>
-								<img src="images\classes\math\lesson10.png" title="Division 2" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">More division examples for better understanding</span>
-							</div></li>
-							<li class="tooltip1">Multiply and divide<br>
-								<img src="images\classes\math\lesson10.png" title="Multiply and divide" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Complex exercises that combine multiplication and division techniques that you've just learned</span>
-							</li>
-							<li><div class="tooltip1">Challenge 2<br>
-								<img src="images\classes\math\lesson10.png" title="Challenge 2" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Multiplication and division challenge. Show your skills!</span>
-							</div></li>
-							<li><div class="tooltip1">Precedence 1<br>
-								<img src="images\classes\math\lesson10.png" title="Precedence 1" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">Arithmetical operations have precedence rules that we gonna learn in this lesson</span>
-							</div></li>
-							<li><div class="tooltip1">Precedence 2<br>
-								<img src="images\classes\math\lesson10.png" title="Precedence 2" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">More precedence practice, cause it is very important</span>
-							</div></li>
-							<li><div class="tooltip1">Final challenge<br>
-								<img src="images\classes\math\lesson10.png" title="Final challenge" style="opacity:0.2;" width="50" height="50">
-								<span class="tooltiptext1">The big challenge of the course. Show what you've learned and test your own knowledge.</span>
-							</div></li>
-						</ul>
+						<ul style="list-style-type:none; padding-left:0;" id="classLessons"></ul>
 						
 						<div id="edit-class">
 							<input class="btn btn-primary btn-md" type="button" id="edit-class-btn" value="Edit class" onclick="">
@@ -182,7 +121,7 @@
 			</div>
 		</div>
 		<script>
-			onload=loadClassPage();
+			onload=loadClassPage(1);
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
 			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
 		</script>
