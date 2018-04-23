@@ -124,7 +124,7 @@
 		<script>
 			onload=loadClassPage(3);
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
-			document.getElementById('saveButton').setAttribute('onclick','addLessons(param)');
+			document.getElementById('saveButton').setAttribute('onclick','addLessons(param); return false');
 			document.getElementById('cancelButton1').setAttribute('onclick','window.open(\'viewClassTeacher.html?courseId=\'+param, \'_self\')');
 		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->

@@ -118,6 +118,12 @@ function joinClass() {
 
 function loadClassPage(src) {
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+	
+	if(sessionStorage.getItem('role') == 'student') {
+		user = sessionStorage.getItem('userName');
+	} else {
+		user = 'none';
+	}
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -133,74 +139,93 @@ function loadClassPage(src) {
 			document.getElementById('class-students').innerHTML = arr2[4] + " students";
 			document.getElementById('curMessage').innerHTML += arr2[5];
 			
-			console.log(arr2);
-			
-			//Lesson list builder---------------------------------------------------
-			var status = "&#10004;";//--X
-			var is = true;//--X
-			var opacity;			
-			
+			var status;
+			var opacity;		
+			var check;
+
 			for(i = 0; i < arr2[6].length; i++){
-				if(arr2[6][i].IsActive){
-					opacity = 1
-				} else {opacity = 0.2};
 				
-				//---X----Student view class
+				//Student view class
 				if(src == 2) {
-					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + name + " " + i + "<br><span class=\"lesson-status\">" 
-																	   + "<span class=\"lesson-status\">" + status + "</span>"
-																	   + "<img  src=\"images\\classes\\" + category + "\\lesson" + 10 + ".png\""
-																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + "bla blalalalalal" + "</span>"
+					if(arr2[6][i].IsActive){opacity = 1} else {opacity = 0.2};
+					if(arr2[6][i].IsPassed){
+						status = "&#10004;";
+						result = arr2[6][i].Result;
+					} else {
+						status = "&nbsp;&nbsp;&nbsp;";
+						result ="&nbsp;&nbsp;";
+					};
+				
+					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + "<br>"
+																	   + "<span class=\"lesson-status\"><span class=\"lesson-status\">" + status + "</span> "
+																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
+																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\"> "
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>"
 																	   + "<span class=\"lesson-result\">" + result + "</span>";
 				//Teacher view class													   
 				} else if (src == 1) {
+					if(arr2[6][i].IsActive){opacity = 1} else {opacity = 0.2};
+				
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + " " + "<br><span class=\"lesson-status\">" 
-																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + 10 + ".png\""
+																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
 																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>";
-				//---X----Teacher manage class														
+				//Teacher manage class														
 				} else {
-					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + name + " " + i
-																	   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + i + "\"" + check + "><br>"
-																	   + "<img  src=\"images\\classes\\" + category + "\\lesson" + 10 + ".png\""
+					if(arr2[6][i].IsActive){
+						opacity = 0.2;
+						check = "disabled=\"disabled\" checked";
+					} else {
+						opacity = 1;
+						check = "";
+					};
+					
+					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name
+																	   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + arr2[6][i].Id + "\"" + check + "><br>"
+																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + "bla blalalalalal" + "</span>";
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>";
 				}; 
-				
-				if(is){ 					
-					var check = "";
-					var status = "&nbsp;&nbsp;&nbsp;";
-					opacity = 0.2;
-					result = "&nbsp;&nbsp;";
-					is = false;
-				} else {					
-					var check = "disabled=\"disabled\" checked";
-					var status = "&#10004;";
-					opacity = 1;
-					result = 9;
-					is = true;
-				};
 			};
 		};
 	};
-	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadClassPage/" + classId, true);
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadClassPage/" + classId + "/" + user + "/", true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 }
 
 function addLessons(){		
-		var checkBoxes = document.getElementsByClassName('lesson-select');	
-		var isChecked = false;
-		var lessonsToAdd = [];
-		for (var i = 0; i < checkBoxes.length; i++) {
-			if (checkBoxes[i].checked && !checkBoxes[i].disabled) {
-				isChecked = true;
-				lessonsToAdd.push(checkBoxes[i].id);
+	var checkBoxes = document.getElementsByClassName('lesson-select');	
+	var isChecked = false;
+	var lessonsToAdd = [];
+	for (var i = 0; i < checkBoxes.length; i++) {
+		if (checkBoxes[i].checked && !checkBoxes[i].disabled) {
+			isChecked = true;
+			lessonsToAdd.push(checkBoxes[i].id);
+		};
+	};
+	
+	if(isChecked){
+		var data = {
+			"Id":param,
+			"lessonIDs":lessonsToAdd
+		};
+		var dataJ = JSON.stringify(data);
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse(this.responseText);
+				if(!response) {
+					alert("An error accured.\nAdding lessons to class failed.");
+				};
 			};
 		};
-		//Only if new lessons were selected call to server will be initiated here
-		if(isChecked){console.log(lessonsToAdd);};
-		
-		window.open('viewClassTeacher.html?courseId='+param, '_self')
+		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/AddLessons", true);
+		xhttp.setRequestHeader("Content-Type", "application/json");	
+		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+		xhttp.send(dataJ);
+	};
+	
+	window.open('viewClassTeacher.html?courseId='+param, '_self');
 }
