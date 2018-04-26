@@ -98,11 +98,11 @@ function modal(){
 				return;
 			}; 
 		} else if (event.target == postBtn) {
-			modal.style.display = "none";
-			//here will come the posting to server call
-			document.getElementById('curMessage').innerHTML = document.querySelector('textarea[id="message"]').value;
-			document.querySelector('textarea[id="message"]').value = '';
-		}
+			if(document.getElementById('message').value == ""){
+				alert("Please type in a message content.");
+				return;
+			};
+		};
 	}
 }
 

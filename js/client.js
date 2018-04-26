@@ -123,7 +123,7 @@ function loadClassPage(src) {
 		user = sessionStorage.getItem('userName');
 	} else {
 		user = 'none';
-	}
+	};
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -137,7 +137,14 @@ function loadClassPage(src) {
 			document.getElementById('class-cat-grade').innerHTML = arr2[1] + " - Grade " + arr2[2];
 			document.getElementById('class-teacher').innerHTML = arr2[3];
 			document.getElementById('class-students').innerHTML = arr2[4] + " students";
-			document.getElementById('curMessage').innerHTML += arr2[5];
+			if(arr2[5] != null) {
+				temp = arr2[5].Date.split('T');
+				dateParts = temp[0].split('-');
+				document.getElementById('curMessage').innerHTML += arr2[5].Text + "<br>";
+				document.getElementById('curMessage').innerHTML += dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
+			} else {
+				document.getElementById('curMessage').style.display = "none";
+			};
 			
 			var status;
 			var opacity;		
@@ -158,18 +165,18 @@ function loadClassPage(src) {
 				
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + "<br>"
 																	   + "<span class=\"lesson-status\"><span class=\"lesson-status\">" + status + "</span> "
-																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
+																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\"> "
 																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>"
-																	   + "<span class=\"lesson-result\">" + result + "</span>";
+																	   + "<span class=\"lesson-result\">" + result + "</span></li></div>";
 				//Teacher view class													   
 				} else if (src == 1) {
 					if(arr2[6][i].IsActive){opacity = 1} else {opacity = 0.2};
 				
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + " " + "<br><span class=\"lesson-status\">" 
-																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
+																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>";
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
 				//Teacher manage class														
 				} else {
 					if(arr2[6][i].IsActive){
@@ -182,9 +189,9 @@ function loadClassPage(src) {
 					
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name
 																	   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + arr2[6][i].Id + "\"" + check + "><br>"
-																	   + "<img  src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
+																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>";
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
 				}; 
 			};
 		};
@@ -217,7 +224,7 @@ function addLessons(){
 			if (this.readyState == 4 && this.status == 200) {
 				var response = JSON.parse(this.responseText);
 				if(!response) {
-					alert("An error accured.\nAdding lessons to class failed.");
+					alert("An error occurred.\nAdding lessons to class failed.");
 				};
 			};
 		};
@@ -228,4 +235,138 @@ function addLessons(){
 	};
 	
 	window.open('viewClassTeacher.html?courseId='+param, '_self');
+}
+
+function loadCreateClassPage(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			for (i = 0; i < arr1.length; i++) {
+				
+				mySelect = document.getElementById('school');
+				var option = document.createElement('option');
+				option.text = arr2[i];
+				option.value = arr2[i];
+				mySelect.appendChild(option);
+			};			
+		};					
+	};
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadCreateClassPage/" + sessionStorage.getItem('userName') + "/", true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
+}
+
+function toAddLessonsPage() {
+	grade = document.getElementById('gradeSelector').value;
+	category = document.getElementById('school').value;
+	window.open('addLessons.html?category='+category+'&grade='+grade, '_self');
+}
+
+function loadAddLessonsPage() {
+	param = document.URL.substring(document.URL.indexOf("?") + 1);
+	params = param.split('&');
+	category = params[0].substring(params[0].indexOf('=') + 1);
+	grade = params[1].substring(params[1].indexOf('=') + 1);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			document.getElementById('class-cat-grade').innerHTML = category + " - Grade " + grade;
+
+			for(i = 0; i < arr2[6].length; i++){
+				document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name
+																   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + arr2[6][i].Id + "\"><br>"
+																   + "<img src=\"images\\classes\\" + category + "\\lesson" + arr2[6][i].SeqNum + ".png\" width=\"50\" height=\"50\">"
+																   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
+			}; 
+		};
+	};
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadAddLessonsPage/" + category + "/" + grade + "/", true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
+}
+
+function createClass(){
+	param = document.URL.substring(document.URL.indexOf("?") + 1);
+	params = param.split('&');
+	category = params[0].substring(params[0].indexOf('=') + 1);
+	grade = params[1].substring(params[1].indexOf('=') + 1);
+	
+	var checkBoxes = document.getElementsByClassName('lesson-select');	
+	var isChecked = false;
+	var lessonsToAdd = [];
+	for (var i = 0; i < checkBoxes.length; i++) {
+		if (checkBoxes[i].checked) {
+			isChecked = true;
+			lessonsToAdd.push(checkBoxes[i].id);
+		};
+	};
+	
+	if(isChecked){
+		var data = {
+			"Category":category,
+			"Grade":grade,
+			"TeacherUserName":sessionStorage.getItem('userName'),
+			"lessonIDs":lessonsToAdd
+		};
+		var dataJ = JSON.stringify(data);
+				
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse(this.responseText);
+				if(!response) {
+					alert("An error occurred.\nAdding lessons to class failed.");
+				};
+				
+				window.open('profileTeacher.html', '_self');
+			};
+		};
+		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/CreateClass", true);
+		xhttp.setRequestHeader("Content-Type", "application/json");	
+		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+		xhttp.send(dataJ);
+	} else {
+		alert("Please select at least one lesson.");
+	};
+}
+
+function postMessage(){
+	if(document.getElementById('message').value != ""){
+		var data = {
+			"ClassId":document.URL.substring(document.URL.indexOf("?") + 10),
+			"Text":document.getElementById('message').value
+		};
+		var dataJ = JSON.stringify(data);
+	
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse(this.responseText);
+				if(!response) {
+					alert("An error occurred.\nPosting message failed.");
+				};
+				document.getElementById('curMessage').innerHTML = document.querySelector('textarea[id="message"]').value;
+				document.getElementById('curMessage').style.display = "inline";
+				document.querySelector('textarea[id="message"]').value = '';
+				document.getElementById('myModal').style.display = "none";
+			};
+		};
+		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/PostMessage", true);
+		xhttp.setRequestHeader("Content-Type", "application/json");	
+		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+		xhttp.send(dataJ);
+	};
 }

@@ -91,17 +91,14 @@
 						<form onsubmit="window.open('addLessons.html', '_self')">
 							<div class="form-group">
 								<label><b>Category</b></label>
-								<select id="school">
-									<option value="math">Math</option>
-									<option value="science">Science</option>
-								</select>
+								<select id="school"></select>
 							</div>
 							<div class="form-group">
 								<label><b>Grade</b></label>
 								<input type="number" id="gradeSelector" min="1" max="6" required>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-md">Next</button>
+								<button type="submit" id="NextBtn" class="btn btn-primary btn-md" onclick="toAddLessonsPage(); return false">Next</button>
 								<button type="reset" class="btn btn-primary btn-md" onclick="window.open('profileTeacher.html', '_self')">Cancel</button>
 							</div>
 						</form>
@@ -109,6 +106,15 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			loadCreateClassPage();
+			//grade = document.getElementById('gradeSelector').value;
+			//category = document.getElementById('school').text;
+			//console.log(category +  ' ' + grade);
+			//document.getElementById('NextBtn').setAttribute('onclick', 'window.open(\'addLessons.html?category=\'+category+\'&grade=\'+grade, \'_self\')');
+			//document.getElementById('cancelButton1').setAttribute('onclick','window.open(\'viewClassTeacher.html?courseId=\'+param, \'_self\')');
+			//console.log('addLessons.html?category='+category+'&grade='+grade);
+		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<footer id="fh5co-footer">

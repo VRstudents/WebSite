@@ -229,16 +229,3 @@ function logOut(){
 		console.log(error);
 	});	
 }
-
-// function getUserID(){
-	// var xhttp = new XMLHttpRequest();
-	// xhttp.onreadystatechange = function() {
-		// if (this.readyState == 4 && this.status == 200) {
-			// var response = JSON.parse(this.responseText);		
-			// return response;					
-		// };
-	// };
-	// xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/GetUserID/", true);
-	// xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));	
-	// xhttp.send();
-// }

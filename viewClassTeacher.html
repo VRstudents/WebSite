@@ -95,8 +95,8 @@
 								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Post message</button>
 								<div id="myModal" class="modal">
 									<div class="modal-content" id="message-text">
-										<textarea "rows="4" cols="50" id="message"></textarea>
-										<button class="btn btn-primary btn-md" id="postBtn" onclick="modal()">Post</button>
+										<textarea "rows="4" cols="50" maxlength="200" id="message"></textarea><br>
+										<button class="btn btn-primary btn-md" id="postBtn" onclick="postMessage()">Post</button>
 										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
 									</div>
 									<span class="close">&times;</span>
@@ -122,6 +122,7 @@
 		</div>
 		<script>
 			onload=loadClassPage(1);
+			onload=modal();
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
 			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
 		</script>
