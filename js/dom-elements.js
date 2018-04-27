@@ -8,13 +8,13 @@ function toggleLoginMenu(){
 				var pathArray = window.location.pathname.split('/');
 				if(pathArray[1] == "index.html"){
 					document.getElementById('startTop').innerHTML = "";
-				}
+				};
 		} else {
 			document.getElementById('header1').innerHTML = 'Sign Up';
 			document.getElementById('header1').setAttribute('onclick','auth()')
 			document.getElementById('header2').innerHTML = 'Login';
 			document.getElementById('header2').setAttribute('onclick','auth()')
-		}
+		};
 }
 
 function openTab(evt, tabName) {
@@ -25,13 +25,13 @@ function openTab(evt, tabName) {
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
-    }
+    };
 
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+    };
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
@@ -39,25 +39,16 @@ function openTab(evt, tabName) {
 }
 
 //Used to open default tab (Classes) on student profile page
-function openFirstTab() {
+function openFirstTab(src) {
 	var tablinks;
-    document.getElementById('Classes').style.display = "block";
+	if(src == 1){
+		document.getElementById('Classes').style.display = "block";
+	} else {
+		document.getElementById('Overall').style.display = "block";
+	};
 	tablinks = document.getElementsByClassName("tablinks");
 	tablinks[1].className += " active";
 }
-
-// function manageGradeField(){
-	// var radios = document.forms["signUpForm"].elements["role"];
-	// for (i = 0; i < radios.length; i++) {
-		// radios[i].onclick = function() {
-			// if(document.getElementById("role_student").checked) {
-				// document.getElementById("grade-selector").style.display = "block";
-			// } else if (document.getElementById("role_teacher").checked) {
-				// document.getElementById("grade-selector").style.display = "none";
-			// }
-		// }
-	// }
-// }
 
 function popup() {
     var popup = document.getElementById("myPopup");
@@ -113,5 +104,5 @@ function toggleCode(){
 	} else {
 		document.getElementById('code').style.display = "inline";
 		document.getElementById('toggleCode').innerHTML = "Hide code";
-	}
+	};
 }

@@ -32,11 +32,13 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	
 	<script src="js/client.js"></script>
+	<script src="js/statistics.js"></script>
 	<script type="text/javascript" src="js/settings.js"></script>
 	<script src="js/authMgr.js"></script>
 	<script src="js/dom-elements.js"></script>
 	<script src="js/3rdParty/firebase.js"></script>
 	<script src="js/3rdParty/firebase-auth.js"></script>
+	<script src="js/3rdParty/loader.js"></script>
 	<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
 	</head>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -107,6 +109,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="fh5co-section">
 			<div class="container lessons-list">
 				<div class="row" style="margin: auto 0;">
@@ -120,9 +123,74 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg); height: 650px;" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center">
+						<br>
+						<div class="tab">
+							<button class="tablinks" onclick="openTab(event, 'Lessons')">Lessons</button>
+							<button class="tablinks" onclick="openTab(event, 'Overall')">Overall</button>
+							<button class="tablinks" onclick="openTab(event, 'Students')">Students</button>
+						</div>
+						<!-------------------------------------------------------------------------------------------->
+						<div id="Lessons" class="tabcontent ' active'" style="background-color: #ccc;">
+							<h3>Lessons statistics</h3>
+							
+							<label>Select lesson num</label>
+							<select id="lessons-list" onchange="displayLessonStatistics()">
+								<option value=""></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+							
+							<div id="lesson-tab-div">
+								<div id="students-tried"></div> 
+								<div id="students-finished"></div> 
+								<div id="avg-res"></div> 
+								<div id="avg-best-res"></div> 
+							</div>
+							
+							<div id="columnchart_material" style="height: 300px;"></div>
+						</div>
+						<!-------------------------------------------------------------------------------------------->
+						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
+							<h3>Course overall statistics</h3>
+
+						</div>
+						<!-------------------------------------------------------------------------------------------->
+						<div id="Students" class="tabcontent" style="background-color: #ccc;">
+							<div id="studStats">
+								<h3>Students statistics</h3>
+								<select id="students-list" onchange="displayStudentStatistics()">
+									<option value=""></option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+								<div id="students-output"></div>
+							</div>
+							
+							<div id="curve_chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script>
 			onload=loadClassPage(1);
 			onload=modal();
+			onload=openFirstTab(2);
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
 			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
 		</script>

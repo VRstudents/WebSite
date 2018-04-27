@@ -29,8 +29,8 @@ function getSchools(){
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
+			
 			for (i = 0; i < arr1.length; i++) {
-				
 				mySelect = document.getElementById('schools-list');
 				var option = document.createElement('option');
 				option.text = arr2[i].Name;
@@ -125,6 +125,8 @@ function loadClassPage(src) {
 		user = 'none';
 	};
 
+	document.getElementById('lesson-tab-div').style.display = 'none';
+	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -358,7 +360,7 @@ function postMessage(){
 				if(!response) {
 					alert("An error occurred.\nPosting message failed.");
 				};
-				document.getElementById('curMessage').innerHTML = document.querySelector('textarea[id="message"]').value;
+				document.getElementById('curMessage').innerHTML = document.querySelector('textarea[id="message"]').value + "<br>";
 				document.getElementById('curMessage').style.display = "inline";
 				document.querySelector('textarea[id="message"]').value = '';
 				document.getElementById('myModal').style.display = "none";
