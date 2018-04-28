@@ -125,7 +125,10 @@ function loadClassPage(src) {
 		user = 'none';
 	};
 
-	document.getElementById('lesson-tab-div').style.display = 'none';
+	if(src == 1) {	
+		document.getElementById('lesson-tab-div').style.display = 'none';
+		document.getElementById('students-in-lesson').style.display = 'none';
+	};
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -250,7 +253,6 @@ function loadCreateClassPage(){
 			});
 			
 			for (i = 0; i < arr1.length; i++) {
-				
 				mySelect = document.getElementById('school');
 				var option = document.createElement('option');
 				option.text = arr2[i];

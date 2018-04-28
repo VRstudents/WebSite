@@ -124,7 +124,7 @@
 			</div>
 		</div>
 		
-		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg); height: 650px;" data-stellar-background-ratio="0.5">
+		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg); height: 700px;" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row">
@@ -139,7 +139,7 @@
 						<div id="Lessons" class="tabcontent ' active'" style="background-color: #ccc;">
 							<h3>Lessons statistics</h3>
 							
-							<label>Select lesson num</label>
+							<label style="font-weight:normal;">Select lesson num</label>
 							<select id="lessons-list" onchange="displayLessonStatistics()">
 								<option value=""></option>
 								<option value="1">1</option>
@@ -161,7 +161,14 @@
 								<div id="avg-best-res"></div> 
 							</div>
 							
-							<div id="columnchart_material" style="height: 300px;"></div>
+							<div id="columnchart_lesson_all" style="height: 300px;"></div>
+							
+							<label style="font-weight:normal;">Select student name</label>
+							<select id="students-in-lesson" onchange="displayStudentInLessonStats()">
+								<option value=""></option>
+							</select>
+							
+							<div id="columnchart_lesson_student" style="height: 300px;"></div>
 						</div>
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
