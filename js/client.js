@@ -216,14 +216,14 @@ function addLessons(){
 			lessonsToAdd.push(checkBoxes[i].id);
 		};
 	};
-	
-	if(isChecked){
+
+	if(isChecked == true){
 		var data = {
 			"Id":param,
 			"lessonIDs":lessonsToAdd
 		};
 		var dataJ = JSON.stringify(data);
-		
+
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -231,15 +231,15 @@ function addLessons(){
 				if(!response) {
 					alert("An error occurred.\nAdding lessons to class failed.");
 				};
+				
+				window.open('viewClassTeacher.html?courseId='+param, '_self');
 			};
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/AddLessons", true);
 		xhttp.setRequestHeader("Content-Type", "application/json");	
 		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 		xhttp.send(dataJ);
-	};
-	
-	window.open('viewClassTeacher.html?courseId='+param, '_self');
+	};	
 }
 
 function loadCreateClassPage(){

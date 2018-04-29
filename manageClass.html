@@ -114,7 +114,7 @@
 						<ul style="list-style-type:none; padding-left:0;" id="classLessons"></ul>
 						
 						<div id="edit-class">
-							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="">Save</button>
+							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="addLessons(); return false;">Save</button>
 							<button class="btn btn-primary btn-md edit-class-btn" id="cancelButton1" onclick="">Cancel</button>
 						</div>
 					</div>
@@ -125,7 +125,6 @@
 			onload=loadClassPage(3);
 			onload=modal();
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
-			document.getElementById('saveButton').setAttribute('onclick','addLessons(param); return false');
 			document.getElementById('cancelButton1').setAttribute('onclick','window.open(\'viewClassTeacher.html?courseId=\'+param, \'_self\')');
 		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
