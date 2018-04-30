@@ -204,6 +204,8 @@ function loadClassPage(src) {
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/LoadClassPage/" + classId + "/" + user + "/", true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
+	
+	displayClassStatistics();
 }
 
 function addLessons(){		

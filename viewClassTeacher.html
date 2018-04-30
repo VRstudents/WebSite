@@ -124,7 +124,7 @@
 			</div>
 		</div>
 		
-		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg); height: 700px;" data-stellar-background-ratio="0.5">
+		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg); height: 1000px;" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row">
@@ -173,7 +173,20 @@
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
 							<h3>Course overall statistics</h3>
-
+							<div id="avg-result">Average course result: </div>
+							<hr>
+							<div class="subtab">
+								<button class="subtablinks" onclick="openSubTab(event, 'Overall-finish')">Progress</button>
+								<button class="subtablinks" onclick="openSubTab(event, 'Overall-result')">Results</button>
+							</div>
+							<div id="Overall-result" class="subtabcontent" style="background-color: #ccc;">
+								<h3>Results by lessons distribution</h3>
+								<div id="columnchart_class_results" style="height: 300px;"></div>
+							</div>
+							<div id="Overall-finish" class="subtabcontent" style="background-color: #ccc;">
+								<h3>How many students have attempted and how many finished each lesson</h3>
+								<div id="columnchart_class_attempts" style="height: 300px;"></div>
+							</div>
 						</div>
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Students" class="tabcontent" style="background-color: #ccc;">
@@ -198,6 +211,7 @@
 			onload=loadClassPage(1);
 			onload=modal();
 			onload=openFirstTab(2);
+			onload=openFirstSubTab();
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
 			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
 		</script>

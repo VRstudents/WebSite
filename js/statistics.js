@@ -1,12 +1,8 @@
 var options = {
-	chart: {
-		title: 'Questions answers results distribution (in percents)'
-	}, 
 	hAxis: {
 		ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 	},
 	vAxis: {
-		title: 'Number of answers',
 		viewWindow: {
 			min: 0,
 			max: 100
@@ -31,8 +27,7 @@ function displayLessonStatistics(){
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
-			console.log(arr2);
-			
+
 			document.getElementById("students-tried").innerHTML = 'Students attempted the lesson: ' + arr2[1];
 			document.getElementById("students-finished").innerHTML = 'Students finished the lesson: ' + arr2[2] + " (" + arr2[3] + "%)";
 			document.getElementById("avg-res").innerHTML = 'Average lesson result: ' + arr2[4];
@@ -41,6 +36,15 @@ function displayLessonStatistics(){
 			if(arr2[0].length != 0) {	
 				google.charts.load('current', {'packages':['bar']});
 				google.charts.setOnLoadCallback(drawChart);
+				
+				options = {
+					chart: {
+						title: 'Questions answers results distribution by lesson(in percents)'
+					},
+					vAxis: {
+						title: 'Number of answers',
+					}
+				};
 
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
@@ -113,6 +117,15 @@ function displayStudentInLessonStats(){
 			if(arr4.length != 0) {	
 				google.charts.load('current', {'packages':['bar']});
 				google.charts.setOnLoadCallback(drawChart);
+				
+				options = {
+					chart: {
+						title: 'Student answers results distribution by lesson(in percents)'
+					},
+					vAxis: {
+						title: 'Number of answers',
+					}
+				};
 
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
@@ -148,6 +161,30 @@ function displayStudentInLessonStats(){
 		};					
 	}; 
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Statistics/LessonInStudentStats/" + classId + "/" + studentId + "/" + lessonNum, true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
+}
+
+function displayClassStatistics(){
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			document.getElementById("avg-result").innerHTML += arr2[2];
+			
+			//Result dist graph
+			//Attempts dist graph
+		};					
+	}; 
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Statistics/ClassStats/" + classId, true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 }

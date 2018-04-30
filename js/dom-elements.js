@@ -18,7 +18,6 @@ function toggleLoginMenu(){
 }
 
 function openTab(evt, tabName) {
-    // Declare all variables
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
@@ -38,6 +37,26 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function openSubTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="subtabcontent" and hide them
+    tabcontent = document.getElementsByClassName("subtabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    };
+
+    // Get all elements with class="subtablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("subtablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    };
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 //Used to open default tab (Classes) on student profile page
 function openFirstTab(src) {
 	var tablinks;
@@ -47,6 +66,14 @@ function openFirstTab(src) {
 		document.getElementById('Overall').style.display = "block";
 	};
 	tablinks = document.getElementsByClassName("tablinks");
+	tablinks[1].className += " active";
+}
+
+//Used to open default sub tab in class stats tab on class page
+function openFirstSubTab() {
+	var tablinks;
+	document.getElementById('Overall-result').style.display = "block";
+	tablinks = document.getElementsByClassName("subtablinks");
 	tablinks[1].className += " active";
 }
 

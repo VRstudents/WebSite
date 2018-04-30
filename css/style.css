@@ -852,16 +852,50 @@ h1, h2, h3, h4, h5, h6 {
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #ccc;
+	font-weight:bold;
 }
 
 /* Style the tab content */
-.tabcontent {
+.tabcontent, .subtabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
 	min-height:250px;
 }
+
+/*------------------
+/* Style the sub tabs on class stats page */
+.subtab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.subtab button {
+    background-color: rgb(241, 241, 241);
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+	border-top: 2px solid #ddd;
+    transition: 0.3s;
+	width:50%;
+}
+
+/* Change background color of buttons on hover */
+.subtab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.subtab button.active {
+    background-color: #ccc;
+	font-weight:bold;
+}
+/*-----------------*/
 
 th, tr, td {
 	border: solid 2px black;
