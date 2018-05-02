@@ -73,6 +73,7 @@ function openFirstTab(src) {
 function openFirstSubTab() {
 	var tablinks;
 	document.getElementById('Overall-result').style.display = "block";
+	document.getElementById('Overall-finish').style.display = "block";
 	tablinks = document.getElementsByClassName("subtablinks");
 	tablinks[1].className += " active";
 }

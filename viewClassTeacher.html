@@ -163,7 +163,7 @@
 							
 							<div id="columnchart_lesson_all" style="height: 300px;"></div>
 							
-							<label style="font-weight:normal;">Select student name</label>
+							<label id="students-in-lesson_label" style="font-weight:normal;">Select student name</label>
 							<select id="students-in-lesson" onchange="displayStudentInLessonStats()">
 								<option value=""></option>
 							</select>
@@ -174,7 +174,6 @@
 						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
 							<h3>Course overall statistics</h3>
 							<div id="avg-result">Average course result: </div>
-							<hr>
 							<div class="subtab">
 								<button class="subtablinks" onclick="openSubTab(event, 'Overall-finish')">Progress</button>
 								<button class="subtablinks" onclick="openSubTab(event, 'Overall-result')">Results</button>
@@ -194,14 +193,9 @@
 								<h3>Students statistics</h3>
 								<select id="students-list" onchange="displayStudentStatistics()">
 									<option value=""></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
 								</select>
-								<div id="students-output"></div>
+								<div id="students-output-result" style="height: 300px;"></div>
 							</div>
-							
-							<div id="curve_chart"></div>
 						</div>
 					</div>
 				</div>
@@ -214,6 +208,7 @@
 			onload=openFirstSubTab();
 			param = document.URL.substring(document.URL.indexOf("?") + 10);
 			document.getElementById('edit-class-btn').setAttribute('onclick','window.open(\'manageClass.html?courseId=\'+param, \'_self\')');
+			buildStudentsList();
 		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->		
