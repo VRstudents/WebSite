@@ -170,7 +170,7 @@ function loadClassPage(src) {
 						status = "&nbsp;&nbsp;&nbsp;";
 						result ="&nbsp;&nbsp;";
 					};
-				
+					
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + "<br>"
 																	   + "<span class=\"lesson-status\"><span class=\"lesson-status\">" + status + "</span> "
 																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
@@ -201,6 +201,12 @@ function loadClassPage(src) {
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
 																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
 				}; 
+				
+				if((src == 1 || src == 2) && arr2[9]) {
+					document.getElementById('exam-exists').innerHTML = "There is an exam assigned to this class"
+				} else if((src == 1 || src == 2) && !arr2[9]) {
+					document.getElementById('exam-exists').innerHTML = "There is no exam assigned to this class"
+				};
 			};
 		};
 	};
@@ -208,7 +214,7 @@ function loadClassPage(src) {
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 	
-	displayClassStatistics();
+	if(src == 1){displayClassStatistics()};
 }
 
 function addLessons(){		
@@ -378,4 +384,24 @@ function postMessage(){
 		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 		xhttp.send(dataJ);
 	};
+}
+
+function getExamQuestions(){
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+			
+			console.log(arr2);
+		};
+	};
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/GetExamQuestions/" + classId, true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
 }

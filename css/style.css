@@ -1087,3 +1087,10 @@ td a {
 	border: solid 2px;
 	padding:8px;
 }
+
+#exam-exists {
+	border: solid 2px white;
+	font-weight: bold;
+	color:white;
+	margin-bottom:15px;
+}
