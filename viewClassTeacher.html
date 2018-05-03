@@ -139,7 +139,7 @@
 						<div id="Lessons" class="tabcontent ' active'" style="background-color: #ccc;">
 							<h3>Lessons statistics</h3>
 							
-							<label style="font-weight:normal;">Select lesson num</label>
+							<label style="font-weight:normal;">Select lesson number</label>
 							<select id="lessons-list" onchange="displayLessonStatistics()">
 								<option value=""></option>
 								<option value="1">1</option>
@@ -163,8 +163,8 @@
 							
 							<div id="columnchart_lesson_all" style="height: 300px;"></div>
 							
-							<label id="students-in-lesson_label" style="font-weight:normal;">Select student name</label>
-							<select id="students-in-lesson" onchange="displayStudentInLessonStats()">
+							<label id="students-in-lesson_label" style="font-weight:normal;">Select student</label>
+							<select id="students-in-lesson" onchange="displayStudentInLessonStats(1)">
 								<option value=""></option>
 							</select>
 							
@@ -173,7 +173,8 @@
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
 							<h3>Course overall statistics</h3>
-							<div id="avg-result">Average course result: </div>
+							<div id="avg-result"><b>Average course result:</b> </div>
+							
 							<div class="subtab">
 								<button class="subtablinks" onclick="openSubTab(event, 'Overall-finish')">Progress</button>
 								<button class="subtablinks" onclick="openSubTab(event, 'Overall-result')">Results</button>
@@ -190,12 +191,30 @@
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Students" class="tabcontent" style="background-color: #ccc;">
 							<div id="studStats">
-								<h3>Students statistics</h3>
+								<h3>Students statistics</h3>								
+								<label id="students-in-lesson_label" style="font-weight:normal;">Select student</label>
 								<select id="students-list" onchange="displayStudentStatistics()">
 									<option value=""></option>
 								</select>
+								<div id="avg-result-student"></div>								
 								<div id="students-output-result" style="height: 300px;"></div>
 							</div>
+							
+							<label  id="lesson-in-student_label" style="font-weight:normal;">Select lesson number</label>
+							<select id="lessons-list-for-student" onchange="displayStudentInLessonStats(2)">
+								<option value=""></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+							<div id="columnchart_student_question" style="height: 300px;"></div>
 						</div>
 					</div>
 				</div>

@@ -37,6 +37,7 @@
 		
 		<script src="js/client.js"></script>
 		<script src="js/loadProfile.js"></script>
+		<script src="js/statistics.js"></script>
 		<script type="text/javascript" src="js/settings.js"></script>
 		<script src="js/authMgr.js"></script>
 		<script src="js/3rdParty/firebase.js"></script>
@@ -44,7 +45,6 @@
 		<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
 		<script src="js/dom-elements.js"></script>
 		<script type="text/javascript" src="js/3rdParty/loader.js"></script>
-		<script type="text/javascript" src="js/chartDraw.js"></script>
 	</head>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -178,7 +178,12 @@
 								</p>
 							</div>
 							
-							<div id="curve_chart"></div>
+							<label>Lesson results by course</label><br>
+							<label  style="font-weight:normal;">Select course</label>
+							<select id="course-list" onchange="loadPersonalGraph()">
+								<option value=""></option>
+							</select>
+							<div id="res_chart"></div>
 						</div>
 					</div>
 				</div>

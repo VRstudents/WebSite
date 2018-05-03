@@ -26,6 +26,13 @@ function loadProfileStudent() {
 			document.getElementById("stud-stats-qca").innerHTML += arr2[3];
 			document.getElementById("stud-stats-acr").innerHTML += arr2[4].toFixed(2);
 			document.getElementById("stud-stats-bcr").innerHTML += arr2[5].toFixed(2);
+			for (i = 0; i < arr2[0].length; i++) {
+				mySelect = document.getElementById('course-list');
+				var option = document.createElement('option');
+				option.text = arr2[0][i].Category;
+				option.value = arr2[0][i].CourseId;
+				mySelect.appendChild(option);
+			};	
 			
 			//Classes tab
 			for (i = 0; i < arr2[1].length; i++) {

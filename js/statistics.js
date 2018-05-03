@@ -1,13 +1,6 @@
 var options = {
 	hAxis: {
 		ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
-	},
-	vAxis: {
-		viewWindow: {
-			min: 0,
-			max: 100
-		},
-		ticks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
 	}
 };
 
@@ -40,10 +33,15 @@ function displayLessonStatistics(){
 				
 				options = {
 					chart: {
-						title: 'Questions answers results distribution by lesson(in percents)'
+						title: 'Answers results distribution by question(in percents)'
 					},
 					vAxis: {
 						title: 'Number of answers',
+						viewWindow: {
+							min: 0,
+							max: 100
+						},
+						ticks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
 					}
 				};
 
@@ -90,7 +88,7 @@ function displayLessonStatistics(){
 			};
 			
 			if(document.getElementById('students-in-lesson').value != ''){
-				displayStudentInLessonStats();
+				displayStudentInLessonStats(1);
 			};
 		};					
 	}; 
@@ -99,11 +97,16 @@ function displayLessonStatistics(){
 	xhttp.send();
 }
 
-function displayStudentInLessonStats(){
-	lessonNum = document.getElementById("lessons-list").value;
+function displayStudentInLessonStats(src){ 	//src=1 - lessons tab; src=2 - students tab
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
-	studentId = document.getElementById("students-in-lesson").value;
-
+	if(src == 1){
+		lessonNum = document.getElementById("lessons-list").value;
+		studentId = document.getElementById("students-in-lesson").value;
+	} else {
+		lessonNum = document.getElementById("lessons-list-for-student").value;
+		studentId = document.getElementById("students-list").value;
+	};
+	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -114,19 +117,24 @@ function displayStudentInLessonStats(){
 				return response[k];
 			});
 			
+			options = {
+				chart: {
+					title: 'Student answers results distribution by question(in percents)'
+				},
+				vAxis: {
+					title: 'Number of answers',
+					viewWindow: {
+						min: 0,
+						max: 100
+					},
+					ticks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
+				}
+			};
+			
 			if(arr4.length != 0) {	
 				google.charts.load('current', {'packages':['bar']});
 				google.charts.setOnLoadCallback(drawChart);
 				
-				options = {
-					chart: {
-						title: 'Student answers results distribution by lesson(in percents)'
-					},
-					vAxis: {
-						title: 'Number of answers',
-					}
-				};
-
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
 						['Question', 'Correct', 'Incorrect'],
@@ -142,7 +150,11 @@ function displayStudentInLessonStats(){
 						[arr4[9].QNum, arr4[9].RightCount/(arr4[9].RightCount+arr4[9].WrongCount)*100, arr4[9].WrongCount/(arr4[9].RightCount+arr4[9].WrongCount)*100]
 					]);
 
-					var chart = new google.charts.Bar(document.getElementById('columnchart_lesson_student'));
+					if(src == 1) {
+						var chart = new google.charts.Bar(document.getElementById('columnchart_lesson_student'));
+					} else {
+						var chart = new google.charts.Bar(document.getElementById('columnchart_student_question'));
+					};
 					chart.draw(data, google.charts.Bar.convertOptions(options));
 				}
 			} else { 
@@ -154,7 +166,11 @@ function displayStudentInLessonStats(){
 						['Question', 'Correct', 'Incorrect']
 					]);
 
-					var chart = new google.charts.Bar(document.getElementById('columnchart_lesson_student'));
+					if(src == 1) {
+						var chart = new google.charts.Bar(document.getElementById('columnchart_lesson_student'));
+					} else {
+						var chart = new google.charts.Bar(document.getElementById('columnchart_student_question'));
+					};
 					chart.draw(data, google.charts.Bar.convertOptions(options));
 				}
 			};
@@ -178,7 +194,7 @@ function displayClassStatistics(){
 				return response[k];
 			});
 
-			document.getElementById("avg-result").innerHTML += arr2[2];
+			document.getElementById("avg-result").innerHTML += "<b>" + arr2[2] + "</b>";
 			
 			//Results distribution graph
 			google.charts.load('current', {'packages':['bar']});
@@ -190,6 +206,11 @@ function displayClassStatistics(){
 				},
 				vAxis: {
 					title: 'Result',
+					viewWindow: {
+						min: 0,
+						max: 10
+					},
+					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 				}
 			};
 
@@ -292,33 +313,40 @@ function displayStudentStatistics(){
 			var arr4 = arr3.map(function (k) {
 				return response[k];
 			});
-			console.log(arr4);
+			
+			document.getElementById("avg-result-student").innerHTML = "<b>Average course result: " + arr4[1] + "</b>";
+			
+			options = {
+				chart: {
+					title: 'Results distribution by lesson'
+				},
+				vAxis: {
+					title: 'Result',
+					viewWindow: {
+						min: 0,
+						max: 10
+					},
+					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+				}
+			};
+		
 			if(arr4[0].length != 0) {	
 				google.charts.load('current', {'packages':['bar']});
 				google.charts.setOnLoadCallback(drawChart);
 
-				options = {
-					chart: {
-						title: 'Results distribution by lesson'
-					},
-					vAxis: {
-						title: 'Result',
-					}
-				};
-
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
-					['Lesson', 'Average', 'Best'],
-					[arr4[0][0].LNum, arr4[0][0].AvgRes, arr4[0][0].BestRes],
-					[arr4[0][1].LNum, arr4[0][1].AvgRes, arr4[0][1].BestRes],
-					[arr4[0][2].LNum, arr4[0][2].AvgRes, arr4[0][2].BestRes],
-					[arr4[0][3].LNum, arr4[0][3].AvgRes, arr4[0][3].BestRes],
-					[arr4[0][4].LNum, arr4[0][4].AvgRes, arr4[0][4].BestRes],
-					[arr4[0][5].LNum, arr4[0][5].AvgRes, arr4[0][5].BestRes],
-					[arr4[0][6].LNum, arr4[0][6].AvgRes, arr4[0][6].BestRes],
-					[arr4[0][7].LNum, arr4[0][7].AvgRes, arr4[0][7].BestRes],
-					[arr4[0][8].LNum, arr4[0][8].AvgRes, arr4[0][8].BestRes],
-					[arr4[0][9].LNum, arr4[0][9].AvgRes, arr4[0][9].BestRes]
+						['Lesson', 'Average', 'Best'],
+						[arr4[0][0].LNum, arr4[0][0].AvgRes, arr4[0][0].BestRes],
+						[arr4[0][1].LNum, arr4[0][1].AvgRes, arr4[0][1].BestRes],
+						[arr4[0][2].LNum, arr4[0][2].AvgRes, arr4[0][2].BestRes],
+						[arr4[0][3].LNum, arr4[0][3].AvgRes, arr4[0][3].BestRes],
+						[arr4[0][4].LNum, arr4[0][4].AvgRes, arr4[0][4].BestRes],
+						[arr4[0][5].LNum, arr4[0][5].AvgRes, arr4[0][5].BestRes],
+						[arr4[0][6].LNum, arr4[0][6].AvgRes, arr4[0][6].BestRes],
+						[arr4[0][7].LNum, arr4[0][7].AvgRes, arr4[0][7].BestRes],
+						[arr4[0][8].LNum, arr4[0][8].AvgRes, arr4[0][8].BestRes],
+						[arr4[0][9].LNum, arr4[0][9].AvgRes, arr4[0][9].BestRes]
 					]);
 
 					var chart = new google.charts.Bar(document.getElementById('students-output-result'));
@@ -337,9 +365,85 @@ function displayStudentStatistics(){
 					chart.draw(data, google.charts.Bar.convertOptions(options));
 				}
 			};
+			
+			document.getElementById('lesson-in-student_label').style.display = 'inline';
+			document.getElementById('lessons-list-for-student').style.display = 'inline';
+			
+			if(document.getElementById('lessons-list-for-student').value != ''){
+				displayStudentInLessonStats(2);
+			};
 		};					
 	}; 
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Statistics/StudentStats/" + classId + "/" + studentId, true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
+}
+
+function loadPersonalGraph() {
+	classId = document.getElementById("course-list").value;
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			
+			var arr1 = Object.keys(response);
+			var arr4 = arr1.map(function (k) {
+				return response[k];
+			});
+
+			options = {
+				chart: {
+					title: 'Results distribution by lesson'
+				},
+				vAxis: {
+					title: 'Result',
+					viewWindow: {
+						min: 0,
+						max: 10
+					},
+					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+				}
+			};
+			//console.log();
+			if(arr4.length != 0) {	
+				google.charts.load('current', {'packages':['bar']});
+				google.charts.setOnLoadCallback(drawChart);
+
+				function drawChart() {
+					var data = google.visualization.arrayToDataTable([
+						['Lesson', 'Average', 'Best'],
+						[arr4[0].LNum, arr4[0].AvgRes, arr4[0].BestRes],
+						[arr4[1].LNum, arr4[1].AvgRes, arr4[1].BestRes],
+						[arr4[2].LNum, arr4[2].AvgRes, arr4[2].BestRes],
+						[arr4[3].LNum, arr4[3].AvgRes, arr4[3].BestRes],
+						[arr4[4].LNum, arr4[4].AvgRes, arr4[4].BestRes],
+						[arr4[5].LNum, arr4[5].AvgRes, arr4[5].BestRes],
+						[arr4[6].LNum, arr4[6].AvgRes, arr4[6].BestRes],
+						[arr4[7].LNum, arr4[7].AvgRes, arr4[7].BestRes],
+						[arr4[8].LNum, arr4[8].AvgRes, arr4[8].BestRes],
+						[arr4[9].LNum, arr4[9].AvgRes, arr4[9].BestRes]
+					]);
+
+					var chart = new google.charts.Bar(document.getElementById('res_chart'));
+					chart.draw(data, google.charts.Bar.convertOptions(options));
+				}
+			} else { 
+				google.charts.load('current', {'packages':['bar']});
+				google.charts.setOnLoadCallback(drawChart);
+
+				function drawChart() {
+					var data = google.visualization.arrayToDataTable([
+						['Lesson', 'Average', 'Best']
+					]);
+
+					var chart = new google.charts.Bar(document.getElementById('res_chart'));
+					chart.draw(data, google.charts.Bar.convertOptions(options));
+				}
+			};
+		};					
+	}; 
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Statistics/LoadPersonalGraph/" + classId + "/" + sessionStorage.getItem('userName') + "/", true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 }

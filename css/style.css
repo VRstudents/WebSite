@@ -1068,10 +1068,22 @@ td a {
     padding: 0;
 }
 
+#Achievements {
+	height:390px !important;
+}
+
 #Achievements section {
 	display: inline;
 }
 
 #message {
 	color:#585150;
+}
+
+#res_chart {
+	height: 300px;
+	width:70%;
+	float:right;
+	border: solid 2px;
+	padding:8px;
 }

@@ -129,6 +129,8 @@ function loadClassPage(src) {
 		document.getElementById('lesson-tab-div').style.display = 'none';
 		document.getElementById('students-in-lesson_label').style.display = 'none';
 		document.getElementById('students-in-lesson').style.display = 'none';
+		document.getElementById('lessons-list-for-student').style.display = 'none';
+		document.getElementById('lesson-in-student_label').style.display = 'none';
 	};
 	
 	var xhttp = new XMLHttpRequest();
