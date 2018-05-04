@@ -3,151 +3,109 @@
   <head>
     <title>Create HTML5 Canvas JavaScript Game Character Example</title>
     <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="canvas-style.css">
   </head>
   <body>
 	<div>
 		<div id="gender">
 			<label>Gender</label><br>
-			<input type="radio" name="gender" value="male">Male<br>
-			<input type="radio" name="gender" value="female">Female<br>
+			<input type="radio" name="gender" value="male">Boy<br>
+			<input type="radio" name="gender" value="female">Girl<br>
 		</div>
-		------------------------------------------------
+		------------------------------------------------<br>
 		<div id="maleOpts" style="display:none;">
 			<div id="skinColor">
 				<label>Skin color</label><br>
-				<label>
-					<input type="radio" name="skinColor" value="1"/>
-					<img src="images/head1.png">
-				</label>
-				<label>
-					<input type="radio" name="skinColor" value="2"/>
-					<img src="images/head2.png">
-				</label>			
+				
+				<input type="radio" name="skinColor" value="1" id="headB1"/>
+				<label for="headB1"><img src="images/headB1.png"/></label>
+				
+				<input type="radio" name="skinColor" value="2" id="headB2"/>
+				<label for="headB2"><img src="images/headB2.png"/></label>
 			</div><br>
 			
 			<div id="shirtColor">
 				<label>Shirt</label><br>
-				<label>
-					<input type="radio" name="shirtColor" value="1"/>
-					<img src="images/torso1.png">
-				</label>
-				<label>
-					<input type="radio" name="shirtColor" value="2"/>
-					<img src="images/torso2.png">
-				</label>			
+				
+				<input type="radio" name="shirtColor" value="1" id="torsoB1"/>
+				<label for="torsoB1"><img src="images/torsoB1.png"/></label>
+				
+				<input type="radio" name="shirtColor" value="2" id="torsoB2"/>
+				<label for="torsoB2"><img src="images/torsoB2.png"/></label>			
 			</div><br>
 			
 			<div id="hairColor">
 				<label>Hair color</label><br>
-				<label>
-					<input type="radio" name="hairColor" value="1"/>
-					<img src="images/hair1.png">
-				</label>
-				<label>
-					<input type="radio" name="hairColor" value="2"/>
-					<img src="images/hair2.png">
-				</label>			
+				
+				<input type="radio" name="hairColor" value="1" id="hairB1"/>
+				<label for="hairB1"><img src="images/hairB1.png"/></label>
+				
+				<input type="radio" name="hairColor" value="2" id="hairB2"/>
+				<label for="hairB2"><img src="images/hairB2.png"/></label>		
 			</div><br>
 			
 			<div id="pantsColor">
 				<label>Pants color</label><br>
-				<label>
-					<input type="radio" name="pantsColor" value="1"/>
-					<img src="images/legs1.png">
-				</label>
-				<label>
-					<input type="radio" name="pantsColor" value="2"/>
-					<img src="images/legs2.png">
-				</label>			
+				
+				<input type="radio" name="pantsColor" value="1" id="legsB1"/>
+				<label for="legsB1"><img src="images/legsB1.png"/></label>
+				
+				<input type="radio" name="pantsColor" value="2" id="legsB2"/>
+				<label for="legsB2"><img src="images/legsB2.png"/></label>		
 			</div><br>
 		</div>
 		
 		<div id="femaleOpts" style="display:none;">
 			<div id="skinColor">
 				<label>Skin color</label><br>
-				<label>
-					<input type="radio" name="skinColor" value="1"/>
-					<img src="images/head3.png">
-				</label>
-				<label>
-					<input type="radio" name="skinColor" value="2"/>
-					<img src="images/head4.png">
-				</label>			
+				
+				<input type="radio" name="skinColor" value="1" id="headG1"/>
+				<label for="headG1"><img src="images/headG1.png"/></label>
+				
+				<input type="radio" name="skinColor" value="2" id="headG2"/>
+				<label for="headG1"><img src="images/headG2.png"/></label>
 			</div><br>
 			
 			<div id="shirtColor">
 				<label>Shirt</label><br>
-				<label>
-					<input type="radio" name="shirtColor" value="1"/>
-					<img src="images/torso3.png">
-				</label>
-				<label>
-					<input type="radio" name="shirtColor" value="2"/>
-					<img src="images/torso4.png">
-				</label>			
+				
+				<input type="radio" name="shirtColor" value="1" id="torsoG1"/>
+				<label for="torsoG1"><img src="images/torsoG1.png"/></label>
+				
+				<input type="radio" name="shirtColor" value="2" id="torsoG2"/>
+				<label for="torsoG2"><img src="images/torsoG2.png"/></label>
 			</div><br>
 			
 			<div id="hairColor">
 				<label>Hair color</label><br>
-				<label>
-					<input type="radio" name="hairColor" value="1"/>
-					<img src="images/hair3.png">
-				</label>
-				<label>
-					<input type="radio" name="hairColor" value="2"/>
-					<img src="images/hair4.png">
-				</label>			
+				
+				<input type="radio" name="hairColor" value="1" id="hairG1"/>
+				<label for="hairG1"><img src="images/hairG1.png"/></label>
+				
+				<input type="radio" name="hairColor" value="2" id="hairG2"/>
+				<label for="hairG2"><img src="images/hairG2.png"/></label>
 			</div><br>
 			
 			<div id="pantsColor">
 				<label>Pants color</label><br>
-				<label>
-					<input type="radio" name="pantsColor" value="1"/>
-					<img src="images/legs3.png">
-				</label>
-				<label>
-					<input type="radio" name="pantsColor" value="2"/>
-					<img src="images/legs4.png">
-				</label>			
+				
+				<input type="radio" name="pantsColor" value="1" id="legsG1"/>
+				<label for="legsG1"><img src="images/legsG1.png"/></label>
+				
+				<input type="radio" name="pantsColor" value="2" id="legsG2"/>
+				<label for="legsG2"><img src="images/legsG2.png"/></label>
 			</div><br>
 		</div>
 		
-		<button onclick="createAvatar();">Set</button>
+		<button onclick="prepareCanvas();">Set</button>
 	</div>
   
     <div id="canvasDiv"></div>
 	<button id="downloadBtn" onclick="download()">Download</button>
     
 	<script type="text/javascript" src="reimg-master/reimg.js"></script>
-	<script type="text/javascript" src="canvas.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">	
-		function createAvatar(){
-			gender = document.querySelector('input[name="gender"]:checked').value;
-			var arr = [];
-			arr.push(document.querySelector('input[name="skinColor"]:checked').value);
-			arr.push(document.querySelector('input[name="shirtColor"]:checked').value);
-			arr.push(document.querySelector('input[name="hairColor"]:checked').value);
-			arr.push(document.querySelector('input[name="pantsColor"]:checked').value);
-			
-			prepareCanvas(document.getElementById("canvasDiv"), 190, 190, arr, gender);
-		}
-		
-		function download(){
-			var can = document.getElementById("canvas");
-			<!-- var src = can.toDataURL("image/png"); -->
-			ReImg.fromCanvas(can).downloadPng();
-		}
-		$("#gender input[type=radio]").on('change',function(){
-			if(document.querySelector('input[name="gender"]:checked').value == 'male'){
-				$('#femaleOpts').css('display','none');
-				$('#maleOpts').css('display','inline');
-			} else {
-				$('#maleOpts').css('display','none');
-				$('#femaleOpts').css('display','inline');
-			};
-		});
-    </script>
+	<script type="text/javascript" src="canvas.js"></script>
+
   </body>
 </html>

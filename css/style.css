@@ -1094,3 +1094,16 @@ td a {
 	color:white;
 	margin-bottom:15px;
 }
+
+#questions li {
+	border:solid gray 2px;
+}
+
+#questions li .qHeader{
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+#questions li .question{
+	font-weight:bold;
+}

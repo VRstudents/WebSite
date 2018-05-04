@@ -1,3 +1,5 @@
+const MIN_NUM_OF_QUESTIONS = 8;
+
 function getStudents() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -241,6 +243,8 @@ function addLessons(){
 				var response = JSON.parse(this.responseText);
 				if(!response) {
 					alert("An error occurred.\nAdding lessons to class failed.");
+				} else if(this.readyState == 4 && this.status != 200) {
+					alert("An error occurred.\nAdding lessons to class failed.");
 				};
 				
 				window.open('viewClassTeacher.html?courseId='+param, '_self');
@@ -347,6 +351,8 @@ function createClass(){
 				};
 				
 				window.open('profileTeacher.html', '_self');
+			} else if (this.readyState == 4 && this.status != 200) {
+				alert("An error occurred.\nAdding lessons to class failed.");
 			};
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/CreateClass", true);
@@ -377,6 +383,8 @@ function postMessage(){
 				document.getElementById('curMessage').style.display = "inline";
 				document.querySelector('textarea[id="message"]').value = '';
 				document.getElementById('myModal').style.display = "none";
+			} else if (this.readyState == 4 && this.status != 200) {
+				alert("An error occurred.\nPosting message failed.");
 			};
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/PostMessage", true);
@@ -386,8 +394,8 @@ function postMessage(){
 	};
 }
 
-function getExamQuestions(){
-	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+function loadExamPage() {
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);	
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -398,10 +406,63 @@ function getExamQuestions(){
 				return response[k];
 			});
 			
+			document.getElementById('class-cat-grade').innerHTML = arr2[0].Category + " - Grade " + arr2[0].Grade;
 			console.log(arr2);
+			
+			for(i = 0; i < arr2.length; i++){
+				qNum = i + 1;
+				question = arr2[i].Question.split("'");
+				document.getElementById('questions').innerHTML += "<li><div class=\"qHeader\">Question " + qNum
+																+ " <input type=\"checkbox\" class=\"question-select\" id=\"" + arr2[i].Id + "\"></div>"
+																+ "<div class=\"question\">" + question[1] + "</div>"
+																+ "<div class=\"answer\">A. " + arr2[i].AnswerA + "</div>"
+																+ "<div class=\"answer\">B. " + arr2[i].AnswerB + "</div>"
+																+ "<div class=\"answer\">C. " + arr2[i].AnswerC + "</div>"
+																+ "<div class=\"answer\">D. " + arr2[i].AnswerD + "</div></li>";
+			};
 		};
 	};
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/GetExamQuestions/" + classId, true);
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
+}
+
+function createExam(){
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+	
+	var checkBoxes = document.getElementsByClassName('question-select');	
+	var questionsToAdd = [];
+	for (var i = 0; i < checkBoxes.length; i++) {
+		if (checkBoxes[i].checked) {
+			questionsToAdd.push(checkBoxes[i].id);
+		};
+	};
+	
+	if(questionsToAdd.length >= MIN_NUM_OF_QUESTIONS){
+		var data = {
+			"ClassId":classId,
+			"QuestionIDs":questionsToAdd
+		};
+		var dataJ = JSON.stringify(data);
+		console.log(dataJ);		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse(this.responseText);
+				if(!response) {
+					alert("An error occurred.\nCreating exam failed.");
+				};
+				
+				window.open('viewClassTeacher.html?courseId='+param, '_self');
+			} else if (this.readyState == 4 && this.status != 200) {
+				alert("An error occurred.\nCreating exam failed.");
+			};
+		};
+		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/CreateExam", true);
+		xhttp.setRequestHeader("Content-Type", "application/json");	
+		xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+		xhttp.send(dataJ);
+	} else {
+		alert("Please select at least " + MIN_NUM_OF_QUESTIONS + " questions.");
+	};
 }

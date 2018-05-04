@@ -205,7 +205,7 @@ function loadPersonalDetails(){
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	if(sessionStorage.getItem('role') == 'student'){
 		document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
-	}
+	};
 }
 
 function logOut(){	

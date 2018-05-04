@@ -13,6 +13,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//This section menages the change of style of selected avatr components when they are selected
+$('#maleOpts input:radio').addClass('input_hidden');
+$('#femaleOpts input:radio').addClass('input_hidden');
+$('#maleOpts label').click(function(){
+	$(this).addClass('selected').siblings().removeClass('selected');
+});
+$('#femaleOpts label').click(function(){
+	$(this).addClass('selected').siblings().removeClass('selected');
+});
+
+function download(){
+	var can = document.getElementById("canvas");
+	//var src = can.toDataURL("image/png"); 
+	ReImg.fromCanvas(can).downloadPng();
+}
+
+$("#gender input[type=radio]").on('change',function(){
+	if(document.querySelector('input[name="gender"]:checked').value == 'male'){
+		$('#femaleOpts').css('display','none');
+		$('#maleOpts').css('display','inline');
+	} else {
+		$('#maleOpts').css('display','none');
+		$('#femaleOpts').css('display','inline');
+	};
+});
+
 var canvas;
 var context;
 var images = {};
@@ -23,15 +49,24 @@ var y = 150;
 var maxEyeHeight = 14;
 var curEyeHeight = maxEyeHeight;
 		
-function prepareCanvas(canvasDiv, canvasWidth, canvasHeight, arr, gender)
-{
+function prepareCanvas()
+{	
+	gender = document.querySelector('input[name="gender"]:checked').value;
+	var arr = [];
+	arr.push(document.querySelector('input[name="skinColor"]:checked').value);
+	arr.push(document.querySelector('input[name="shirtColor"]:checked').value);
+	arr.push(document.querySelector('input[name="hairColor"]:checked').value);
+	arr.push(document.querySelector('input[name="pantsColor"]:checked').value);
+	
+	numResourcesLoaded = 0;
+	
 	// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 	canvas = document.createElement('canvas');
-	canvas.setAttribute('width', canvasWidth);
-	canvas.setAttribute('height', canvasHeight);
+	canvas.setAttribute('width', 190);
+	canvas.setAttribute('height', 190);
 	canvas.setAttribute('id', 'canvas');
 	canvas.setAttribute('crossorigin', 'anonymous');
-	canvasDiv.appendChild(canvas);
+	document.getElementById("canvasDiv").appendChild(canvas);
 	
 	if(typeof G_vmlCanvasManager != 'undefined') {
 		canvas = G_vmlCanvasManager.initElement(canvas);
@@ -39,65 +74,64 @@ function prepareCanvas(canvasDiv, canvasWidth, canvasHeight, arr, gender)
 	//context = canvas.getContext("2d"); // Grab the 2d canvas context
 	// Note: The above code is a workaround for IE 8and lower. Otherwise we could have used:
 	context = document.getElementById('canvas').getContext("2d");
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.clearRect(0, 0, 190, 190);
 	
 	if(gender == 'male') {
 		if(arr[0] == 1){
-			loadImage("head1", arr, gender);
-			loadImage("rightArm1", arr, gender);
-			loadImage("leftArm1", arr, gender);
+			loadImage("headB1", arr, gender);
+			loadImage("rightArmB1", arr, gender);
+			loadImage("leftArmB1", arr, gender);
 		} else {
-			loadImage("head2", arr, gender);
-			loadImage("rightArm2", arr, gender);
-			loadImage("leftArm2", arr, gender);
+			loadImage("headB2", arr, gender);
+			loadImage("rightArmB2", arr, gender);
+			loadImage("leftArmB2", arr, gender);
 		};
 		
 		if (arr[1] == 1){
-			loadImage("torso1", arr, gender);
+			loadImage("torsoB1", arr, gender);
 
 		} else {
-			loadImage("torso2", arr, gender);
+			loadImage("torsoB2", arr, gender);
 		};
 		
 		if (arr[2] == 1){
-			loadImage("hair1", arr, gender);
+			loadImage("hairB1", arr, gender);
 		} else {
-			loadImage("hair2", arr, gender);
+			loadImage("hairB2", arr, gender);
 		};
 		
 		if (arr[3] == 1){
-			loadImage("legs1", arr, gender);
+			loadImage("legsB1", arr, gender);
 		} else {
-			loadImage("legs2", arr, gender);
+			loadImage("legsB2", arr, gender);
 		};
 	} else {
 		if(arr[0] == 1){
-			loadImage("head3", arr, gender);
-			loadImage("rightArm3", arr, gender);
-			loadImage("leftArm3", arr, gender);
+			loadImage("headG1", arr, gender);
+			loadImage("rightArmG1", arr, gender);
+			loadImage("leftArmG1", arr, gender);
 		} else {
-			loadImage("head4", arr, gender);
-			loadImage("rightArm4", arr, gender);
-			loadImage("leftArm4", arr, gender);
+			loadImage("headG2", arr, gender);
+			loadImage("rightArmG2", arr, gender);
+			loadImage("leftArmG2", arr, gender);
 		};
 		
 		if (arr[1] == 1){
-			loadImage("torso3", arr, gender);
-
+			loadImage("torsoG1", arr, gender);
 		} else {
-			loadImage("torso4", arr, gender);
+			loadImage("torsoG2", arr, gender);
 		};
 		
 		if (arr[2] == 1){
-			loadImage("hair3", arr, gender);
+			loadImage("hairG1", arr, gender);
 		} else {
-			loadImage("hair4", arr, gender);
+			loadImage("hairG2", arr, gender);
 		};
 		
 		if (arr[3] == 1){
-			loadImage("legs3", arr, gender);
+			loadImage("legsG1", arr, gender);
 		} else {
-			loadImage("legs4", arr, gender);
+			loadImage("legsG2", arr, gender);
 		};
 	};
 }
@@ -122,72 +156,75 @@ function redraw(arr, gender) {
 
 	if(gender == 'male'){	
 		if(arr[0] == 1){
-			context.drawImage(images["leftArm1"], x - 45, y - 42);
+			context.drawImage(images["leftArmB1"], x - 45, y - 42);
 		} else {
-			context.drawImage(images["leftArm2"], x - 45, y - 42);
+			context.drawImage(images["leftArmB2"], x - 45, y - 42);
 		};
 		
 		if (arr[1] == 1){
-			context.drawImage(images["torso1"], x - 85, y - 50);
+			context.drawImage(images["torsoB1"], x - 85, y - 50);
 		} else {
-			context.drawImage(images["torso2"], x - 85, y - 50);
+			context.drawImage(images["torsoB2"], x - 85, y - 50);
 		};
 		
 		if (arr[3] == 1){
-			context.drawImage(images["legs1"], x - 85, y);
+			context.drawImage(images["legsB1"], x - 85, y);
 		} else {
-			context.drawImage(images["legs2"], x - 85, y);
+			context.drawImage(images["legsB2"], x - 85, y);
 		};
 		
 		if(arr[0] == 1){
-			context.drawImage(images["head1"], x - 95, y - 125);
-			context.drawImage(images["rightArm1"], x - 100, y - 42);
+			context.drawImage(images["headB1"], x - 95, y - 125);
+			context.drawImage(images["rightArmB1"], x - 100, y - 42);
 		} else {
-			context.drawImage(images["head2"], x - 95, y - 125);
-			context.drawImage(images["rightArm2"], x - 100, y - 42);
+			context.drawImage(images["headB2"], x - 95, y - 125);
+			context.drawImage(images["rightArmB2"], x - 100, y - 42);
 		};
 		
 		if (arr[2] == 1){
-			context.drawImage(images["hair1"], x - 122, y - 138);
+			context.drawImage(images["hairB1"], x - 122, y - 138);
 		} else {
-			context.drawImage(images["hair2"], x - 122, y - 138);
+			context.drawImage(images["hairB2"], x - 122, y - 138);
 		};
+		
+		drawEllipse(x - 38, y - 68 , 8, curEyeHeight); // Left Eye
+		drawEllipse(x - 27, y - 68 , 8, curEyeHeight); // Right Eye
 	} else {
 		if(arr[0] == 1){
-			context.drawImage(images["leftArm3"], x - 45, y - 42);
+			context.drawImage(images["leftArmG1"], x - 57, y - 39);
 		} else {
-			context.drawImage(images["leftArm4"], x - 45, y - 42);
-		};
-		
-		if (arr[1] == 1){
-			context.drawImage(images["torso3"], x - 85, y - 50);
-		} else {
-			context.drawImage(images["torso4"], x - 85, y - 50);
+			context.drawImage(images["leftArmG2"], x - 57, y - 39);
 		};
 		
 		if (arr[3] == 1){
-			context.drawImage(images["legs3"], x - 85, y);
+			context.drawImage(images["legsG1"], x - 97, y + 10);
 		} else {
-			context.drawImage(images["legs4"], x - 85, y);
+			context.drawImage(images["legsG2"], x - 97, y + 10);
+		};
+		
+		if (arr[1] == 1){
+			context.drawImage(images["torsoG1"], x - 105, y - 45);
+		} else {
+			context.drawImage(images["torsoG2"], x - 105, y - 45);
 		};
 		
 		if(arr[0] == 1){
-			context.drawImage(images["head3"], x - 95, y - 125);
-			context.drawImage(images["rightArm3"], x - 100, y - 42);
+			context.drawImage(images["headG1"], x - 115, y - 125);
+			context.drawImage(images["rightArmG1"], x - 114, y - 39);
 		} else {
-			context.drawImage(images["head4"], x - 95, y - 125);
-			context.drawImage(images["rightArm4"], x - 100, y - 42);
+			context.drawImage(images["headG2"], x - 115, y - 125);
+			context.drawImage(images["rightArmG2"], x - 114, y - 39);
 		};
 		
 		if (arr[2] == 1){
-			context.drawImage(images["hair3"], x - 122, y - 138);
+			context.drawImage(images["hairG1"], x - 122, y - 138);
 		} else {
-			context.drawImage(images["hair4"], x - 122, y - 138);
+			context.drawImage(images["hairG2"], x - 122, y - 138);
 		};
+		
+		drawEllipse(x - 75, y - 77 , 8, curEyeHeight); // Left Eye
+		drawEllipse(x - 62, y - 77 , 8, curEyeHeight); // Right Eye
 	};
-	
-  drawEllipse(x - 38, y - 68 , 8, curEyeHeight); // Left Eye
-  drawEllipse(x - 27, y - 68 , 8, curEyeHeight); // Right Eye
 }
 
 function drawEllipse(centerX, centerY, width, height) {

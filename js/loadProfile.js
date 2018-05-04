@@ -21,6 +21,11 @@ function loadProfileStudent() {
 				return response[k];
 			});
 			
+			if(arr2[6] != 'null'){
+				document.getElementById("profile-pic").src = arr2[6];
+				sessionStorage.setItem('profilePic', arr2[6]);
+			};
+			
 			//Achievments tab
 			document.getElementById("stud-stats-lc").innerHTML += arr2[2];
 			document.getElementById("stud-stats-qca").innerHTML += arr2[3];
