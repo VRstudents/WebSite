@@ -25,8 +25,30 @@ $('#femaleOpts label').click(function(){
 
 function download(){
 	var can = document.getElementById("canvas");
-	//var src = can.toDataURL("image/png"); 
-	ReImg.fromCanvas(can).downloadPng();
+	var src = can.toDataURL("image/png");
+	var temp = src.split(",");
+	var base = temp[1];
+
+	var data = {
+		"picData": base,
+		//"userName": sessionStorage.getItem('userName')
+		"userName": 'igorl3009@gmail.com'
+	};
+	var dataJ = JSON.stringify(data);
+
+    // Sending the image data to Server
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert("Avatar has been saved!");
+		} else if (this.readyState == 4 && this.status != 200) {
+			alert("An error accured.\nSaving avatar failed.");
+		};
+	};
+	xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SaveAvatar", true);
+	xhttp.setRequestHeader("Content-Type", "application/json");	
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send(dataJ);
 }
 
 $("#gender input[type=radio]").on('change',function(){
