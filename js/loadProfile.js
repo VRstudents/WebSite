@@ -26,6 +26,14 @@ function loadProfileStudent() {
 				sessionStorage.setItem('profilePic', arr2[6]);
 			};
 			
+			for (i = 0; i < arr2[7].length; i++) {
+				if (arr2[7][i]) {
+					document.getElementById("badge" + (parseInt(i) + 1)).style = "opacity:1;";
+				} else {
+					document.getElementById("badge" + (parseInt(i) + 1)).style = "opacity:0.2;";
+				};
+			}; 
+			
 			//Achievments tab
 			document.getElementById("stud-stats-lc").innerHTML += arr2[2];
 			document.getElementById("stud-stats-qca").innerHTML += arr2[3];

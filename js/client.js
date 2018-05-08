@@ -406,20 +406,22 @@ function loadExamPage() {
 				return response[k];
 			});
 			
-			document.getElementById('class-cat-grade').innerHTML = arr2[0].Category + " - Grade " + arr2[0].Grade;
-			console.log(arr2);
+			if(arr2.length != 0) {
+				document.getElementById('class-cat-grade').innerHTML = arr2[0].Category + " - Grade " + arr2[0].Grade;
 			
-			for(i = 0; i < arr2.length; i++){
-				qNum = i + 1;
-				question = arr2[i].Question.split("'");
-				document.getElementById('questions').innerHTML += "<li><div class=\"qHeader\">Question " + qNum
-																+ " <input type=\"checkbox\" class=\"question-select\" id=\"" + arr2[i].Id + "\"></div>"
-																+ "<div class=\"question\">" + question[1] + "</div>"
-																+ "<div class=\"answer\">A. " + arr2[i].AnswerA + "</div>"
-																+ "<div class=\"answer\">B. " + arr2[i].AnswerB + "</div>"
-																+ "<div class=\"answer\">C. " + arr2[i].AnswerC + "</div>"
-																+ "<div class=\"answer\">D. " + arr2[i].AnswerD + "</div></li>";
+				for(i = 0; i < arr2.length; i++){
+					qNum = i + 1;
+					question = arr2[i].Question.split("'");
+					document.getElementById('questions').innerHTML += "<li><div class=\"qHeader\">Question " + qNum
+																	+ " <input type=\"checkbox\" class=\"question-select\" id=\"" + arr2[i].Id + "\"></div>"
+																	+ "<div class=\"question\">" + question[1] + "</div>"
+																	+ "<div class=\"answer\">A. " + arr2[i].AnswerA + "</div>"
+																	+ "<div class=\"answer\">B. " + arr2[i].AnswerB + "</div>"
+																	+ "<div class=\"answer\">C. " + arr2[i].AnswerC + "</div>"
+																	+ "<div class=\"answer\">D. " + arr2[i].AnswerD + "</div></li>";
+				};
 			};
+			
 		};
 	};
 	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/study/GetExamQuestions/" + classId, true);

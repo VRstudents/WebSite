@@ -23,34 +23,6 @@ $('#femaleOpts label').click(function(){
 	$(this).addClass('selected').siblings().removeClass('selected');
 });
 
-function download(){
-	var can = document.getElementById("canvas");
-	var src = can.toDataURL("image/png");
-	var temp = src.split(",");
-	var base = temp[1];
-
-	var data = {
-		"picData": base,
-		//"userName": sessionStorage.getItem('userName')
-		"userName": 'igorl3009@gmail.com'
-	};
-	var dataJ = JSON.stringify(data);
-
-    // Sending the image data to Server
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			alert("Avatar has been saved!");
-		} else if (this.readyState == 4 && this.status != 200) {
-			alert("An error accured.\nSaving avatar failed.");
-		};
-	};
-	xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SaveAvatar", true);
-	xhttp.setRequestHeader("Content-Type", "application/json");	
-	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
-	xhttp.send(dataJ);
-}
-
 $("#gender input[type=radio]").on('change',function(){
 	if(document.querySelector('input[name="gender"]:checked').value == 'male'){
 		$('#femaleOpts').css('display','none');
@@ -68,11 +40,26 @@ var totalResources = 6;
 var numResourcesLoaded = 0;
 var x = 150;
 var y = 150;
-var maxEyeHeight = 14;
-var curEyeHeight = maxEyeHeight;
+var curEyeHeight = 14;
 		
 function prepareCanvas()
 {	
+	if (document.querySelector('input[name="skinColor"]:checked') == null){
+		alert("Pure character... it can't live without a skin!");
+		return;
+	} else if (document.querySelector('input[name="shirtColor"]:checked') == null) {
+		alert("Maybe it's a good idea to give it some clothes");
+		return;
+	} else if (document.querySelector('input[name="hairColor"]:checked') == null) {
+		alert("The hair cannot be colorless, isn't it?");
+		return;
+	} else if (document.querySelector('input[name="pantsColor"]:checked') == null) {
+		alert("He needs more clothes - pants and shoes will be welcomed");
+		return;
+	};
+	
+	$('#canvasDiv').css('display','inline');
+	
 	gender = document.querySelector('input[name="gender"]:checked').value;
 	var arr = [];
 	arr.push(document.querySelector('input[name="skinColor"]:checked').value);
@@ -163,7 +150,7 @@ function loadImage(name, arr, gender) {
 	images[name].onload = function() { 
 		resourceLoaded(arr, gender);
 	}
-	images[name].src = "images/" + name + ".png";
+	images[name].src = "images/avatar_imgs/" + name + ".png";
 }
 
 function resourceLoaded(arr, gender) {
@@ -213,39 +200,39 @@ function redraw(arr, gender) {
 		drawEllipse(x - 27, y - 68 , 8, curEyeHeight); // Right Eye
 	} else {
 		if(arr[0] == 1){
-			context.drawImage(images["leftArmG1"], x - 57, y - 39);
+			context.drawImage(images["leftArmG1"], x - 47, y - 39);
 		} else {
-			context.drawImage(images["leftArmG2"], x - 57, y - 39);
+			context.drawImage(images["leftArmG2"], x - 47, y - 39);
 		};
 		
 		if (arr[3] == 1){
-			context.drawImage(images["legsG1"], x - 97, y + 10);
+			context.drawImage(images["legsG1"], x - 87, y + 10);
 		} else {
-			context.drawImage(images["legsG2"], x - 97, y + 10);
+			context.drawImage(images["legsG2"], x - 87, y + 10);
 		};
 		
 		if (arr[1] == 1){
-			context.drawImage(images["torsoG1"], x - 105, y - 45);
+			context.drawImage(images["torsoG1"], x - 95, y - 45);
 		} else {
-			context.drawImage(images["torsoG2"], x - 105, y - 45);
+			context.drawImage(images["torsoG2"], x - 95, y - 45);
 		};
 		
 		if(arr[0] == 1){
-			context.drawImage(images["headG1"], x - 115, y - 125);
-			context.drawImage(images["rightArmG1"], x - 114, y - 39);
+			context.drawImage(images["headG1"], x - 105, y - 125);
+			context.drawImage(images["rightArmG1"], x - 104, y - 39);
 		} else {
-			context.drawImage(images["headG2"], x - 115, y - 125);
-			context.drawImage(images["rightArmG2"], x - 114, y - 39);
+			context.drawImage(images["headG2"], x - 105, y - 125);
+			context.drawImage(images["rightArmG2"], x - 104, y - 39);
 		};
 		
 		if (arr[2] == 1){
-			context.drawImage(images["hairG1"], x - 122, y - 138);
+			context.drawImage(images["hairG1"], x - 112, y - 138);
 		} else {
-			context.drawImage(images["hairG2"], x - 122, y - 138);
+			context.drawImage(images["hairG2"], x - 112, y - 138);
 		};
 		
-		drawEllipse(x - 75, y - 77 , 8, curEyeHeight); // Left Eye
-		drawEllipse(x - 62, y - 77 , 8, curEyeHeight); // Right Eye
+		drawEllipse(x - 65, y - 77 , 8, curEyeHeight); // Left Eye
+		drawEllipse(x - 52, y - 77 , 8, curEyeHeight); // Right Eye
 	};
 }
 
@@ -266,4 +253,32 @@ function drawEllipse(centerX, centerY, width, height) {
   context.fillStyle = "black";
   context.fill();
   context.closePath();	
+}
+
+function saveAvatar(){
+	var can = document.getElementById("canvas");
+	var src = can.toDataURL("image/png");
+	var temp = src.split(",");
+	var base = temp[1];
+
+	var data = {
+		"picData": base,
+		"userName": sessionStorage.getItem('userName')
+	};
+	var dataJ = JSON.stringify(data);
+
+    // Sending the image data to Server
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert("Avatar has been saved!");
+			location.reload();
+		} else if (this.readyState == 4 && this.status != 200) {
+			alert("An error accured.\nSaving avatar failed.");
+		};
+	};
+	xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SaveAvatar", true);
+	xhttp.setRequestHeader("Content-Type", "application/json");	
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send(dataJ);
 }

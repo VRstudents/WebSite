@@ -33,6 +33,7 @@
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/icomoon.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/canvas-style.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		
 		<script src="js/client.js"></script>
@@ -93,98 +94,218 @@
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
 							<div class="profile-main">
-								<img src="" alt="profile" id="profile-pic">
+								<div>
+									<img src="http://vmedu145.mtacloud.co.il/avatars/1.png" alt="profile" id="profile-pic">
+									<button id="openModal2" onclick="modal2()">Change avatar</button>
+								</div>
+								<div id="myModal2" class="modal">
+									<div class="modal-content2" id="avatar-create">
+										<div id="gender" style="text-align:center;">
+											<label>Gender</label><br>
+											<input type="radio" name="gender" value="male">Boy<br>
+											<input type="radio" name="gender" value="female">Girl<br>
+										</div>
+										<hr>
+										<div id="maleOpts" style="display:none;">
+											<div id="skinColor">
+												<label>Skin color</label><br>
+												
+												<input type="radio" name="skinColor" value="1" id="headB1"/>
+												<label for="headB1"><img src="images/avatar_imgs/headB1.png"/></label>
+												
+												<input type="radio" name="skinColor" value="2" id="headB2"/>
+												<label for="headB2"><img src="images/avatar_imgs/headB2.png"/></label>
+											</div>
+											
+											<div id="shirtColor">
+												<label>Shirt</label><br>
+												
+												<input type="radio" name="shirtColor" value="1" id="torsoB1"/>
+												<label for="torsoB1"><img src="images/avatar_imgs/torsoB1.png"/></label>
+												
+												<input type="radio" name="shirtColor" value="2" id="torsoB2"/>
+												<label for="torsoB2"><img src="images/avatar_imgs/torsoB2.png"/></label>			
+											</div>
+											
+											<div id="hairColor">
+												<label>Hair color</label><br>
+												
+												<input type="radio" name="hairColor" value="1" id="hairB1"/>
+												<label for="hairB1"><img src="images/avatar_imgs/hairB1.png"/></label>
+												
+												<input type="radio" name="hairColor" value="2" id="hairB2"/>
+												<label for="hairB2"><img src="images/avatar_imgs/hairB2.png"/></label>		
+											</div>
+											
+											<div id="pantsColor">
+												<label>Pants color</label><br>
+												
+												<input type="radio" name="pantsColor" value="1" id="legsB1"/>
+												<label for="legsB1"><img src="images/avatar_imgs/legsB1.png"/></label>
+												
+												<input type="radio" name="pantsColor" value="2" id="legsB2"/>
+												<label for="legsB2"><img src="images/avatar_imgs/legsB2.png"/></label>		
+											</div>
+										</div>
+										
+										<div id="femaleOpts" style="display:none;">
+											<div id="skinColor">
+												<label>Skin color</label><br>
+												
+												<input type="radio" name="skinColor" value="1" id="headG1"/>
+												<label for="headG1"><img src="images/avatar_imgs/headG1.png"/></label>
+												
+												<input type="radio" name="skinColor" value="2" id="headG2"/>
+												<label for="headG1"><img src="images/avatar_imgs/headG2.png"/></label>
+											</div>
+
+											<div id="shirtColor">
+												<label>Shirt</label><br>
+												
+												<input type="radio" name="shirtColor" value="1" id="torsoG1"/>
+												<label for="torsoG1"><img src="images/avatar_imgs/torsoG1.png"/></label>
+												
+												<input type="radio" name="shirtColor" value="2" id="torsoG2"/>
+												<label for="torsoG2"><img src="images/avatar_imgs/torsoG2.png"/></label>
+											</div>
+											
+											<div id="hairColor">
+												<label>Hair color</label><br>
+												
+												<input type="radio" name="hairColor" value="1" id="hairG1"/>
+												<label for="hairG1"><img src="images/avatar_imgs/hairG1.png"/></label>
+												
+												<input type="radio" name="hairColor" value="2" id="hairG2"/>
+												<label for="hairG2"><img src="images/avatar_imgs/hairG2.png"/></label>
+											</div>
+											
+											<div id="pantsColor">
+												<label>Pants color</label><br>
+												
+												<input type="radio" name="pantsColor" value="1" id="legsG1"/>
+												<label for="legsG1"><img src="images/avatar_imgs/legsG1.png"/></label>
+												
+												<input type="radio" name="pantsColor" value="2" id="legsG2"/>
+												<label for="legsG2"><img src="images/avatar_imgs/legsG2.png"/></label>
+											</div>
+										</div>
+										
+										<div id="canvasDiv"></div>
+										
+										<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
+										<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
+										<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
+										<span class="close">&times;</span>
+									</div>
+								</div>
+							</div>
 	
-								<div id="personal-details-student">
-									<span id="user-name"></span><br>
-									<span id="school-name"></span><br>
-									<span id="grade"></span><br>
-									<span id="code" style="display:none;"></span><br>
-									<button id="toggleCode" onclick="toggleCode()">Show Code</button>
-								</div>
+							<div id="personal-details-student">
+								<span id="user-name"></span><br>
+								<span id="school-name"></span><br>
+								<span id="grade"></span><br>
+								<span id="code" style="display:none;"></span><br>
+								<button id="toggleCode" onclick="toggleCode()">Show Code</button>
+							</div>
 								
-								<div id="badges">
-									<ul style="list-style-type:none; padding-left:0;">
-										<li><img src="images\badges\badge1.png" title="Excellent learner" id="1" style="opacity:1;" width="50" height="50"></li>
-										<li><img src="images\badges\badge2.png" title="Persistence Master" id="2" style="opacity:1;" width="50" height="50"></li>
-										<li><img src="images\badges\badge3.png" title="Math Genius" id="3" style="opacity:0.2;" width="50" height="50"></li><br><br>
-										<li><img src="images\badges\badge4.png" title="Persistence Master" id="4" style="opacity:0.2;" width="50" height="50"></li>
-										<li><img src="images\badges\badge5.png" title="Math Genius" id="5" style="opacity:1;" width="50" height="50"></li>
-										<li><img src="images\badges\badge6.png" title="Excellent learner" id="6" style="opacity:0.2;" width="50" height="50"></li><br><br>
-										<li><img src="images\badges\badge7.png" title="Excellent learner" id="7" style="opacity:0.2;" width="50" height="50"></li>
-										<li><img src="images\badges\badge8.png" title="Math Genius" id="8" style="opacity:0.2;" width="50" height="50"></li>
-										<li><img src="images\badges\badge9.png" title="Persistence Master" id="9" style="opacity:0.2;" width="50" height="50"></li>
-									</ul>
-								</div>
+							<div id="badges">
+								<ul style="list-style-type:none; padding-left:0;">
+									<li><div class="tooltip2"><img src="images\badges\badge1.png" id="badge1">
+									<span class="tooltiptext2"><b>Good learner</b><br>Answer 10 questions correctly</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge2.png" id="badge2">
+									<span class="tooltiptext2"><b>Mathematician</b><br>Complete a math course</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge3.png" id="badge3">
+									<span class="tooltiptext2"><b>Scientist</b><br>Complete a science course</span></div></li>
+									<br><br>
+									<li><div class="tooltip2"><img src="images\badges\badge4.png" id="badge4">
+									<span class="tooltiptext2"><b>Historian</b><br>Complete a history  course</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge5.png" id="badge5">
+									<span class="tooltiptext2"><b>Englishman</b><br>Complete a english  course</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge6.png" id="badge6">
+									<span class="tooltiptext2"><b>Explorer</b><br>Complete a geography  course</span></div></li>
+									<br><br>
+									<li><div class="tooltip2"><img src="images\badges\badge7.png" id="badge7">
+									<span class="tooltiptext2"><b>Smart child</b><br>Complete a course without failing any lesson</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge8.png" id="badge8">
+									<span class="tooltiptext2"><b>Excellent learner</b><br>Complete 2 courses with a result of 10</span></div></li>
+									
+									<li><div class="tooltip2"><img src="images\badges\badge9.png" id="badge9">
+									<span class="tooltiptext2"><b>Young Professor</b><br>Complete all courses</span></div></li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="fh5co-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12" style="text-align:center">
-						<div class="tab">
-							<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
-							<button class="tablinks" onclick="openTab(event, 'Classes')">Classes</button>
-							<button class="tablinks" onclick="openTab(event, 'Achievements')">Achievements</button>
-						</div>
+	</div>
+	<div class="fh5co-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" style="text-align:center">
+					<div class="tab">
+						<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
+						<button class="tablinks" onclick="openTab(event, 'Classes')">Classes</button>
+						<button class="tablinks" onclick="openTab(event, 'Achievements')">Achievements</button>
+					</div>
 
-						<div id="Courses" class="tabcontent">
-							<h3>Your courses</h3>
-							<table id="Courses-table" style="width:100%">
-								<tr>
-									<th>Course</th>
-									<th>Grade</th> 
-									<th>Result</th>
-								</tr>
-							</table>
-							
-							<div id="join-class" style="margin-top:10px;">
-								<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Join class</button>
-								<div id="myModal" class="modal">
-									<div class="modal-content" id="join-class-select">
-										<div id="classes-to-join"></div>
-										<button class="btn btn-primary btn-md" id="joinButton" onclick="joinClass()">Join class</button>
-										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
-										<span class="close">&times;</span>
-									</div>
+					<div id="Courses" class="tabcontent">
+						<h3>Your courses</h3>
+						<table id="Courses-table" style="width:100%">
+							<tr>
+								<th>Course</th>
+								<th>Grade</th> 
+								<th>Result</th>
+							</tr>
+						</table>
+						
+						<div id="join-class" style="margin-top:10px;">
+							<button class="btn btn-primary btn-md" id="openModal" onclick="modal()">Join class</button>
+							<div id="myModal" class="modal">
+								<div class="modal-content" id="join-class-select">
+									<div id="classes-to-join"></div>
+									<button class="btn btn-primary btn-md" id="joinButton" onclick="joinClass()">Join class</button>
+									<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
+									<span class="close">&times;</span>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<div id="Classes" class="tabcontent ' active'">
-							<h3>Your classes and assignments</h3>
-							<table id="Classes-table" style="width:100%">
-								<tr>
-									<th>Class</th>
-									<th>Lesson</th> 
-									<th>Attempts</th>
-									<th>Best result</th>
-								</tr>
-							</table> 
-						</div>
+					<div id="Classes" class="tabcontent ' active'">
+						<h3>Your classes and assignments</h3>
+						<table id="Classes-table" style="width:100%">
+							<tr>
+								<th>Class</th>
+								<th>Lesson</th> 
+								<th>Attempts</th>
+								<th>Best result</th>
+							</tr>
+						</table> 
+					</div>
 
-						<div id="Achievements" class="tabcontent">
-							<div id="stats">
-								<h3>Your achievements</h3>
-								<p>
-									<section id="stud-stats-lc">Lessons completed: </section><br>
-									<section id="stud-stats-qca">Questions correctly answered: </section><br>
-									<section id="stud-stats-acr">Average course result: </section><br>
-									<section id="stud-stats-bcr">Best course result: </section>
-								</p>
-							</div>
-							
-							<label>Lesson results by course</label><br>
-							<label  style="font-weight:normal;">Select course</label>
-							<select id="course-list" onchange="loadPersonalGraph()">
-								<option value=""></option>
-							</select>
-							<div id="res_chart"></div>
+					<div id="Achievements" class="tabcontent">
+						<div id="stats">
+							<h3>Your achievements</h3>
+							<p>
+								<section id="stud-stats-lc">Lessons completed: </section><br>
+								<section id="stud-stats-qca">Questions correctly answered: </section><br>
+								<section id="stud-stats-acr">Average course result: </section><br>
+								<section id="stud-stats-bcr">Best course result: </section>
+							</p>
 						</div>
+						
+						<label>Lesson results by course</label><br>
+						<label  style="font-weight:normal;">Select course</label>
+						<select id="course-list" onchange="loadPersonalGraph()">
+							<option value=""></option>
+						</select>
+						<div id="res_chart"></div>
 					</div>
 				</div>
 			</div>
@@ -193,7 +314,8 @@
 	<script>
 		onload=openFirstTab(1);
 		onload=loadProfileStudent();
-		onload=modal();
+		onload=modal(); //join class
+		onload=modal2(); //avatar creation
 	</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -244,6 +366,8 @@
 	<script src="js/3rdParty/jquery.stellar.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/3rdParty/main.js"></script>
+	<!-- Avatar drawer and saver -->
+	<script type="text/javascript" src="js/canvas.js"></script>
 
 	</body>
 </html>

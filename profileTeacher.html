@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/canvas-style.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	
 	<script src="js/client.js"></script>
@@ -91,7 +92,112 @@
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
 							<div class="profile-main">
-								<img src="" alt="profile" id="profile-pic">
+								<div>
+									<img src="" alt="profile" id="profile-pic">
+									<button id="openModal2" onclick="modal2()">Change avatar</button>
+								</div>
+								
+								<div id="myModal2" class="modal">
+									<div class="modal-content2" id="avatar-create">
+										<div id="gender" style="text-align:center;">
+											<label>Gender</label><br>
+											<input type="radio" name="gender" value="male">Boy<br>
+											<input type="radio" name="gender" value="female">Girl<br>
+										</div>
+										<hr>
+										<div id="maleOpts" style="display:none;">
+											<div id="skinColor">
+												<label>Skin color</label><br>
+												
+												<input type="radio" name="skinColor" value="1" id="headB1"/>
+												<label for="headB1"><img src="images/avatar_imgs/headB1.png"/></label>
+												
+												<input type="radio" name="skinColor" value="2" id="headB2"/>
+												<label for="headB2"><img src="images/avatar_imgs/headB2.png"/></label>
+											</div>
+											
+											<div id="shirtColor">
+												<label>Shirt</label><br>
+												
+												<input type="radio" name="shirtColor" value="1" id="torsoB1"/>
+												<label for="torsoB1"><img src="images/avatar_imgs/torsoB1.png"/></label>
+												
+												<input type="radio" name="shirtColor" value="2" id="torsoB2"/>
+												<label for="torsoB2"><img src="images/avatar_imgs/torsoB2.png"/></label>			
+											</div>
+											
+											<div id="hairColor">
+												<label>Hair color</label><br>
+												
+												<input type="radio" name="hairColor" value="1" id="hairB1"/>
+												<label for="hairB1"><img src="images/avatar_imgs/hairB1.png"/></label>
+												
+												<input type="radio" name="hairColor" value="2" id="hairB2"/>
+												<label for="hairB2"><img src="images/avatar_imgs/hairB2.png"/></label>		
+											</div>
+											
+											<div id="pantsColor">
+												<label>Pants color</label><br>
+												
+												<input type="radio" name="pantsColor" value="1" id="legsB1"/>
+												<label for="legsB1"><img src="images/avatar_imgs/legsB1.png"/></label>
+												
+												<input type="radio" name="pantsColor" value="2" id="legsB2"/>
+												<label for="legsB2"><img src="images/avatar_imgs/legsB2.png"/></label>		
+											</div>
+										</div>
+										
+										<div id="femaleOpts" style="display:none;">
+											<div id="skinColor">
+												<label>Skin color</label><br>
+												
+												<input type="radio" name="skinColor" value="1" id="headG1"/>
+												<label for="headG1"><img src="images/avatar_imgs/headG1.png"/></label>
+												
+												<input type="radio" name="skinColor" value="2" id="headG2"/>
+												<label for="headG1"><img src="images/avatar_imgs/headG2.png"/></label>
+											</div>
+
+											<div id="shirtColor">
+												<label>Shirt</label><br>
+												
+												<input type="radio" name="shirtColor" value="1" id="torsoG1"/>
+												<label for="torsoG1"><img src="images/avatar_imgs/torsoG1.png"/></label>
+												
+												<input type="radio" name="shirtColor" value="2" id="torsoG2"/>
+												<label for="torsoG2"><img src="images/avatar_imgs/torsoG2.png"/></label>
+											</div>
+											
+											<div id="hairColor">
+												<label>Hair color</label><br>
+												
+												<input type="radio" name="hairColor" value="1" id="hairG1"/>
+												<label for="hairG1"><img src="images/avatar_imgs/hairG1.png"/></label>
+												
+												<input type="radio" name="hairColor" value="2" id="hairG2"/>
+												<label for="hairG2"><img src="images/avatar_imgs/hairG2.png"/></label>
+											</div>
+											
+											<div id="pantsColor">
+												<label>Pants color</label><br>
+												
+												<input type="radio" name="pantsColor" value="1" id="legsG1"/>
+												<label for="legsG1"><img src="images/avatar_imgs/legsG1.png"/></label>
+												
+												<input type="radio" name="pantsColor" value="2" id="legsG2"/>
+												<label for="legsG2"><img src="images/avatar_imgs/legsG2.png"/></label>
+											</div>
+										</div>
+										
+										<div id="canvasDiv"></div>
+										
+										<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
+										<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
+										<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
+										<span class="close">&times;</span>
+									</div>
+								</div>
+							</div>
 								
 								<div id="personal-details-teacher">
 									<span id="user-name"></span><br>
@@ -129,6 +235,7 @@
 	</div> <!-- END fh5co-wrap -->
 	<script>
 		onload=loadProfileTeacher();
+		onload=modal2(); //avatar creation
 	</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -179,6 +286,8 @@
 	<script src="js/3rdParty/jquery.stellar.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/3rdParty/main.js"></script>
+	<!-- Avatar drawer and saver -->
+	<script type="text/javascript" src="js/canvas.js"></script>
 
 	</body>
 </html>

@@ -322,6 +322,7 @@ h1, h2, h3, h4, h5, h6 {
 #personal-details-teacher {
 	float:left;
 	display:inline;
+	color:white;
 }
 
 #personal-details-student {
@@ -329,6 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 	display:inline;
 	position:relative;
 	right:20px;
+	color:white;
 }
 
 #toggleCode {
@@ -347,6 +349,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right:20px;
 }
 
+#badges li img{
+	width:50px;
+	height:50px;
+}
+
 #user-name {
 	font-size:40px;
 }
@@ -359,6 +366,7 @@ h1, h2, h3, h4, h5, h6 {
 	float:left;
 	position:relative;
 	left:200px;
+	color:white;
 }
 
 #classes-list {
@@ -752,7 +760,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #iframe1 {
-	left:-700px;
+	left:-500px;
 }
 
 #iframe2 {
@@ -760,7 +768,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #iframe3 {
-	left:1000px;
+	left:800px;
 }
 
 .navbar {
@@ -823,6 +831,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.not_avail {
+	color:red;
 }
 
 /* Style the tab */
@@ -980,7 +992,7 @@ td a {
     transition: opacity 0.3s;
 }
 /* Tooltip arrow */
-.tooltip1 .tooltiptext1::after {
+.tooltip1 .tooltiptext1::after, .tooltip2 .tooltiptext2::after  {
     content: "";
     position: absolute;
 	visibility: hidden;
@@ -989,16 +1001,44 @@ td a {
     border-style: solid;
 }
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip1:hover .tooltiptext1 {
+.tooltip1:hover .tooltiptext1, .tooltip2:hover .tooltiptext2 {
     visibility: visible;
     opacity: 1;
+}
+
+/* Tooltip container */
+.tooltip2 {
+    position: relative;
+    display: inline;
+}
+
+/* Tooltip2 text */
+.tooltip2 .tooltiptext2 {
+    visibility: hidden;
+	font-size:12px;
+    width: 100px;
+    height: 110px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+	/* Position the tooltip text */
+    padding: 5px 0;
+    position: absolute;
+    z-index: 5;
+    bottom:-14px;
+    left: 60%;
+    margin-left: -60px;
+	/* Fade in tooltip */
+
+    transition: opacity 0.3s;
 }
 
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 4; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0px;
@@ -1009,16 +1049,30 @@ td a {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 /* Modal Content */
-.modal-content {
-    margin: auto;
+.modal-content {/*join class; post message*/
+    position:relative;
+	margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-	max-height:500px;
-	top:500px;
+	max-height:950px;
+	top:140px;
 	color:white;
 	background-image: url(../images/hero_2.jpg);
 }
+
+.modal-content2 {/*avatar*/
+    position:relative;
+	margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+	max-height:950px;
+	top:40px;
+	color:white;
+	background-image: url(../images/hero_2.jpg);
+}
+
 /* The Close Button */
 .close {
     position:absolute;
@@ -1028,6 +1082,7 @@ td a {
     font-weight: bold;
 	left:98%;
 	top:5px;
+	z-index: 3;
 }
 .close:hover,
 .close:focus {
@@ -1106,4 +1161,27 @@ td a {
 
 #questions li .question{
 	font-weight:bold;
+}
+
+#openModal2 {
+	background-image: url(../images/hero_4.jpg);
+	position:relative;
+	left:-570px;
+	top:800xp;
+}
+
+#canvasDiv{
+	display:none;
+	float:right;
+	position:relative;
+	top:-460px;
+	right:200px;
+	border:solid 2px white;
+	border-radius:8px;
+	width:200px;
+	height:200px;
+}
+
+#avatar-create div {
+	text-align:left;
 }

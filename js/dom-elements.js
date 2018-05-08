@@ -83,6 +83,7 @@ function popup() {
     popup.classList.toggle("show");
 }
 
+//Join class, post message
 function modal(){
 	var modal = document.getElementById('myModal');
 	var joinButton = document.getElementById('joinButton');
@@ -91,6 +92,51 @@ function modal(){
 
 	// Get the button that opens the modal
 	var btn = document.getElementById("openModal");
+
+	// Get the <span> element that closes the modal
+	if(sessionStorage.getItem('role') == 'student'){
+		var span = document.getElementsByClassName("close")[1];
+	} else {
+		var span = document.getElementsByClassName("close")[0];
+	};
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+		$('input[name=class-opt]').attr('checked',false); //deselect the radio button so the alert will work right on the next join button click
+	}
+
+	// When the user clicks somewhere in the modal, close it
+	window.onclick = function(event) {
+		if (event.target == cancelButton) {
+			modal.style.display = "none";
+			$('input[name=class-opt]').attr('checked',false); //deselect the radio button so the alert will work right on the next join button click
+		} else if (event.target == joinButton) {
+			if (document.querySelector('input[name="class-opt"]:checked') == null) {
+				alert("Please select a class to join.");
+				return;
+			}; 
+		} else if (event.target == postBtn) {
+			if(document.getElementById('message').value == ""){
+				alert("Please type in a message content.");
+				return;
+			};
+		};
+	}
+}
+
+//Change avatar
+function modal2(){
+	var modal = document.getElementById('myModal2');
+	var cancelButton = document.getElementById('cancelButton2');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("openModal2");
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
@@ -103,24 +149,12 @@ function modal(){
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 		modal.style.display = "none";
-		$('input[name=class-opt]').attr('checked',false); //deselect the radio button so tje alert will work right on the next join button click
 	}
 
 	// When the user clicks somewhere in the modal, close it
 	window.onclick = function(event) {
 		if (event.target == cancelButton) {
 			modal.style.display = "none";
-			$('input[name=class-opt]').attr('checked',false); //deselect the radio button so tje alert will work right on the next join button click
-		} else if (event.target == joinButton) {
-			if (document.querySelector('input[name="class-opt"]:checked') == null) {
-				alert("Please select a class to join.");
-				return;
-			}; 
-		} else if (event.target == postBtn) {
-			if(document.getElementById('message').value == ""){
-				alert("Please type in a message content.");
-				return;
-			};
 		};
 	}
 }
