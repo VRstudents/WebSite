@@ -272,7 +272,7 @@ function saveAvatar(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			alert("Avatar has been saved!");
-			location.reload();
+			location.reload(true);
 		} else if (this.readyState == 4 && this.status != 200) {
 			alert("An error accured.\nSaving avatar failed.");
 		};

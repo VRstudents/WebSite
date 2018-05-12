@@ -194,7 +194,7 @@ function displayClassStatistics(){
 				return response[k];
 			});
 
-			document.getElementById("avg-result").innerHTML += "<b>" + arr2[2] + "</b>";
+			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2] + "</b>";
 			
 			//Results distribution graph
 			google.charts.load('current', {'packages':['bar']});
