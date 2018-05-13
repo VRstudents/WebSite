@@ -131,7 +131,7 @@ function GetProfileDetails(){
 			sessionStorage.setItem('role', arr2[2]);
 			sessionStorage.setItem('school', arr2[3]);
 			sessionStorage.setItem('code', arr2[5]);
-			sessionStorage.setItem('profilePic', arr2[6]);
+
 			if (sessionStorage.getItem('role') == 'student'){
 				sessionStorage.setItem('grade', arr2[4]);
 			};

@@ -5,12 +5,6 @@ function loadProfileStudent() {
 	document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
 	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
 	
-	if(sessionStorage.getItem('profilePic') != 'null'){
-		document.getElementById("profile-pic").src = sessionStorage.getItem('profilePic');
-	} else {
-		document.getElementById("profile-pic").src = "images/anonym.png";
-	};
-	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -21,9 +15,11 @@ function loadProfileStudent() {
 				return response[k];
 			});
 			
-			if(arr2[6] != 'null'){
+			if(arr2[6] != null){
 				document.getElementById("profile-pic").src = arr2[6];
 				sessionStorage.setItem('profilePic', arr2[6]);
+			} else {
+				document.getElementById("profile-pic").src = "images/anonym.png";
 			};
 			
 			for (i = 0; i < arr2[7].length; i++) {
@@ -94,12 +90,6 @@ function loadProfileTeacher() {
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
 	
-	if(sessionStorage.getItem('profilePic') != 'null'){
-		document.getElementById("profile-pic").src = sessionStorage.getItem('profilePic');
-	} else {
-		document.getElementById("profile-pic").src = "images/anonym.png";
-	};
-	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -109,6 +99,13 @@ function loadProfileTeacher() {
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
+
+			if(arr2[2] != null){
+				document.getElementById("profile-pic").src = arr2[2];
+				sessionStorage.setItem('profilePic', arr2[2]);
+			} else {
+				document.getElementById("profile-pic").src = "images/anonym.png";
+			};
 			
 			//Subjects list
 			for (i = 0; i < arr2[0].length; i++) {
