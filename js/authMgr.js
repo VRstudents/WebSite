@@ -3,6 +3,9 @@ function auth() {
 	// Initialize Firebase;
 	firebase.initializeApp(settings);
 	var provider = new firebase.auth.GoogleAuthProvider();
+	provider.setCustomParameters({
+		prompt: 'select_account'
+	});
 	
 	firebase.auth().signInWithPopup(provider).then(function(result) {
 		// This gives you a Google Access Token. You can use it to access the Google API.
