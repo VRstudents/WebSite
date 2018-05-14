@@ -411,10 +411,10 @@ function loadExamPage() {
 			
 				for(i = 0; i < arr2.length; i++){
 					qNum = i + 1;
-					question = arr2[i].Question.split("'");
+					
 					document.getElementById('questions').innerHTML += "<li><div class=\"qHeader\">Question " + qNum
 																	+ " <input type=\"checkbox\" class=\"question-select\" id=\"" + arr2[i].Id + "\"></div>"
-																	+ "<div class=\"question\">" + question[1] + "</div>"
+																	+ "<div class=\"question\">" + arr2[i].Question + "</div>"
 																	+ "<div class=\"answer\">A. " + arr2[i].AnswerA + "</div>"
 																	+ "<div class=\"answer\">B. " + arr2[i].AnswerB + "</div>"
 																	+ "<div class=\"answer\">C. " + arr2[i].AnswerC + "</div>"
