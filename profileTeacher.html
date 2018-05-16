@@ -93,7 +93,7 @@
 						<div class="fh5co-intro fh5co-table-cell">
 							<div class="profile-main">
 								<div>
-									<img src="" alt="profile" id="profile-pic">
+									<img src="" alt="profile" id="profile-pic"/>
 									<button id="openModal2" onclick="modal2()">Change avatar</button>
 								</div>
 								
@@ -189,12 +189,13 @@
 											</div>
 										</div>
 										
-										<div id="canvasDiv"></div>
+										<div id="canvasDiv" style="display:flex;order:2;"></div>
 										
-										<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
-										<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
-										<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
-										<span class="close">&times;</span>
+										<div style="display:flex;order:1; margin-left:33%; text-align:center;">
+											<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
+											<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
+											<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
+										</div>	
 									</div>
 								</div>
 							</div>

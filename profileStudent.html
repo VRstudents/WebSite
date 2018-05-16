@@ -95,9 +95,10 @@
 						<div class="fh5co-intro fh5co-table-cell">
 							<div class="profile-main">
 								<div>
-									<img src="http://vmedu145.mtacloud.co.il/avatars/1.png" alt="profile" id="profile-pic">
+									<img src="" alt="profile" id="profile-pic"/>
 									<button id="openModal2" onclick="modal2()">Change avatar</button>
 								</div>
+								
 								<div id="myModal2" class="modal">
 									<div class="modal-content2" id="avatar-create">
 										<div id="gender" style="text-align:center;">
@@ -192,10 +193,11 @@
 										
 										<div id="canvasDiv"></div>
 										
-										<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
-										<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
-										<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
-										<span class="close">&times;</span>
+										<div style="display:flex;order:1; margin-left:33%; text-align:center;">
+											<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
+											<button class="btn btn-primary btn-md" onclick="saveAvatar()">Save</button>
+											<button class="btn btn-primary btn-md" id="cancelButton2" onclick="modal2()">Cancel</button>
+										</div>	
 									</div>
 								</div>
 							</div>

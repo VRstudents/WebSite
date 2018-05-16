@@ -220,8 +220,7 @@ function logOut(){
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 204) {
 				sessionStorage.clear();
-				window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
-				window.open('index.html', '_self');					
+				document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + settings.protocol + "://" + settings.host + ":" + settings.clientPort;				
 			};					
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SignOut", true);

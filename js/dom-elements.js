@@ -1,6 +1,7 @@
 function toggleLoginMenu(){
 		if(sessionStorage.getItem('tokenK')) {
-				document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
+				var name = sessionStorage.getItem('displayName').split(' ');
+				document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
 				document.getElementById('header1').setAttribute('onclick','goToProfile()')
 				document.getElementById('header2').innerHTML = 'Logout';
 				document.getElementById('header2').setAttribute('onclick','logOut()')
@@ -95,7 +96,7 @@ function modal(){
 
 	// Get the <span> element that closes the modal
 	if(sessionStorage.getItem('role') == 'student'){
-		var span = document.getElementsByClassName("close")[1];
+		var span = document.getElementsByClassName("close")[0];
 	} else {
 		var span = document.getElementsByClassName("close")[0];
 	};
@@ -138,17 +139,9 @@ function modal2(){
 	// Get the button that opens the modal
 	var btn = document.getElementById("openModal2");
 
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
-
 	// When the user clicks the button, open the modal 
 	btn.onclick = function() {
 		modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-		modal.style.display = "none";
 	}
 
 	// When the user clicks somewhere in the modal, close it

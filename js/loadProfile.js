@@ -1,5 +1,6 @@
 function loadProfileStudent() {
-	document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
+	var name = sessionStorage.getItem('displayName').split(' ');
+	document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
@@ -85,7 +86,8 @@ function loadProfileStudent() {
 }
 
 function loadProfileTeacher() {
-	document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');
+	var name = sessionStorage.getItem('displayName').split(' ');
+	document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
