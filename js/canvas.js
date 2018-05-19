@@ -256,6 +256,10 @@ function drawEllipse(centerX, centerY, width, height) {
 }
 
 function saveAvatar(){
+	if (document.getElementById("canvas") == null) {
+		alert("First select your gender and all the avatar parts and press Display to see how it looks");
+	};
+	
 	var can = document.getElementById("canvas");
 	var src = can.toDataURL("image/png");
 	var temp = src.split(",");

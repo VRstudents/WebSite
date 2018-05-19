@@ -94,7 +94,7 @@
 							<div class="profile-main">
 								<div>
 									<img src="" alt="profile" id="profile-pic"/>
-									<button id="openModal2" onclick="modal2()">Change avatar</button>
+									<button class="hidden-xs" id="openModal2" onclick="modal2()">Change avatar</button>
 								</div>
 								
 								<div id="myModal2" class="modal">
@@ -200,40 +200,39 @@
 								</div>
 							</div>
 								
-								<div id="personal-details-teacher">
-									<span id="user-name"></span><br>
-									<span id="school-name"></span><br>
-									<span id="code" style="display:none;"></span><br>
-									<button id="toggleCode" onclick="toggleCode()">Show Code</button>
-								</div>
-								
-								<div id="subject-list">
-									<u>Your subjects</u><br>
-									<ul id="subjects-list" style="list-style-type:none; padding-left:0;"></ul>
-								</div>
+							<div id="personal-details">
+								<span id="user-name"></span><br>
+								<span id="school-name"></span><br>
+								<span id="code" style="display:none;"></span><br>
+								<button id="toggleCode" onclick="toggleCode()">Show Code</button>
+							</div>
+							
+							<div id="subject-list">
+								<u>Your subjects</u><br>
+								<ul id="subjects-list" style="list-style-type:none; padding-left:0;"></ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="fh5co-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8" style="text-align:center">
-						<div id="classes-list">
-							<u>Your classes</u><br>
-							<ul id="classList" style="list-style-type:none; padding-left:0;"></ul>
-						</div>
-						
-						<div id="create-class">
-							<input class="btn btn-primary btn-md" type="button" value="Create new class" onclick="window.open('createClass.html', '_self')">
-						</div>
+	</div>
+	<div class="fh5co-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8" style="text-align:center">
+					<div id="classes-list">
+						<u>Your classes</u><br>
+						<ul id="classList" style="list-style-type:none; padding-left:0;"></ul>
+					</div>
+					
+					<div id="create-class">
+						<input class="btn btn-primary btn-md" type="button" value="Create new class" onclick="window.open('createClass.html', '_self')">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> <!-- END fh5co-wrap -->
+	</div><!-- END fh5co-wrap -->
 	<script>
 		onload=loadProfileTeacher();
 		onload=modal2(); //avatar creation

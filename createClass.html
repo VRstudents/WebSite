@@ -69,7 +69,10 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
+		<script>
+			var name = sessionStorage.getItem('displayName').split(' ');
+			document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+		</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_1.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -108,12 +111,6 @@
 		</div>
 		<script>
 			loadCreateClassPage();
-			//grade = document.getElementById('gradeSelector').value;
-			//category = document.getElementById('school').text;
-			//console.log(category +  ' ' + grade);
-			//document.getElementById('NextBtn').setAttribute('onclick', 'window.open(\'addLessons.html?category=\'+category+\'&grade=\'+grade, \'_self\')');
-			//document.getElementById('cancelButton1').setAttribute('onclick','window.open(\'viewClassTeacher.html?courseId=\'+param, \'_self\')');
-			//console.log('addLessons.html?category='+category+'&grade='+grade);
 		</script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->

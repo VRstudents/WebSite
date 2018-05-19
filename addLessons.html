@@ -78,7 +78,10 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
+		<script>
+			var name = sessionStorage.getItem('displayName').split(' ');
+			document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+		</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -98,10 +101,10 @@
 					<div id="lessons">
 						<ul style="list-style-type:none; padding-left:0;" id="classLessons"></ul>
 
-						<div id="edit-class">
+						<div style="clear:both">
 							<button type="submit" class="btn btn-primary btn-md" onclick="createClass(); return false">Create</button>
 							<button type="reset" class="btn btn-primary btn-md" onclick="window.open('profileTeacher.html', '_self')">Cancel</button>
-						</div>
+						</div>	
 					</div>			
 				</div>
 			</div>

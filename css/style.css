@@ -319,18 +319,19 @@ h1, h2, h3, h4, h5, h6 {
 	left:-200px;
 }
 
-#personal-details-teacher {
-	float:left;
-	display:inline;
-	color:white;
+@media screen and (max-width: 768px) {
+	#profile-pic {
+		float:left;
+		position:static;
+	}
 }
 
-#personal-details-student {
+#personal-details {
 	float:left;
 	display:inline;
-	position:relative;
-	right:20px;
 	color:white;
+	position:relative;
+	left:5%;
 }
 
 #toggleCode {
@@ -341,6 +342,8 @@ h1, h2, h3, h4, h5, h6 {
 #badges {
 	float:right;
 	display:inline;
+	position:relative;
+	left:200px;
 	text-align:left !important;
 }
 
@@ -363,10 +366,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #subject-list {
-	float:left;
+	float:right;
 	position:relative;
 	left:200px;
 	color:white;
+}
+
+@media screen and (max-width: 768px) {
+	#subject-list {
+		float:left;
+		display:inline;
+		position:relative;
+		left:30%;
+		margin-top:10px;
+	}
 }
 
 #classes-list {
@@ -376,6 +389,14 @@ h1, h2, h3, h4, h5, h6 {
 	font-size:35px;
 	font-family: "Work Sans", "Arial", "sans-serif";
 	margin-right:300px;
+}
+
+@media screen and (max-width: 768px) {
+	#classes-list {
+		font-size:25px;
+		text-align:center;
+		margin: 0 auto;
+	}
 }
 
 #classes-list li {
@@ -712,6 +733,7 @@ h1, h2, h3, h4, h5, h6 {
 .row-bottom-padded-sm {
   padding-bottom: 2em;
 }
+
 @media screen and (max-width: 768px) {
   .row-bottom-padded-sm {
     padding-bottom: 2em;
@@ -746,24 +768,11 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #808080;
 }
 
-.iframe {
-	position: absolute;
+.myArticle {
 	margin: 0 auto;
 	text-align:center;
 	display:inline;
-	width:500px;
-}
-
-#iframe1 {
-	left:-500px;
-}
-
-#iframe2 {
-	left:150px;
-}
-
-#iframe3 {
-	left:800px;
+	font-size:15px;
 }
 
 .navbar {
@@ -1104,7 +1113,7 @@ td a {
 	font-weight:bold;
 }
 
-.edit-class-btn {
+#edit-class-btn, #saveButton, #cancelButton1 {
 	width:13%;
 	text-align:center !important;
 	padding-left:0 !important;
@@ -1128,6 +1137,13 @@ td a {
 
 #message {
 	color:#585150;
+}
+
+@media screen and (max-width: 768px) {
+	#message {
+		width:80%;
+		font-size:10px;
+	}
 }
 
 #res_chart {
@@ -1170,8 +1186,7 @@ td a {
 	float:right;
 	position:relative;
 	top:-460px;
-	right:200px;
-	border:solid 2px white;
+	right:40px;
 	border-radius:8px;
 	width:200px;
 	height:200px;

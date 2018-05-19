@@ -80,7 +80,10 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
+		<script>
+			var name = sessionStorage.getItem('displayName').split(' ');
+			document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+		</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -101,7 +104,6 @@
 										<button class="btn btn-primary btn-md" id="postBtn" onclick="postMessage()">Post</button>
 										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
 									</div>
-									<span class="close">&times;</span>
 								</div>
 							</div> 
 						</div>
@@ -116,7 +118,7 @@
 					<div id="lessons">
 						<ul style="list-style-type:none; padding-left:0;" id="classLessons"></ul>
 						
-						<div id="edit-class">
+						<div style="clear:both">
 							<input class="btn btn-primary btn-md" type="button" id="edit-class-btn" value="Edit class" onclick="">
 						</div>
 					</div>
@@ -157,12 +159,6 @@
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
 							</select>
 							
 							<div id="lesson-tab-div">
@@ -172,29 +168,31 @@
 								<div id="avg-best-res"></div> 
 							</div>
 							
-							<div id="columnchart_lesson_all" style="height: 300px;"></div>
+							<div id="columnchart_lesson_all" class="hidden-xs" style="height: 300px;"></div>
 							
-							<label id="students-in-lesson_label" style="font-weight:normal;">Select student</label>
-							<select id="students-in-lesson" onchange="displayStudentInLessonStats(1)">
-								<option value=""></option>
-							</select>
+							<div class="hidden-xs">
+								<label id="students-in-lesson_label" style="font-weight:normal;">Select student</label>
+								<select id="students-in-lesson" onchange="displayStudentInLessonStats(1)">
+									<option value=""></option>
+								</select>
+							</div>	
 							
 							<div id="columnchart_lesson_student" style="height: 300px;"></div>
 						</div>
 						<!-------------------------------------------------------------------------------------------->
 						<div id="Overall" class="tabcontent" style="background-color: #ccc;">
 							<h3>Course overall statistics</h3>
-							<div id="avg-result"></div>
+							<div id="avg-result"><b>Average course result:</b> </div>
 							
-							<div class="subtab">
-								<button class="subtablinks" onclick="openSubTab(event, 'Overall-finish')">Progress</button>
-								<button class="subtablinks" onclick="openSubTab(event, 'Overall-result')">Results</button>
+							<div class="subtab hidden-xs">
+								<button class="subtablinks" onclick="openSubTab(event, 'Overall-finish'); displayClassStatisticsAttempts();">Progress</button>
+								<button class="subtablinks" onclick="openSubTab(event, 'Overall-result'); displayClassStatisticsResults();">Results</button>
 							</div>
-							<div id="Overall-result" class="subtabcontent" style="background-color: #ccc;">
+							<div id="Overall-result" class="subtabcontent hidden-xs" style="background-color: #ccc;">
 								<h3>Results by lessons distribution</h3>
 								<div id="columnchart_class_results" style="height: 300px;"></div>
 							</div>
-							<div id="Overall-finish" class="subtabcontent" style="background-color: #ccc;">
+							<div id="Overall-finish" class="subtabcontent hidden-xs" style="background-color: #ccc;">
 								<h3>How many students have attempted and how many finished each lesson</h3>
 								<div id="columnchart_class_attempts" style="height: 300px;"></div>
 							</div>
@@ -208,24 +206,20 @@
 									<option value=""></option>
 								</select>
 								<div id="avg-result-student"></div>								
-								<div id="students-output-result" style="height: 300px;"></div>
+								<div class="hidden-xs" id="students-output-result" style="height: 300px;"></div>
 							</div>
 							
-							<label  id="lesson-in-student_label" style="font-weight:normal;">Select lesson number</label>
-							<select id="lessons-list-for-student" onchange="displayStudentInLessonStats(2)">
-								<option value=""></option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-							</select>
-							<div id="columnchart_student_question" style="height: 300px;"></div>
+							<div class="hidden-xs">
+								<label id="lesson-in-student_label" style="font-weight:normal;">Select lesson number</label>
+								<select id="lessons-list-for-student" onchange="displayStudentInLessonStats(2)">
+									<option value=""></option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+								<div id="columnchart_student_question" style="height: 300px;"></div>
+							</div>	
 						</div>
 					</div>
 				</div>

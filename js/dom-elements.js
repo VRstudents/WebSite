@@ -74,7 +74,6 @@ function openFirstTab(src) {
 function openFirstSubTab() {
 	var tablinks;
 	document.getElementById('Overall-result').style.display = "block";
-	document.getElementById('Overall-finish').style.display = "block";
 	tablinks = document.getElementsByClassName("subtablinks");
 	tablinks[1].className += " active";
 }
@@ -94,22 +93,9 @@ function modal(){
 	// Get the button that opens the modal
 	var btn = document.getElementById("openModal");
 
-	// Get the <span> element that closes the modal
-	if(sessionStorage.getItem('role') == 'student'){
-		var span = document.getElementsByClassName("close")[0];
-	} else {
-		var span = document.getElementsByClassName("close")[0];
-	};
-
 	// When the user clicks the button, open the modal 
 	btn.onclick = function() {
 		modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-		modal.style.display = "none";
-		$('input[name=class-opt]').attr('checked',false); //deselect the radio button so the alert will work right on the next join button click
 	}
 
 	// When the user clicks somewhere in the modal, close it

@@ -78,7 +78,10 @@
 				</nav>
 			</div>
 		</header>
-		<script>document.getElementById('header1').innerHTML = sessionStorage.getItem('displayName');</script>
+		<script>
+			var name = sessionStorage.getItem('displayName').split(' ');
+			document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+		</script>
 		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="fh5co-hero" style="background-image: url(images/hero_3.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -98,8 +101,7 @@
 										<textarea "rows="4" cols="50" maxlength="200" id="message"></textarea><br>
 										<button class="btn btn-primary btn-md" id="postBtn" onclick="postMessage()">Post</button>
 										<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
-									</div>
-									<span class="close">&times;</span>
+									</div>								
 								</div>
 							</div> 
 						</div>
@@ -113,9 +115,9 @@
 					<div id="lessons">
 						<ul style="list-style-type:none; padding-left:0;" id="classLessons"></ul>
 						
-						<div id="edit-class">
-							<button class="btn btn-primary btn-md edit-class-btn" id="saveButton" onclick="addLessons(); return false;">Save</button>
-							<button class="btn btn-primary btn-md edit-class-btn" id="cancelButton1" onclick="">Cancel</button>
+						<div style="clear:both;">
+							<button class="btn btn-primary btn-md" id="saveButton" onclick="addLessons(); return false;">Save</button>
+							<button class="btn btn-primary btn-md" id="cancelButton1" onclick="">Cancel</button>
 						</div>
 					</div>
 				</div>

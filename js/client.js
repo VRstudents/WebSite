@@ -216,7 +216,9 @@ function loadClassPage(src) {
 	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
 	xhttp.send();
 	
-	if(src == 1){displayClassStatistics()};
+	if(src == 1){
+		displayClassStatisticsResults()	
+	};
 }
 
 function addLessons(){		

@@ -96,7 +96,7 @@
 							<div class="profile-main">
 								<div>
 									<img src="" alt="profile" id="profile-pic"/>
-									<button id="openModal2" onclick="modal2()">Change avatar</button>
+									<button class="hidden-xs" id="openModal2" onclick="modal2()">Change avatar</button>
 								</div>
 								
 								<div id="myModal2" class="modal">
@@ -191,7 +191,7 @@
 											</div>
 										</div>
 										
-										<div id="canvasDiv"></div>
+										<div id="canvasDiv" style="display:flex;order:2;"></div>
 										
 										<div style="display:flex;order:1; margin-left:33%; text-align:center;">
 											<button class="btn btn-primary btn-md" onclick="prepareCanvas();">Display</button>
@@ -202,7 +202,7 @@
 								</div>
 							</div>
 	
-							<div id="personal-details-student">
+							<div id="personal-details">
 								<span id="user-name"></span><br>
 								<span id="school-name"></span><br>
 								<span id="grade"></span><br>
@@ -210,7 +210,7 @@
 								<button id="toggleCode" onclick="toggleCode()">Show Code</button>
 							</div>
 								
-							<div id="badges">
+							<div id="badges" class="hidden-xs">
 								<ul style="list-style-type:none; padding-left:0;">
 									<li><div class="tooltip2"><img src="images\badges\badge1.png" id="badge1">
 									<span class="tooltiptext2"><b>Good learner</b><br>Answer 10 questions correctly</span></div></li>
@@ -273,7 +273,6 @@
 									<div id="classes-to-join"></div>
 									<button class="btn btn-primary btn-md" id="joinButton" onclick="joinClass()">Join class</button>
 									<button class="btn btn-primary btn-md" id="cancelButton" onclick="modal()">Cancel</button>
-									<span class="close">&times;</span>
 								</div>
 							</div>
 						</div>
@@ -302,12 +301,14 @@
 							</p>
 						</div>
 						
-						<label>Lesson results by course</label><br>
-						<label  style="font-weight:normal;">Select course</label>
-						<select id="course-list" onchange="loadPersonalGraph()">
-							<option value=""></option>
-						</select>
-						<div id="res_chart"></div>
+						<div class="hidden-xs">
+							<label>Lesson results by course</label><br>
+							<label  style="font-weight:normal;">Select course</label>
+							<select id="course-list" onchange="loadPersonalGraph()">
+								<option value=""></option>
+							</select>
+							<div id="res_chart"></div>
+						</div>
 					</div>
 				</div>
 			</div>

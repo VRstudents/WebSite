@@ -181,7 +181,7 @@ function displayStudentInLessonStats(src){ 	//src=1 - lessons tab; src=2 - stude
 	xhttp.send();
 }
 
-function displayClassStatistics(){
+function displayClassStatisticsResults(){
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
 	
 	var xhttp = new XMLHttpRequest();
@@ -196,7 +196,6 @@ function displayClassStatistics(){
 
 			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2] + "</b>";
 			
-			//Results distribution graph
 			google.charts.load('current', {'packages':['bar']});
 			google.charts.setOnLoadCallback(drawChart);
 			
@@ -208,9 +207,9 @@ function displayClassStatistics(){
 					title: 'Result',
 					viewWindow: {
 						min: 0,
-						max: 10
+						max: 4
 					},
-					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+					ticks: [1, 2, 3, 4] 
 				}
 			};
 
@@ -220,22 +219,33 @@ function displayClassStatistics(){
 					[arr2[0][0].LNum, arr2[0][0].AvgRes, arr2[0][0].AvgBestRes],
 					[arr2[0][1].LNum, arr2[0][1].AvgRes, arr2[0][1].AvgBestRes],
 					[arr2[0][2].LNum, arr2[0][2].AvgRes, arr2[0][2].AvgBestRes],
-					[arr2[0][3].LNum, arr2[0][3].AvgRes, arr2[0][3].AvgBestRes],
-					[arr2[0][4].LNum, arr2[0][4].AvgRes, arr2[0][4].AvgBestRes],
-					[arr2[0][5].LNum, arr2[0][5].AvgRes, arr2[0][5].AvgBestRes],
-					[arr2[0][6].LNum, arr2[0][6].AvgRes, arr2[0][6].AvgBestRes],
-					[arr2[0][7].LNum, arr2[0][7].AvgRes, arr2[0][7].AvgBestRes],
-					[arr2[0][8].LNum, arr2[0][8].AvgRes, arr2[0][8].AvgBestRes],
-					[arr2[0][9].LNum, arr2[0][9].AvgRes, arr2[0][9].AvgBestRes]
+					[arr2[0][3].LNum, arr2[0][3].AvgRes, arr2[0][3].AvgBestRes]
 				]);
 
 				var chart = new google.charts.Bar(document.getElementById('columnchart_class_results'));
 				chart.draw(data, google.charts.Bar.convertOptions(options));
 			}
+		};					
+	}; 
+	xhttp.open("GET", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Statistics/ClassStats/" + classId, true);
+	xhttp.setRequestHeader("Token", sessionStorage.getItem('tokenK'));
+	xhttp.send();
+}
+
+function displayClassStatisticsAttempts(){
+	classId = document.URL.substring(document.URL.indexOf("?") + 10);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
 			
-			//Lessons attempts distribution graph
-			google.charts.load('current', {'packages':['bar']});
-			google.charts.setOnLoadCallback(drawChart2);
+			var arr1 = Object.keys(response);
+			var arr2 = arr1.map(function (k) {
+				return response[k];
+			});
+
+			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2] + "</b>";
 			
 			options = {
 				chart: {
@@ -243,8 +253,16 @@ function displayClassStatistics(){
 				},
 				vAxis: {
 					title: 'Number of students',
+					viewWindow: {
+						min: 0,
+						max: 4
+					},
+					ticks: [1, 2, 3, 4] 
 				}
 			};
+
+			google.charts.load('current', {'packages':['bar']});
+			google.charts.setOnLoadCallback(drawChart2);
 
 			function drawChart2() {
 				var data = google.visualization.arrayToDataTable([
@@ -252,19 +270,11 @@ function displayClassStatistics(){
 					[arr2[1][0].LNum, arr2[1][0].StTried, arr2[1][0].StFinished],
 					[arr2[1][1].LNum, arr2[1][1].StTried, arr2[1][1].StFinished],
 					[arr2[1][2].LNum, arr2[1][2].StTried, arr2[1][2].StFinished],
-					[arr2[1][3].LNum, arr2[1][3].StTried, arr2[1][3].StFinished],
-					[arr2[1][4].LNum, arr2[1][4].StTried, arr2[1][4].StFinished],
-					[arr2[1][5].LNum, arr2[1][5].StTried, arr2[1][5].StFinished],
-					[arr2[1][6].LNum, arr2[1][6].StTried, arr2[1][6].StFinished],
-					[arr2[1][7].LNum, arr2[1][7].StTried, arr2[1][7].StFinished],
-					[arr2[1][8].LNum, arr2[1][8].StTried, arr2[1][8].StFinished],
-					[arr2[1][9].LNum, arr2[1][9].StTried, arr2[1][9].StFinished]
+					[arr2[1][3].LNum, arr2[1][3].StTried, arr2[1][3].StFinished]
 				]);
 
 				var chart = new google.charts.Bar(document.getElementById('columnchart_class_attempts'));
 				chart.draw(data, google.charts.Bar.convertOptions(options));
-				
-				document.getElementById('Overall-finish').style.display = "none";
 			}
 		};					
 	}; 
@@ -324,9 +334,9 @@ function displayStudentStatistics(){
 					title: 'Result',
 					viewWindow: {
 						min: 0,
-						max: 10
+						max: 4
 					},
-					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+					ticks: [1, 2, 3, 4] 
 				}
 			};
 		
@@ -340,13 +350,7 @@ function displayStudentStatistics(){
 						[arr4[0][0].LNum, arr4[0][0].AvgRes, arr4[0][0].BestRes],
 						[arr4[0][1].LNum, arr4[0][1].AvgRes, arr4[0][1].BestRes],
 						[arr4[0][2].LNum, arr4[0][2].AvgRes, arr4[0][2].BestRes],
-						[arr4[0][3].LNum, arr4[0][3].AvgRes, arr4[0][3].BestRes],
-						[arr4[0][4].LNum, arr4[0][4].AvgRes, arr4[0][4].BestRes],
-						[arr4[0][5].LNum, arr4[0][5].AvgRes, arr4[0][5].BestRes],
-						[arr4[0][6].LNum, arr4[0][6].AvgRes, arr4[0][6].BestRes],
-						[arr4[0][7].LNum, arr4[0][7].AvgRes, arr4[0][7].BestRes],
-						[arr4[0][8].LNum, arr4[0][8].AvgRes, arr4[0][8].BestRes],
-						[arr4[0][9].LNum, arr4[0][9].AvgRes, arr4[0][9].BestRes]
+						[arr4[0][3].LNum, arr4[0][3].AvgRes, arr4[0][3].BestRes]
 					]);
 
 					var chart = new google.charts.Bar(document.getElementById('students-output-result'));
@@ -400,9 +404,9 @@ function loadPersonalGraph() {
 					title: 'Result',
 					viewWindow: {
 						min: 0,
-						max: 10
+						max: 4
 					},
-					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+					ticks: [1, 2, 3, 4] 
 				}
 			};
 			//console.log();
@@ -416,13 +420,7 @@ function loadPersonalGraph() {
 						[arr4[0].LNum, arr4[0].AvgRes, arr4[0].BestRes],
 						[arr4[1].LNum, arr4[1].AvgRes, arr4[1].BestRes],
 						[arr4[2].LNum, arr4[2].AvgRes, arr4[2].BestRes],
-						[arr4[3].LNum, arr4[3].AvgRes, arr4[3].BestRes],
-						[arr4[4].LNum, arr4[4].AvgRes, arr4[4].BestRes],
-						[arr4[5].LNum, arr4[5].AvgRes, arr4[5].BestRes],
-						[arr4[6].LNum, arr4[6].AvgRes, arr4[6].BestRes],
-						[arr4[7].LNum, arr4[7].AvgRes, arr4[7].BestRes],
-						[arr4[8].LNum, arr4[8].AvgRes, arr4[8].BestRes],
-						[arr4[9].LNum, arr4[9].AvgRes, arr4[9].BestRes]
+						[arr4[3].LNum, arr4[3].AvgRes, arr4[3].BestRes]
 					]);
 
 					var chart = new google.charts.Bar(document.getElementById('res_chart'));
