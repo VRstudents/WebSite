@@ -13,10 +13,14 @@ function auth() {
 		sessionStorage.setItem('tokenK', token);
 		// The signed-in user info.
 		var user = result.user;
+
 		var tempName = user.displayName.split(" ");
 		var fullName = tempName[0].charAt(0).toUpperCase() + tempName[0].toLowerCase().substring(1, tempName[0].length) + 
 		" " + tempName[1].charAt(0).toUpperCase() +tempName[1].toLowerCase().substring(1, tempName[1].length);
 		sessionStorage.setItem('displayName', fullName);
+		
+		sessionStorage.setItem('initials', tempName[0][0].toUpperCase() + "." + tempName[1][0].toUpperCase() + ".");
+		
 		sessionStorage.setItem('userName', user.email);
 
 		var data = {
@@ -220,7 +224,7 @@ function logOut(){
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 204) {
 				sessionStorage.clear();
-				document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + settings.protocol + "://" + settings.host + ":" + settings.clientPort;				
+				document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + settings.protocol + "://" + settings.host + ":" + settings.clientPort;					
 			};					
 		};
 		xhttp.open("POST", settings.protocol + "://" + settings.host + ":" + settings.port + "/api/Login/SignOut", true);

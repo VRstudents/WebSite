@@ -1,6 +1,5 @@
 function loadProfileStudent() {
-	var name = sessionStorage.getItem('displayName').split(' ');
-	document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+	document.getElementById('header1').innerHTML = sessionStorage.getItem('initials');
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
 	document.getElementById('grade').innerHTML = "Grade: " + sessionStorage.getItem('grade');
@@ -86,11 +85,9 @@ function loadProfileStudent() {
 }
 
 function loadProfileTeacher() {
-	var name = sessionStorage.getItem('displayName').split(' ');
-	document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+	document.getElementById('header1').innerHTML = sessionStorage.getItem('initials');
 	document.getElementById('user-name').innerHTML = sessionStorage.getItem('displayName');
 	document.getElementById('school-name').innerHTML = sessionStorage.getItem('school');
-	document.getElementById('code').innerHTML = sessionStorage.getItem('code');
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {

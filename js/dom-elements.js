@@ -1,7 +1,6 @@
 function toggleLoginMenu(){
 		if(sessionStorage.getItem('tokenK')) {
-				var name = sessionStorage.getItem('displayName').split(' ');
-				document.getElementById('header1').innerHTML = name[0][0] + "." + name[1][0] + ".";
+				document.getElementById('header1').innerHTML = sessionStorage.getItem('initials');
 				document.getElementById('header1').setAttribute('onclick','goToProfile()')
 				document.getElementById('header2').innerHTML = 'Logout';
 				document.getElementById('header2').setAttribute('onclick','logOut()')
