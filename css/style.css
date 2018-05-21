@@ -17,6 +17,7 @@ body {
   height: 100%;
   position: relative;
 }
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 17px;
@@ -31,6 +32,13 @@ body {
 	color:rgba(255, 255, 255, 0.7);
 	margin-top:20px;
 	margin-right:10px;
+}
+
+@media screen and (max-width: 768px) {
+	.header-button {
+		font-size:18px;
+		margin-right:0px;
+	}
 }
 
 .header-button a:hover, .header-button:hover span {
@@ -157,7 +165,17 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   list-style: none;
   display: inline;
+  max-width: 114px;
 }
+
+@media screen and (max-width: 768px) {
+	#fh5co-header nav li a img{
+	  max-width: 114px;
+	  width:50px;
+	  height:50px;
+	}
+}
+
 #fh5co-header nav li a {
   padding: 20px;
   color: rgba(255, 255, 255, 0.7);
@@ -322,7 +340,8 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 768px) {
 	#profile-pic {
 		float:left;
-		position:static;
+		position:relative;
+		left:50px;
 	}
 }
 
@@ -789,7 +808,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dropdown .dropbtn {
-    font-size: 22px;    
+    font-size: 20px;    
     border: none;
     outline: none;
     color: rgba(255, 255, 255, 0.7);
@@ -800,6 +819,12 @@ h1, h2, h3, h4, h5, h6 {
 	transition: 0.1s;
 	display: inline-block;
     zoom: 1;
+}
+
+@media screen and (max-width: 768px) {
+	.dropdown .dropbtn {
+		font-size: 18px;    
+	}
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn span {
@@ -827,6 +852,8 @@ h1, h2, h3, h4, h5, h6 {
 	font-size:20px;
 	border-radius:20px;
 	font-weight:bold;
+	width:100%;
+	text-align:center;
 }
 
 .dropdown-content a:hover {
@@ -835,6 +862,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .dropdown:hover .dropdown-content {
     display: block;
+	background-color:gray;
 }
 
 .not_avail {
@@ -1113,10 +1141,14 @@ td a {
 	font-weight:bold;
 }
 
-#edit-class-btn, #saveButton, #cancelButton1 {
-	width:13%;
+#saveButton, #cancelButton, #cancelButton1, #postBtn {
+	width:100px !important;
 	text-align:center !important;
-	padding-left:0 !important;
+}
+
+#edit-class-btn {
+	width:130px !important;
+	text-align:center !important;
 }
 
 #courses-list {
@@ -1194,4 +1226,12 @@ td a {
 
 #avatar-create div {
 	text-align:left;
+}
+
+@media screen and (max-width: 768px) {
+	.course-theme {
+		background-image: url(images/hero_3.jpg) !important;
+	}
+	
+	
 }
