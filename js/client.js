@@ -159,17 +159,30 @@ function loadClassPage(src) {
 			var status;
 			var opacity;		
 			var check;
+			var color;
 
 			for(i = 0; i < arr2[6].length; i++){
 				
 				//Student view class
 				if(src == 2) {
-					if(arr2[6][i].IsActive){opacity = 1} else {opacity = 0.2};
-					if(arr2[6][i].IsPassed){
-						status = "&#10004;";
-						result = arr2[6][i].Result;
+					if(arr2[6][i].IsActive){
+						opacity = 1;
+						
+						if(arr2[6][i].IsPassed){
+							status = "&#10004;";
+							 color = 'green';
+						} else {
+							status = "&nbsp;&nbsp;&nbsp;";
+							 color = 'red'
+						};
+						
+						if (arr2[6][i].Result) {
+							result = arr2[6][i].Result;
+						} else {
+							result ="&nbsp;&nbsp;";
+						};
 					} else {
-						status = "&nbsp;&nbsp;&nbsp;";
+						opacity = 0.2;
 						result ="&nbsp;&nbsp;";
 					};
 					
@@ -178,7 +191,7 @@ function loadClassPage(src) {
 																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\"> "
 																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span>"
-																	   + "<span class=\"lesson-result\">" + result + "</span></li></div>";
+																	   + "<span class=\"lesson-result\" style=\"color:" + color + ";\">" + result + "</span></div></li>";
 				//Teacher view class													   
 				} else if (src == 1) {
 					if(arr2[6][i].IsActive){opacity = 1} else {opacity = 0.2};
@@ -186,7 +199,7 @@ function loadClassPage(src) {
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + " " + "<br><span class=\"lesson-status\">" 
 																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></div></li>";
 				//Teacher manage class														
 				} else {
 					if(arr2[6][i].IsActive){
@@ -201,13 +214,18 @@ function loadClassPage(src) {
 																	   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + arr2[6][i].Id + "\"" + check + "><br>"
 																	   + "<img src=\"images\\classes\\" + arr2[1] + "\\lesson" + arr2[6][i].SeqNum + ".png\""
 																	   + "\" style=\"opacity:" + opacity + ";\" width=\"50\" height=\"50\">"
-																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
+																	   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></div></li>";
 				}; 
 				
 				if((src == 1 || src == 2) && arr2[9]) {
-					document.getElementById('exam-exists').innerHTML = "There is an exam assigned to this class"
+					document.getElementById('exam-exists').innerHTML = "<b>There is an exam assigned to this class.</b>";
+					if(src == 1) {
+						document.getElementById('exam-exists').innerHTML += "<br>Creating new exam will override the existing one.";
+					} else {
+						document.getElementById('exam-exists').innerHTML += "<br>Exam is available in the game, in \"Challenge Yourself\" section.";
+					};
 				} else if((src == 1 || src == 2) && !arr2[9]) {
-					document.getElementById('exam-exists').innerHTML = "There is no exam assigned to this class"
+					document.getElementById('exam-exists').innerHTML = "<b>There is no exam assigned to this class</b>";
 				};
 			};
 		};
@@ -310,7 +328,7 @@ function loadAddLessonsPage() {
 				document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name
 																   + " <input type=\"checkbox\" class=\"lesson-select\" id=\"" + arr2[6][i].Id + "\"><br>"
 																   + "<img src=\"images\\classes\\" + category + "\\lesson" + arr2[6][i].SeqNum + ".png\" width=\"50\" height=\"50\">"
-																   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></li></div>";
+																   + "<span class=\"tooltiptext1\">" + arr2[6][i].Description + "</span></div></li>";
 			}; 
 		};
 	};

@@ -998,7 +998,7 @@ td a {
 }	
 
 /* Tooltip container */
-.tooltip1 {
+.tooltip1, .tooltip3  {
     position: relative;
     display: inline-block;
 }
@@ -1020,11 +1020,10 @@ td a {
     left: 35%;
     margin-left: -60px;
 	/* Fade in tooltip */
-
     transition: opacity 0.3s;
 }
 /* Tooltip arrow */
-.tooltip1 .tooltiptext1::after, .tooltip2 .tooltiptext2::after  {
+.tooltip1 .tooltiptext1::after, .tooltip2 .tooltiptext2::after, .tooltip3 .tooltiptext3::after  {
     content: "";
     position: absolute;
 	visibility: hidden;
@@ -1033,19 +1032,19 @@ td a {
     border-style: solid;
 }
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip1:hover .tooltiptext1, .tooltip2:hover .tooltiptext2 {
+.tooltip1:hover .tooltiptext1, .tooltip2:hover .tooltiptext2, .tooltip3:hover .tooltiptext3  {
     visibility: visible;
     opacity: 1;
 }
 
 /* Tooltip container */
-.tooltip2 {
+.tooltip2{
     position: relative;
     display: inline;
 }
 
 /* Tooltip2 text */
-.tooltip2 .tooltiptext2 {
+.tooltip2 .tooltiptext2{
     visibility: hidden;
 	font-size:12px;
     width: 100px;
@@ -1062,7 +1061,26 @@ td a {
     left: 60%;
     margin-left: -60px;
 	/* Fade in tooltip */
+    transition: opacity 0.3s;
+}
 
+/* Tooltip3 text - info tooltips*/
+.tooltip3 .tooltiptext3 {
+    visibility: hidden;
+	font-size:14px;
+    width: 200px;
+    height: 190px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+	/* Position the tooltip text */
+    padding: 5px 0;
+    position: absolute;
+    z-index: 5;
+    bottom:-1px;
+	left: 45px;
+	/* Fade in tooltip */
     transition: opacity 0.3s;
 }
 
@@ -1188,7 +1206,6 @@ td a {
 
 #exam-exists {
 	border: solid 2px white;
-	font-weight: bold;
 	color:white;
 	margin-bottom:15px;
 }
