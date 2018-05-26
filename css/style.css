@@ -1248,7 +1248,17 @@ td a {
 @media screen and (max-width: 768px) {
 	.course-theme {
 		background-image: url(images/hero_3.jpg) !important;
+	}	
+}
+
+.helpVideo {
+	width: 560px;
+	height: 315px;
+}
+
+@media screen and (max-width: 768px) {
+	.helpVideo {
+		width: 280px;
+		height: 160px;
 	}
-	
-	
 }
