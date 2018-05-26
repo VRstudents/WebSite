@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>VR Students</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="VR Students website for learning in VR enviroment" />
+		<meta name="keywords" content="vr, virtual reality, learning, e-learning, study, school" />
+		<meta name="author" content="VRStudents" />
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="shortcut icon" href="images\logo.png">
+
+		<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/icomoon.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<script src="js/client.js"></script>
+		<script type="text/javascript" src="js/settings.js"></script>
+		<script src="js/authMgr.js"></script>
+		<script src="js/3rdParty/firebase.js"></script>
+		<script src="js/3rdParty/firebase-auth.js"></script>
+		<script src="js/3rdParty/modernizr-2.6.2.min.js"></script>
+		<script src="js/dom-elements.js"></script>		
+	</head>
+	<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+	<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+	<body>
+	<div id="fh5co-wrap">
+		<header id="fh5co-header">
+			<div class="container">
+				<nav class="fh5co-main-nav">
+					<ul>
+						<li id="subjects">
+							<div class="navbar">
+								<div class="dropdown">
+									<button class="dropbtn"><span>Subjects</span>
+									</button>
+									<div class="dropdown-content">
+										<a href="viewMath.html">Math</a>
+										<a href="viewEnglish.html">English</a>
+										<a href="viewScience.html">Science</a>
+										<a href="viewHistory.html">History</a>
+										<a href="viewGeography.html">Geography</a>
+									</div>
+								</div> 
+							</div>	 
+						</li>
+						<li><a href="index.html"><img border="0" alt="Home" src="images\logo.png" width="100" height="100"></a></li>
+						<li>
+							<ul id="loginAndSignup">
+								<li><button type="signup" class="header-button" onclick=""><span id="header1">Sign Up</span></button></li>
+								<li><button type="login" class="header-button" onclick=""><span id="header2">Login</span></button></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<script>onload=toggleLoginMenu();</script>
+		<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+		<div class="fh5co-hero" style="background-image: url(images/hero_4.jpg);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+						<div class="fh5co-intro fh5co-table-cell">
+							<h1 class="text-center">Help and user guide</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fh5co-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10">
+						<h2>Registration</h2>
+						<p class="ourhistory">To access our platform, you need to sign up first. For now, we support registration with google account only.<br>
+						Press "Sign Up" button in the upper right corner of the screen on any page, or one of the "Start ...." buttons on the home page.<br>
+						When registering, choose your role - teacher or student and fill the relevant information. At this moment we have educational content only for mathematics and science, for the first grade only.
+						That's why the grade selector will not allow you to set other grade, and the subjects selection is limited only for those two.</p>
+						<h2>Navigation</h2>
+						<p class="ourhistory">From any page - click on the logo in the top middle of the screen to go to the home page.<br>
+						If you're logged in, click on your initials in the upper right corner of the screen on any page, to go to your profile page, 
+						where you can see all your information and make all the necessary operations.</p>
+						<h2>Teachers</h2>
+						<p class="ourhistory">As teacher, you can do several operations on the web site:<ul>
+							<li><u>Open new class:</u> from your profile page, click "Create new class" button, select a grade and a category. You can open a class only for one of the categories you've registered upon signing up.<br>On the next screen you have to select which lessons you want to be available for the students in the class. Hovering on each icon will show you a description of the lesson. Mark the checkboxes near the icons to add the lessons to the class. Only added lessons will be available for the students in the game. You don't have to add all the lessons right away. You can add any of them at any moment later. In the end press "Create" button. You will see that the new class is added to the list of your classes.</li>
+							<li><u>Add lessons:</u> from class page you can click on "Edit class" button. On the next page you will be able to add any lesson that is not already added to the class. Remember, you cannot remove already added lessons.</li>	
+							<li><u>Create exam:</u> Exams are custom made lessons, which can be created by you by choosing questions from a bank that we've created for you.<br>On class page you can see if there is an exam already created for the class. You can create a new exam at any moment, but remember that creating a new exam will override the exam that may already exist for the class. Click on "Create exam" button". On the next page you will see a list of questions available for selection. You have to choose at least 8 and press "Save" to finish the process.</li>
+							<li><u>Post message to the class:</u> Message that you post in the class will be visible for the students on the class page, and in the game. You can see the current class message that you've posted, and post a new one, which will override the previous one.</li>	
+							<li><u>View statistics:</u> On the class page you can view different statistics - for each lesson and each student in the class and overall class statistics.</li>	
+						</ul></p>
+						<h2>Students</h2>
+						<p class="ourhistory">
+						As a student you can play the lessons game. In order to access the games you must join a class - one for each category you want to play. To access the game you will need a personal access code. You can get the code from your profile page - press show code in your personal information section. The code is personal, so don't share it with others. The code is randomly regenerated each time you sign in into the website.
+						<ul>
+							<li><u>Join class:</u> from your profile page, click "Join class" button and a list of available class from your school and grade will appear. You can see what is the subject of the class and who is the teacher. Select a class and click "Join class". You will see that the class has appeared in the list of your classes on the "Courses" tab on your profile page. Also you will see the available lessons for the newly joined class under "Classes" tab.</li>
+							<li><u>Play the games, sorry, the lessons:</u> when you access the game, you can play all the lessons that are available for you in your classes. Result of the games are sent to the server and will be displayed for you in your personal statistics and for your teacher in the class statistics.</li>	
+							<li><u>Take an exam challenge:</u> In the game you can take a challenge exam. This is a custom exam that your teacher created for your class. Click on "Challenge yourself" i nthe app to get the available cahllenges.</li>
+							<li><u>View statistics:</u> On your profile page, you can view your personal statistics under "Achievements" tab.</li>	
+						</ul></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- END fh5co-wrap -->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+	<footer id="fh5co-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h3>About Us</h3>
+					<p>We are a group of students who want to finish the degree and get back to reality, not a virtual one =)</p>
+				</div>
+				<div class="col-md-3 col-md-push-1">
+					<h3>Quick Links</h3>
+					<ul>
+						<li><a href="about.html">About Us</a></li>
+						<li><a href="help.html">Help</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-md-push-1">
+					<h3>Follow Us</h3>
+					<ul style="list-style-type:none; padding-left:0;">
+						<li><a href="#"><i class="icon-twitter"></i> <span>Twitter</span></a></li>
+						<li><a href="#"><i class="icon-facebook"></i> <span>Facebook</span></a></li>
+						<li><a href="#"><i class="icon-instagram"></i> <span>Instagram</span></a></li>
+						<li><a href="#"><i class="icon-google"></i> <span>Google Plus</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 fh5co-copyright text-center">
+					<p><small>&copy; 2018 VR Students. All Rights Reserved. </small></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<!-- jQuery -->
+	<script src="js/3rdParty/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/3rdParty/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/3rdParty/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/3rdParty/jquery.waypoints.min.js"></script>
+	<!-- Stellar -->
+	<script src="js/3rdParty/jquery.stellar.min.js"></script>
+	<!-- MAIN JS -->
+	<script src="js/3rdParty/main.js"></script>
+
+	</body>
+</html>
+
