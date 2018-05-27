@@ -170,10 +170,10 @@ function loadClassPage(src) {
 						
 						if(arr2[6][i].IsPassed){
 							status = "&#10004;";
-							 color = 'green';
+							color = 'green';
 						} else {
 							status = "&nbsp;&nbsp;&nbsp;";
-							 color = 'red'
+							color = 'red'
 						};
 						
 						if (arr2[6][i].Result) {
@@ -184,6 +184,7 @@ function loadClassPage(src) {
 					} else {
 						opacity = 0.2;
 						result ="&nbsp;&nbsp;";
+						status = "&nbsp;&nbsp;&nbsp;";
 					};
 					
 					document.getElementById('classLessons').innerHTML += "<li><div class=\"tooltip1\">" + arr2[6][i].Name + "<br>"
@@ -226,6 +227,11 @@ function loadClassPage(src) {
 					};
 				} else if((src == 1 || src == 2) && !arr2[9]) {
 					document.getElementById('exam-exists').innerHTML = "<b>There is no exam assigned to this class</b>";
+				};
+				
+				if (src == 1 && arr2[1] == 'Science') {
+					document.getElementById('exam-exists').innerHTML = "<b>Creating exams for science classes is not available yet.</b>";
+					document.getElementById('creat-exam-btn').style.display = 'none';
 				};
 			};
 		};

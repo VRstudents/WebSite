@@ -54,7 +54,8 @@ function loadProfileStudent() {
 			
 			//Courses tab
 			for (i = 0; i < arr2[0].length; i++) {
-				document.getElementById("Courses-table").innerHTML += "<tr><td>" + arr2[0][i].Category + "</td><td>" + arr2[0][i].Grade + "</td><td>" + arr2[0][i].Result.toFixed(2) + "</td><tr>";
+				document.getElementById("Courses-table").innerHTML += "<tr><td><a href=\"viewClassStudent.html?courseId=" + arr2[1][i].CourseId + "\">" + arr2[0][i].Category + "</a></td>" + 
+																	  "<td>" + arr2[0][i].Grade + "</td><td>" + arr2[0][i].Result.toFixed(2) + "</td><tr>";
 			};			
 		};
 	};

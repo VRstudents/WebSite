@@ -305,10 +305,11 @@ function displayClassStatisticsAttempts(){
 			};
 
 			if(arr2[1].length != 0) {
-				function drawChart2() {
-					google.charts.load('current', {'packages':['bar']});
-					google.charts.setOnLoadCallback(drawChart2);
+				google.charts.load('current', {'packages':['bar']});
+				google.charts.setOnLoadCallback(drawChart2);					
 					
+				function drawChart2() {
+
 					var data = google.visualization.arrayToDataTable([
 						['Lesson', 'Attempted', 'Finished'],
 						[arr2[1][0].LNum, arr2[1][0].StTried, arr2[1][0].StFinished],
