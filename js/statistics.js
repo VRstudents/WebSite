@@ -15,8 +15,14 @@ function displayLessonStatistics(){
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
 	
 	document.getElementById('lesson-tab-div').style.display = 'inline';
-	document.getElementById('students-in-lesson_label').style.display = 'inline';
-	document.getElementById('students-in-lesson').style.display = 'inline';
+	
+	if (sessionStorage.getItem('classCategory') == 'Science') {
+		document.getElementById('students-in-lesson_label').style.display = 'none';
+		document.getElementById('students-in-lesson').style.display = 'none';
+	} else {
+		document.getElementById('students-in-lesson_label').style.display = 'inline';
+		document.getElementById('students-in-lesson').style.display = 'inline';
+	};
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -30,8 +36,14 @@ function displayLessonStatistics(){
 
 			document.getElementById("students-tried").innerHTML = 'Students attempted the lesson: ' + arr2[1];
 			document.getElementById("students-finished").innerHTML = 'Students finished the lesson: ' + arr2[2] + " (" + arr2[3] + "%)";
-			document.getElementById("avg-res").innerHTML = 'Average lesson result: ' + arr2[4];
-			document.getElementById("avg-best-res").innerHTML = 'Average best lesson result: ' + arr2[5];
+			document.getElementById("avg-res").innerHTML = 'Average lesson result: ' + arr2[4].toFixed(2);
+			document.getElementById("avg-best-res").innerHTML = 'Average best lesson result: ' + arr2[5].toFixed(2);
+			
+			if (sessionStorage.getItem('classCategory') == 'Science') {
+				document.getElementById("columnchart_lesson_all").innerHTML = "<br><br>Questions results distribution is not available for science classes";
+				document.getElementById("columnchart_lesson_all").style.fontSize = "30px";
+				return;
+			};
 			
 			optionsQ = {
 				chart: {
@@ -345,7 +357,7 @@ function displayClassStatisticsAttempts(){
 	xhttp.send();
 }
 
-function buildStudentsList(){
+function buildStudentsList(){	
 	classId = document.URL.substring(document.URL.indexOf("?") + 10);
 	
 	var xhttp = new XMLHttpRequest();
@@ -436,8 +448,13 @@ function displayStudentStatistics(){
 				}
 			};
 			
-			document.getElementById('lesson-in-student_label').style.display = 'inline';
-			document.getElementById('lessons-list-for-student').style.display = 'inline';
+			if (sessionStorage.getItem('classCategory') == 'Science') {
+				document.getElementById('lesson-in-student_label').style.display = 'none';
+				document.getElementById('lessons-list-for-student').style.display = 'none';
+			} else {
+				document.getElementById('lesson-in-student_label').style.display = 'inline';
+				document.getElementById('lessons-list-for-student').style.display = 'inline';
+			};
 			
 			if(document.getElementById('lessons-list-for-student').value != ''){
 				displayStudentInLessonStats(2);

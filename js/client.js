@@ -101,8 +101,8 @@ function joinClass() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById('Courses-table').innerHTML += "<tr><td>" + document.querySelector('input[name="class-opt"]:checked').value +
-																	  "</td><td>" + sessionStorage.getItem('grade') + "</td><td>0</td></tr>";
+				document.getElementById('Courses-table').innerHTML += "<tr><td><a href=\"viewClassStudent.html?courseId=" + document.querySelector('input[name="class-opt"]:checked').id + "\">" +
+																	  document.querySelector('input[name="class-opt"]:checked').value + "</a></td><td>" + sessionStorage.getItem('grade') + "</td><td>0.00</td></tr>";
 				
 				modal.style.display = "none"; //close the modal
 				document.querySelector('input[name="class-opt"]:checked').parentElement.style.display = "none"; //remove the added class from the list
@@ -142,8 +142,9 @@ function loadClassPage(src) {
 			var arr1 = Object.keys(response);
 			var arr2 = arr1.map(function (k) {
 				return response[k];
-			});
+			});	
 			
+			sessionStorage.setItem('classCategory', arr2[1]);			
 			document.getElementById('class-cat-grade').innerHTML = arr2[1] + " - Grade " + arr2[2];
 			document.getElementById('class-teacher').innerHTML = arr2[3];
 			document.getElementById('class-students').innerHTML = arr2[4] + " students";
@@ -219,7 +220,7 @@ function loadClassPage(src) {
 				}; 
 				
 				if((src == 1 || src == 2) && arr2[9]) {
-					document.getElementById('exam-exists').innerHTML = "<b>There is an exam assigned to this class.</b>";
+					document.getElementById('exam-exists').innerHTML = "<b><span style=\"color:green;\">There is an exam assigned to this class.</span></b>";
 					if(src == 1) {
 						document.getElementById('exam-exists').innerHTML += "<br>Creating new exam will override the existing one.";
 					} else {
@@ -227,10 +228,16 @@ function loadClassPage(src) {
 					};
 				} else if((src == 1 || src == 2) && !arr2[9]) {
 					document.getElementById('exam-exists').innerHTML = "<b>There is no exam assigned to this class</b>";
+					if (src == 1) {
+						document.getElementById('exam-exists').style = 'color:red;';
+					} else {
+						document.getElementById('exam-exists').style = 'color:white;';
+					};
 				};
 				
 				if (src == 1 && arr2[1] == 'Science') {
 					document.getElementById('exam-exists').innerHTML = "<b>Creating exams for science classes is not available yet.</b>";
+					document.getElementById('exam-exists').style = 'color:white;';
 					document.getElementById('creat-exam-btn').style.display = 'none';
 				};
 			};
@@ -241,7 +248,7 @@ function loadClassPage(src) {
 	xhttp.send();
 	
 	if(src == 1){
-		displayClassStatisticsResults()	
+		displayClassStatisticsResults();	
 	};
 }
 
@@ -472,7 +479,7 @@ function createExam(){
 			"QuestionIDs":questionsToAdd
 		};
 		var dataJ = JSON.stringify(data);
-		console.log(dataJ);		
+		
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
