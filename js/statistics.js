@@ -451,6 +451,9 @@ function displayStudentStatistics(){
 			if (sessionStorage.getItem('classCategory') == 'Science') {
 				document.getElementById('lesson-in-student_label').style.display = 'none';
 				document.getElementById('lessons-list-for-student').style.display = 'none';
+				document.getElementById("columnchart_student_question").innerHTML = "<br><br>Questions results distribution is not available for science classes";
+				document.getElementById("columnchart_student_question").style.fontSize = "30px";
+				return;
 			} else {
 				document.getElementById('lesson-in-student_label').style.display = 'inline';
 				document.getElementById('lessons-list-for-student').style.display = 'inline';
