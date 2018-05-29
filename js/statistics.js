@@ -232,7 +232,7 @@ function displayClassStatisticsResults(){
 				return response[k];
 			});
 
-			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2] + "</b>";
+			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2].toFixed(2) + "</b>";
 			
 			optionsL = {
 				chart: {
@@ -301,7 +301,7 @@ function displayClassStatisticsAttempts(){
 				return response[k];
 			});
 
-			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2] + "</b>";
+			document.getElementById("avg-result").innerHTML = "<b>Average course result: " + arr2[2].toFixed(2) + "</b>";
 			
 			optionsL = {
 				chart: {
@@ -398,7 +398,7 @@ function displayStudentStatistics(){
 				return response[k];
 			});
 			
-			document.getElementById("avg-result-student").innerHTML = "<b>Average course result: " + arr4[1] + "</b>";
+			document.getElementById("avg-result-student").innerHTML = "<b>Average course result: " + arr4[1].toFixed(2) + "</b>";
 			
 			optionsL = {
 				chart: {
@@ -408,7 +408,7 @@ function displayStudentStatistics(){
 					title: 'Result',
 					viewWindow: {
 						min: 0,
-						max: 4
+						max: 10
 					},
 					ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10] 
 				}
