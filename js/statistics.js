@@ -33,7 +33,7 @@ function displayLessonStatistics(){
 			var arr2 = arr1.map(function (k) {
 				return response[k];
 			});
-
+			console.log(arr2);
 			document.getElementById("students-tried").innerHTML = 'Students attempted the lesson: ' + arr2[1];
 			document.getElementById("students-finished").innerHTML = 'Students finished the lesson: ' + arr2[2] + " (" + arr2[3] + "%)";
 			document.getElementById("avg-res").innerHTML = 'Average lesson result: ' + arr2[4].toFixed(2);
@@ -66,16 +66,16 @@ function displayLessonStatistics(){
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
 						['Question', 'Correct', 'Incorrect'],
-						[arr2[0][0].QNum, arr2[0][0].RightCount/(arr2[0][0].RightCount+arr2[0][0].WrongCount)*100, arr2[0][0].WrongCount/(arr2[0][0].RightCount+arr2[0][0].WrongCount)*100],
-						[arr2[0][1].QNum, arr2[0][1].RightCount/(arr2[0][1].RightCount+arr2[0][1].WrongCount)*100, arr2[0][1].WrongCount/(arr2[0][1].RightCount+arr2[0][1].WrongCount)*100],
-						[arr2[0][2].QNum, arr2[0][2].RightCount/(arr2[0][2].RightCount+arr2[0][2].WrongCount)*100, arr2[0][2].WrongCount/(arr2[0][2].RightCount+arr2[0][2].WrongCount)*100],
-						[arr2[0][3].QNum, arr2[0][3].RightCount/(arr2[0][3].RightCount+arr2[0][3].WrongCount)*100, arr2[0][3].WrongCount/(arr2[0][3].RightCount+arr2[0][3].WrongCount)*100],
-						[arr2[0][4].QNum, arr2[0][4].RightCount/(arr2[0][4].RightCount+arr2[0][4].WrongCount)*100, arr2[0][4].WrongCount/(arr2[0][4].RightCount+arr2[0][4].WrongCount)*100],
-						[arr2[0][5].QNum, arr2[0][5].RightCount/(arr2[0][5].RightCount+arr2[0][5].WrongCount)*100, arr2[0][5].WrongCount/(arr2[0][5].RightCount+arr2[0][5].WrongCount)*100],
-						[arr2[0][6].QNum, arr2[0][6].RightCount/(arr2[0][6].RightCount+arr2[0][6].WrongCount)*100, arr2[0][6].WrongCount/(arr2[0][6].RightCount+arr2[0][6].WrongCount)*100],
-						[arr2[0][7].QNum, arr2[0][7].RightCount/(arr2[0][7].RightCount+arr2[0][7].WrongCount)*100, arr2[0][7].WrongCount/(arr2[0][7].RightCount+arr2[0][7].WrongCount)*100],
-						[arr2[0][8].QNum, arr2[0][8].RightCount/(arr2[0][8].RightCount+arr2[0][8].WrongCount)*100, arr2[0][8].WrongCount/(arr2[0][8].RightCount+arr2[0][8].WrongCount)*100],
-						[arr2[0][9].QNum, arr2[0][9].RightCount/(arr2[0][9].RightCount+arr2[0][9].WrongCount)*100, arr2[0][9].WrongCount/(arr2[0][9].RightCount+arr2[0][9].WrongCount)*100]
+						[1, arr2[0][0].RightCount/(arr2[0][0].RightCount+arr2[0][0].WrongCount)*100, arr2[0][0].WrongCount/(arr2[0][0].RightCount+arr2[0][0].WrongCount)*100],
+						[2, arr2[0][1].RightCount/(arr2[0][1].RightCount+arr2[0][1].WrongCount)*100, arr2[0][1].WrongCount/(arr2[0][1].RightCount+arr2[0][1].WrongCount)*100],
+						[3, arr2[0][2].RightCount/(arr2[0][2].RightCount+arr2[0][2].WrongCount)*100, arr2[0][2].WrongCount/(arr2[0][2].RightCount+arr2[0][2].WrongCount)*100],
+						[4, arr2[0][3].RightCount/(arr2[0][3].RightCount+arr2[0][3].WrongCount)*100, arr2[0][3].WrongCount/(arr2[0][3].RightCount+arr2[0][3].WrongCount)*100],
+						[5, arr2[0][4].RightCount/(arr2[0][4].RightCount+arr2[0][4].WrongCount)*100, arr2[0][4].WrongCount/(arr2[0][4].RightCount+arr2[0][4].WrongCount)*100],
+						[6, arr2[0][5].RightCount/(arr2[0][5].RightCount+arr2[0][5].WrongCount)*100, arr2[0][5].WrongCount/(arr2[0][5].RightCount+arr2[0][5].WrongCount)*100],
+						[7, arr2[0][6].RightCount/(arr2[0][6].RightCount+arr2[0][6].WrongCount)*100, arr2[0][6].WrongCount/(arr2[0][6].RightCount+arr2[0][6].WrongCount)*100],
+						[8, arr2[0][7].RightCount/(arr2[0][7].RightCount+arr2[0][7].WrongCount)*100, arr2[0][7].WrongCount/(arr2[0][7].RightCount+arr2[0][7].WrongCount)*100],
+						[9, arr2[0][8].RightCount/(arr2[0][8].RightCount+arr2[0][8].WrongCount)*100, arr2[0][8].WrongCount/(arr2[0][8].RightCount+arr2[0][8].WrongCount)*100],
+						[10, arr2[0][9].RightCount/(arr2[0][9].RightCount+arr2[0][9].WrongCount)*100, arr2[0][9].WrongCount/(arr2[0][9].RightCount+arr2[0][9].WrongCount)*100]
 					]);
 
 					var chart = new google.charts.Bar(document.getElementById('columnchart_lesson_all'));
@@ -166,16 +166,16 @@ function displayStudentInLessonStats(src){ 	//src=1 - lessons tab; src=2 - stude
 				function drawChart() {
 					var data = google.visualization.arrayToDataTable([
 						['Question', 'Correct', 'Incorrect'],
-						[arr4[0].QNum, arr4[0].RightCount/(arr4[0].RightCount+arr4[0].WrongCount)*100, arr4[0].WrongCount/(arr4[0].RightCount+arr4[0].WrongCount)*100],
-						[arr4[1].QNum, arr4[1].RightCount/(arr4[1].RightCount+arr4[1].WrongCount)*100, arr4[1].WrongCount/(arr4[1].RightCount+arr4[1].WrongCount)*100],
-						[arr4[2].QNum, arr4[2].RightCount/(arr4[2].RightCount+arr4[2].WrongCount)*100, arr4[2].WrongCount/(arr4[2].RightCount+arr4[2].WrongCount)*100],
-						[arr4[3].QNum, arr4[3].RightCount/(arr4[3].RightCount+arr4[3].WrongCount)*100, arr4[3].WrongCount/(arr4[3].RightCount+arr4[3].WrongCount)*100],
-						[arr4[4].QNum, arr4[4].RightCount/(arr4[4].RightCount+arr4[4].WrongCount)*100, arr4[4].WrongCount/(arr4[4].RightCount+arr4[4].WrongCount)*100],
-						[arr4[5].QNum, arr4[5].RightCount/(arr4[5].RightCount+arr4[5].WrongCount)*100, arr4[5].WrongCount/(arr4[5].RightCount+arr4[5].WrongCount)*100],
-						[arr4[6].QNum, arr4[6].RightCount/(arr4[6].RightCount+arr4[6].WrongCount)*100, arr4[6].WrongCount/(arr4[6].RightCount+arr4[6].WrongCount)*100],
-						[arr4[7].QNum, arr4[7].RightCount/(arr4[7].RightCount+arr4[7].WrongCount)*100, arr4[7].WrongCount/(arr4[7].RightCount+arr4[7].WrongCount)*100],
-						[arr4[8].QNum, arr4[8].RightCount/(arr4[8].RightCount+arr4[8].WrongCount)*100, arr4[8].WrongCount/(arr4[8].RightCount+arr4[8].WrongCount)*100],
-						[arr4[9].QNum, arr4[9].RightCount/(arr4[9].RightCount+arr4[9].WrongCount)*100, arr4[9].WrongCount/(arr4[9].RightCount+arr4[9].WrongCount)*100]
+						[1, arr4[0].RightCount/(arr4[0].RightCount+arr4[0].WrongCount)*100, arr4[0].WrongCount/(arr4[0].RightCount+arr4[0].WrongCount)*100],
+						[2, arr4[1].RightCount/(arr4[1].RightCount+arr4[1].WrongCount)*100, arr4[1].WrongCount/(arr4[1].RightCount+arr4[1].WrongCount)*100],
+						[3, arr4[2].RightCount/(arr4[2].RightCount+arr4[2].WrongCount)*100, arr4[2].WrongCount/(arr4[2].RightCount+arr4[2].WrongCount)*100],
+						[4, arr4[3].RightCount/(arr4[3].RightCount+arr4[3].WrongCount)*100, arr4[3].WrongCount/(arr4[3].RightCount+arr4[3].WrongCount)*100],
+						[5, arr4[4].RightCount/(arr4[4].RightCount+arr4[4].WrongCount)*100, arr4[4].WrongCount/(arr4[4].RightCount+arr4[4].WrongCount)*100],
+						[6, arr4[5].RightCount/(arr4[5].RightCount+arr4[5].WrongCount)*100, arr4[5].WrongCount/(arr4[5].RightCount+arr4[5].WrongCount)*100],
+						[7, arr4[6].RightCount/(arr4[6].RightCount+arr4[6].WrongCount)*100, arr4[6].WrongCount/(arr4[6].RightCount+arr4[6].WrongCount)*100],
+						[8, arr4[7].RightCount/(arr4[7].RightCount+arr4[7].WrongCount)*100, arr4[7].WrongCount/(arr4[7].RightCount+arr4[7].WrongCount)*100],
+						[9, arr4[8].RightCount/(arr4[8].RightCount+arr4[8].WrongCount)*100, arr4[8].WrongCount/(arr4[8].RightCount+arr4[8].WrongCount)*100],
+						[10, arr4[9].RightCount/(arr4[9].RightCount+arr4[9].WrongCount)*100, arr4[9].WrongCount/(arr4[9].RightCount+arr4[9].WrongCount)*100]
 					]);
 
 					if(src == 1) {
