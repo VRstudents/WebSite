@@ -260,9 +260,18 @@ function displayClassStatisticsResults(){
 						[arr2[0][2].LNum, arr2[0][2].AvgRes, arr2[0][2].AvgBestRes],
 						[arr2[0][3].LNum, arr2[0][3].AvgRes, arr2[0][3].AvgBestRes]
 					]);
+					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
 
 					var chart = new google.charts.Bar(document.getElementById('columnchart_class_results'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			} else { 
 				google.charts.load('current', {'packages':['bar']});
@@ -277,8 +286,17 @@ function displayClassStatisticsResults(){
 						[4, 0, 0]
 					]);
 					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
+					
 					var chart = new google.charts.Bar(document.getElementById('columnchart_class_results'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			};
 		};					
@@ -329,9 +347,18 @@ function displayClassStatisticsAttempts(){
 						[arr2[1][2].LNum, arr2[1][2].StTried, arr2[1][2].StFinished],
 						[arr2[1][3].LNum, arr2[1][3].StTried, arr2[1][3].StFinished]
 					]);
+					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
 
 					var chart = new google.charts.Bar(document.getElementById('columnchart_class_attempts'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			} else { 
 				google.charts.load('current', {'packages':['bar']});
@@ -346,8 +373,17 @@ function displayClassStatisticsAttempts(){
 						[4, 0, 0]
 					]);
 					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
+					
 					var chart = new google.charts.Bar(document.getElementById('columnchart_class_attempts'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			};
 		};					
@@ -426,9 +462,18 @@ function displayStudentStatistics(){
 						[arr4[0][2].LNum, arr4[0][2].AvgRes, arr4[0][2].BestRes],
 						[arr4[0][3].LNum, arr4[0][3].AvgRes, arr4[0][3].BestRes]
 					]);
+					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
 
 					var chart = new google.charts.Bar(document.getElementById('students-output-result'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			} else { 
 				google.charts.load('current', {'packages':['bar']});
@@ -442,9 +487,18 @@ function displayStudentStatistics(){
 						[3, 0, 0],
 						[4, 0, 0]
 					]);
+					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
 
 					var chart = new google.charts.Bar(document.getElementById('students-output-result'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			};
 			
@@ -508,9 +562,18 @@ function loadPersonalGraph() {
 						[arr4[2].LNum, arr4[2].AvgRes, arr4[2].BestRes],
 						[arr4[3].LNum, arr4[3].AvgRes, arr4[3].BestRes]
 					]);
+					
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
 
 					var chart = new google.charts.Bar(document.getElementById('res_chart'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			} else { 
 				google.charts.load('current', {'packages':['bar']});
@@ -525,8 +588,17 @@ function loadPersonalGraph() {
 						[4, 0, 0]
 					]);
 
+					var view = new google.visualization.DataView(data);
+					view.setColumns([{
+						calc: function (dt, row) {
+							return dt.getValue(row, 0).toFixed(0);
+						},
+						label: data.getColumnLabel(0),
+						type: 'string'
+					}, 1, 2]);
+					
 					var chart = new google.charts.Bar(document.getElementById('res_chart'));
-					chart.draw(data, google.charts.Bar.convertOptions(optionsL));
+					chart.draw(view, google.charts.Bar.convertOptions(optionsL));
 				}
 			};
 		};					
